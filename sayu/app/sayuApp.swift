@@ -9,6 +9,7 @@ import SwiftUI
 
 import RealmSwift
 import MijickNavigationView
+import MijickPopupView
 
 @main
 struct sayuApp: App {
@@ -19,6 +20,7 @@ struct sayuApp: App {
          Home()
             .implementNavigationView(config: navigationConfig)
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
+            .implementPopupView()
       }
    }
 }
@@ -27,7 +29,7 @@ extension sayuApp {
    var navigationConfig: NavigationGlobalConfig {
       var config = NavigationGlobalConfig()
       config.backGestureThreshold = 0.2
-      config.backgroundColour = .basebeige
+      config.backgroundColour = .white
       return config
    }
 }
