@@ -7,15 +7,19 @@
 
 import SwiftUI
 
-struct Home: View {
+import MijickNavigationView
+
+struct Home: NavigatableView {
    var body: some View {
       VStack {
-         Image(systemName: "globe")
-            .imageScale(.large)
-            .foregroundStyle(.tint)
-         Text("Hello, world!")
+         ZStack {
+            
+         }
+         
+         Spacer()
+         
+         // MARK: Tabbar
       }
-      .padding()
    }
 }
 
