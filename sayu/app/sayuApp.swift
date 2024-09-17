@@ -7,14 +7,18 @@
 
 import SwiftUI
 
+import RealmSwift
 import MijickNavigationView
 
 @main
 struct sayuApp: App {
+   private let databaseManager: DatabaseManager = .manager
+   
    var body: some Scene {
       WindowGroup {
          Home()
             .implementNavigationView(config: navigationConfig)
+            .environment(\.realmConfiguration, databaseManager.getDBConfig())
       }
    }
 }

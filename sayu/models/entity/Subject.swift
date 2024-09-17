@@ -19,15 +19,17 @@ final class Subject: Object, ObjectKeyIdentifiable {
    var thinks: List<Think>
    
    @Persisted
-   var isSystemSubject: Bool = false
+   var isSystemSubject: Bool
    
    @Persisted
    var createdAt: Date = .init()
    
    convenience init(
-      title: String
+      title: String,
+      isSystemSubject: Bool = false
    ) {
       self.init()
       self.title = title
+      self.isSystemSubject = isSystemSubject
    }
 }

@@ -42,9 +42,9 @@ final class Think: Object, ObjectKeyIdentifiable {
    convenience init(
       date: String,
       content: String,
-      thinkType: Int,
-      timeTake: Int, 
-      isSaved: Bool
+      thinkType: Int = ThinkType.stay.rawValue,
+      timeTake: Int = 0,
+      isSaved: Bool = false
    ) {
       self.init()
       
