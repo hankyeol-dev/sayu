@@ -27,6 +27,7 @@ extension sayuApp {
    var navigationConfig: NavigationGlobalConfig {
       var config = NavigationGlobalConfig()
       config.backGestureThreshold = 0.2
+      config.backgroundColour = .basebeige
       return config
    }
 }
