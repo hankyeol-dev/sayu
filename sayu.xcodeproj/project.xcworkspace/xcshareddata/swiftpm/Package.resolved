@@ -1,0 +1,42 @@
+{
+  "originHash" : "545b75e1de6cce520eb89fbbf850ab1eead1860c717253425a645b02ae4fc793",
+  "pins" : [
+    {
+      "identity" : "navigationview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mijick/NavigationView.git",
+      "state" : {
+        "revision" : "f9e78da74871bd862db320b9a27cbf0e20e85a93",
+        "version" : "1.1.3"
+      }
+    },
+    {
+      "identity" : "popupview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mijick/PopupView.git",
+      "state" : {
+        "revision" : "60ebc93bbcf06d78b0123389e641c3a451c80f65",
+        "version" : "2.7.1"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "f98720a07e6150c41c953e1937108225550ba155",
+        "version" : "20.0.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift.git",
+      "state" : {
+        "revision" : "7ea8be1f74034bae860120d58d3491c4fcedff5b",
+        "version" : "20.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
