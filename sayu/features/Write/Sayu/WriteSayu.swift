@@ -32,14 +32,23 @@ struct WriteSayu: NavigatableView {
          
          // MARK: 사유하기 설정 영역
          ScrollView(.vertical, showsIndicators: false) {
+            Spacer.height(12.0)
+            
             createSubjectView()
             Spacer.height(12.0)
+            
             createSubView()
+            Spacer.height(12.0)
+            
+            createSayuTypeView()
+            Spacer.height(12.0)
+            
+            createSayuTimer()
+            Spacer.height(12.0)
          }
          .background(.white)
          .frame(maxWidth: .infinity)
          .padding(.horizontal, 16.0)
-         .padding(.top, 8.0)
          
          Spacer()
          
@@ -202,7 +211,6 @@ extension WriteSayu {
          }
       }
    }
-   
    private func createSubItem(_ item: Binding<SubViewItem>, index: Int) -> some View {
       return HStack(alignment: .center, spacing: 8.0) {
          RoundedTextField(
@@ -223,12 +231,108 @@ extension WriteSayu {
          Button {
             viewLogic.removeSubItem(index)
          } label: {
-            Image(.remove)
+            Image(.trash)
                .resizable()
                .frame(width: 16.0, height: 16.0)
          }
          .disabled(subFieldFocus != nil)
       }
+   }
+}
+
+extension WriteSayu {
+   private func createSayuTypeView() -> some View {
+      let selectedType = viewLogic.selectedSayuType
+      return FoldableGroupBox(title: "사유 방식") {
+         VStack {
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
+               ForEach(viewLogic.sayuTypes, id: \.id) { type in
+                  asRoundedRect(
+                     title: type.title,
+                     radius: 12.0,
+                     background: selectedType == type.type ? .baseGreen : .grayMd,
+                     foreground: selectedType == type.type ? .white : .grayXl,
+                     height: 32.0,
+                     fontSize: 13.0,
+                     font: selectedType == type.type ? .satoshiBold : .satoshiMedium
+                  )
+                  .onTapGesture {
+                     withAnimation(.bouncy) {
+                        viewLogic.selectedSayuType = type.type
+                     }
+                  }
+               }
+            }
+         }
+      } toggleHandler: { isNotOpen in
+         return !isNotOpen
+      }
+
+   }
+}
+
+extension WriteSayu {
+   private func createSayuTimer() -> some View {
+      let selectedType = viewLogic.selectedTimerType
+      dump(viewLogic.sayuTime)
+      return FoldableGroupBox(title: "사유 시간 설정") {
+         VStack {
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
+               ForEach(viewLogic.sayuTimerTypes, id: \.id) { type in
+                  asRoundedRect(
+                     title: type.title,
+                     radius: 12.0,
+                     background: selectedType == type.type ? .baseGreen : .grayMd,
+                     foreground: selectedType == type.type ? .white : .grayXl,
+                     height: 32.0,
+                     fontSize: 13.0,
+                     font: selectedType == type.type ? .satoshiBold : .satoshiMedium
+                  )
+                  .onTapGesture {
+                     withAnimation(.bouncy) {
+                        viewLogic.selectedTimerType = type.type
+                        if viewLogic.selectedTimerType == .stopWatch {
+                           viewLogic.resetTimer()
+                        }
+                     }
+                  }
+               }
+            }
+            
+            if selectedType == .timer {
+               Spacer.height(16.0)
+               
+               asRoundedRect(
+                  title: "타이머 방식은 최대 3시간까지 설정할 수 있어요.",
+                  radius: 16.0,
+                  background: .basebeige,
+                  foreground: .grayXl,
+                  height: 32.0,
+                  fontSize: 12.0,
+                  font: .kjcRegular)
+               
+               HStack {
+                  Picker("시", selection: $viewLogic.sayuTime.hours) {
+                     ForEach(0..<3) { Text("\($0) 시") }
+                  }
+                  
+                  Picker("분", selection: $viewLogic.sayuTime.minutes) {
+                     ForEach(0..<60) { Text("\($0) 분") }
+                  }
+                  
+                  Picker("초", selection: $viewLogic.sayuTime.seconds) {
+                     ForEach(0..<60) { Text("\($0) 초") }
+                  }
+               }
+               .labelStyle(.titleOnly)
+               .pickerStyle(.inline)
+               .frame(maxHeight: 80)
+            }
+         }
+      } toggleHandler: { isNotOpen in
+         return !isNotOpen
+      }
+
    }
 }
 

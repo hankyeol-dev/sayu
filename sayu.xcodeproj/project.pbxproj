@@ -51,6 +51,12 @@
 		8191D2502C9A653A00B2A3C8 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24F2C9A653A00B2A3C8 /* +View.swift */; };
 		8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */; };
 		8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */; };
+		8191D2592C9AF37600B2A3C8 /* SayuTimerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2582C9AF37600B2A3C8 /* SayuTimerType.swift */; };
+		8191D25B2C9AF5E500B2A3C8 /* SubjectViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D25A2C9AF5E500B2A3C8 /* SubjectViewItem.swift */; };
+		8191D25D2C9AF5F600B2A3C8 /* SubViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D25C2C9AF5F600B2A3C8 /* SubViewItem.swift */; };
+		8191D25F2C9AF60C00B2A3C8 /* SayuTypeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D25E2C9AF60C00B2A3C8 /* SayuTypeItem.swift */; };
+		8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */; };
+		8191D2632C9AF8BD00B2A3C8 /* SayuTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +116,12 @@
 		8191D24F2C9A653A00B2A3C8 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsRoundedRect.swift; sourceTree = "<group>"; };
 		8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		8191D2582C9AF37600B2A3C8 /* SayuTimerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTimerType.swift; sourceTree = "<group>"; };
+		8191D25A2C9AF5E500B2A3C8 /* SubjectViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewItem.swift; sourceTree = "<group>"; };
+		8191D25C2C9AF5F600B2A3C8 /* SubViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewItem.swift; sourceTree = "<group>"; };
+		8191D25E2C9AF60C00B2A3C8 /* SayuTypeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTypeItem.swift; sourceTree = "<group>"; };
+		8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTimerTypeItem.swift; sourceTree = "<group>"; };
+		8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +237,7 @@
 				8191D2222C99482200B2A3C8 /* Sub.swift */,
 				8191D2242C9948E600B2A3C8 /* SmartList.swift */,
 				8191D2262C994A3E00B2A3C8 /* SayuPoint.swift */,
+				8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -241,6 +254,10 @@
 		8191D20C2C99351900B2A3C8 /* viewItem */ = {
 			isa = PBXGroup;
 			children = (
+				8191D25A2C9AF5E500B2A3C8 /* SubjectViewItem.swift */,
+				8191D25C2C9AF5F600B2A3C8 /* SubViewItem.swift */,
+				8191D25E2C9AF60C00B2A3C8 /* SayuTypeItem.swift */,
+				8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */,
 			);
 			path = viewItem;
 			sourceTree = "<group>";
@@ -285,6 +302,7 @@
 				8191D2282C99518500B2A3C8 /* SystemSubjects.swift */,
 				8191D22A2C99549400B2A3C8 /* ThinkType.swift */,
 				8191D22C2C99552500B2A3C8 /* SayuPointType.swift */,
+				8191D2582C9AF37600B2A3C8 /* SayuTimerType.swift */,
 			);
 			path = enum;
 			sourceTree = "<group>";
@@ -435,13 +453,17 @@
 				8191D2112C99359800B2A3C8 /* NetworkManager.swift in Sources */,
 				8191D23F2C996A5800B2A3C8 /* SayuChart.swift in Sources */,
 				8191D2232C99482200B2A3C8 /* Sub.swift in Sources */,
+				8191D25F2C9AF60C00B2A3C8 /* SayuTypeItem.swift in Sources */,
 				8191D2502C9A653A00B2A3C8 /* +View.swift in Sources */,
 				8191D20F2C99355D00B2A3C8 /* DatabaseManager.swift in Sources */,
 				8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */,
 				8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */,
 				8191D2142C9935FD00B2A3C8 /* +Spacer.swift in Sources */,
 				8191D2212C99450800B2A3C8 /* Subject.swift in Sources */,
+				8191D25D2C9AF5F600B2A3C8 /* SubViewItem.swift in Sources */,
+				8191D25B2C9AF5E500B2A3C8 /* SubjectViewItem.swift in Sources */,
 				8191D22B2C99549400B2A3C8 /* ThinkType.swift in Sources */,
+				8191D2632C9AF8BD00B2A3C8 /* SayuTime.swift in Sources */,
 				8191D21E2C993A6900B2A3C8 /* +Font.swift in Sources */,
 				8191D2292C99518500B2A3C8 /* SystemSubjects.swift in Sources */,
 				8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */,
@@ -451,6 +473,7 @@
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
 				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,
+				8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
 				8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */,
@@ -461,6 +484,7 @@
 				8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */,
 				8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */,
 				8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */,
+				8191D2592C9AF37600B2A3C8 /* SayuTimerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

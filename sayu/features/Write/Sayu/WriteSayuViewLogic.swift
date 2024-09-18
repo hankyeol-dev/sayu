@@ -9,17 +9,6 @@ import Foundation
 
 import RealmSwift
 
-struct SubjectViewItem: Identifiable, Hashable {
-   let id: String
-   var subject: String
-   var isSelected: Bool
-}
-
-struct SubViewItem: Identifiable, Hashable {
-   let id: UUID = .init()
-   var sub: String
-}
-
 final class WriteSayuViewLogic: ObservableObject {
    enum SubFieldFocus: Int {
       case first
@@ -43,13 +32,33 @@ final class WriteSayuViewLogic: ObservableObject {
    // MARK: - subItems
    @Published
    var subItems: [SubViewItem] = []
+
+   // MARK: - sayuType
+   @Published
+   var sayuTypes: [SayuTypeItem] = ThinkType.allCases.map { .init(
+      type: $0,
+      title: $0.byKoreanTypes)
+   }
+   @Published
+   var selectedSayuType: ThinkType = .stay
+   
+   // MARK: - timer
+   @Published
+   var sayuTimerTypes: [SayuTimerTypeItem] = SayuTimerType.allCases.map {
+      .init(type: $0, title: $0.byKoreanTitle)
+   }
+   
+   @Published
+   var selectedTimerType: SayuTimerType = .timer
+   
+   @Published
+   var sayuTime: SayuTime = .init(hours: 0, minutes: 0, seconds: 0)
    
    // MARK: - databases
    @ObservedResults(Subject.self)
    private var subjects
    @ObservedResults(Sub.self)
    private var subs
-   
    
    init() {
       setSystemSubjectViewItems()
@@ -89,4 +98,9 @@ extension WriteSayuViewLogic {
    
    func addSubItem() { subItems.append(.init(sub: "")) }
    func removeSubItem(_ index: Int) { subItems.remove(at: index) }
+}
+
+// MARK: timer logic
+extension WriteSayuViewLogic {
+   func resetTimer() { sayuTime = .init(hours: 0, minutes: 0, seconds: 0) }
 }

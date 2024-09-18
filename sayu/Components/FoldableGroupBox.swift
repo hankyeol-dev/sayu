@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoldableGroupBox<Content>: View where Content: View {
-   @State private var isOpen: Bool = false
+   @State private var isOpen: Bool = true
    private var title: String
    private var content: () -> Content
    private var toggleHandler: (Bool) -> Bool
