@@ -23,9 +23,32 @@ struct WriteSayu: NavigatableView {
                    leftButtonAction: dismissView,
                    leftButtonIcon: .arrowBack,
                    isRightButton: false)
+
          ScrollView {
             
          }
+         .background(.white)
+         .frame(maxWidth: .infinity)
+         .padding(.horizontal, 16.0)
+         
+         Spacer()
+         
+         Button {
+            
+         } label: {
+            RoundedRectangle(cornerRadius: 8.0)
+               .fill(.baseGreen)
+               .overlay {
+                  Text("사유하기")
+                     .byCustomFont(.satoshiBold, size: 15.0)
+                     .bold()
+                     .foregroundStyle(.white)
+               }
+               .frame(height: 40)
+         }
+         .frame(maxWidth: .infinity)
+         .padding()
+         .background(.grayLg)
       }
       .implementPopupView()
    }

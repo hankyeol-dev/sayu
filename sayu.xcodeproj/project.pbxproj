@@ -46,6 +46,8 @@
 		8191D2462C996D3500B2A3C8 /* Satoshi-Variable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D21B2C993A1C00B2A3C8 /* Satoshi-Variable.ttf */; };
 		8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */; };
 		8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2492C99782900B2A3C8 /* BottomAlert.swift */; };
+		8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */; };
+		8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -100,6 +102,8 @@
 		8191D23E2C996A5800B2A3C8 /* SayuChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuChart.swift; sourceTree = "<group>"; };
 		8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavbar.swift; sourceTree = "<group>"; };
 		8191D2492C99782900B2A3C8 /* BottomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAlert.swift; sourceTree = "<group>"; };
+		8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuViewLogic.swift; sourceTree = "<group>"; };
+		8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldableGroupBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +287,7 @@
 				8191D2312C9961B000B2A3C8 /* AppTabbar.swift */,
 				8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */,
 				8191D2492C99782900B2A3C8 /* BottomAlert.swift */,
+				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				8191D2362C9965D500B2A3C8 /* WriteSayu.swift */,
+				8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */,
 			);
 			path = Sayu;
 			sourceTree = "<group>";
@@ -430,9 +436,11 @@
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
 				8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */,
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
+				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
 				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
 				8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */,
 				8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */,
+				8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
