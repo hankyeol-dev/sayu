@@ -11,20 +11,22 @@ struct FoldableGroupBox<Content>: View where Content: View {
    @State private var isOpen: Bool = false
    private var title: String
    private var content: () -> Content
+   private var toggleHandler: (Bool) -> Bool
    
    init(
       title: String,
-      content: @escaping () -> Content
+      content: @escaping () -> Content,
+      toggleHandler: @escaping (Bool) -> Bool
    ) {
       self.title = title
       self.content = content
+      self.toggleHandler = toggleHandler
    }
    
    var body: some View {
       GroupBox {
          if isOpen {
             VStack(alignment: .leading) {
-               // TODO: some View is here
                content()
             }
             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -38,27 +40,23 @@ struct FoldableGroupBox<Content>: View where Content: View {
             Spacer()
             Button {
                withAnimation(.snappy) {
-                  isOpen.toggle()
+                  isOpen = toggleHandler(isOpen)
                }
             } label: {
                withAnimation(.snappy) {
                   Image(systemName: "chevron.down")
+                     .resizable()
+                     .frame(width: 10.0, height: 6.0)
                      .rotationEffect(
                         Angle(degrees: isOpen ? 180 : 0)
                      )
                      .foregroundStyle(.baseBlack)
+                     .padding(.trailing, 8.0)
                      
                }
             }
          }
       }
       .clipShape(.rect(cornerRadius: 20.0))
-      .padding()
-   }
-}
-
-#Preview {
-   FoldableGroupBox (title: "이게 제목이라고?") {
-      Text("이게 된다고?")
    }
 }

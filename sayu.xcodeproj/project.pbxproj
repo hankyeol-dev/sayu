@@ -48,6 +48,9 @@
 		8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2492C99782900B2A3C8 /* BottomAlert.swift */; };
 		8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */; };
 		8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */; };
+		8191D2502C9A653A00B2A3C8 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24F2C9A653A00B2A3C8 /* +View.swift */; };
+		8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */; };
+		8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -104,6 +107,9 @@
 		8191D2492C99782900B2A3C8 /* BottomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAlert.swift; sourceTree = "<group>"; };
 		8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuViewLogic.swift; sourceTree = "<group>"; };
 		8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldableGroupBox.swift; sourceTree = "<group>"; };
+		8191D24F2C9A653A00B2A3C8 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
+		8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsRoundedRect.swift; sourceTree = "<group>"; };
+		8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,8 +257,10 @@
 		8191D2122C9935B900B2A3C8 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8191D2512C9A655700B2A3C8 /* ViewModifiers */,
 				8191D2132C9935FD00B2A3C8 /* +Spacer.swift */,
 				8191D21D2C993A6900B2A3C8 /* +Font.swift */,
+				8191D24F2C9A653A00B2A3C8 /* +View.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -288,6 +296,7 @@
 				8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */,
 				8191D2492C99782900B2A3C8 /* BottomAlert.swift */,
 				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
+				8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -323,6 +332,14 @@
 				8191D23E2C996A5800B2A3C8 /* SayuChart.swift */,
 			);
 			path = Chart;
+			sourceTree = "<group>";
+		};
+		8191D2512C9A655700B2A3C8 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +435,7 @@
 				8191D2112C99359800B2A3C8 /* NetworkManager.swift in Sources */,
 				8191D23F2C996A5800B2A3C8 /* SayuChart.swift in Sources */,
 				8191D2232C99482200B2A3C8 /* Sub.swift in Sources */,
+				8191D2502C9A653A00B2A3C8 /* +View.swift in Sources */,
 				8191D20F2C99355D00B2A3C8 /* DatabaseManager.swift in Sources */,
 				8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */,
 				8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */,
@@ -426,6 +444,7 @@
 				8191D22B2C99549400B2A3C8 /* ThinkType.swift in Sources */,
 				8191D21E2C993A6900B2A3C8 /* +Font.swift in Sources */,
 				8191D2292C99518500B2A3C8 /* SystemSubjects.swift in Sources */,
+				8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */,
 				8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */,
 				8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */,
 				8191D2322C9961B000B2A3C8 /* AppTabbar.swift in Sources */,
@@ -434,6 +453,7 @@
 				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
+				8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */,
 				8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */,
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
