@@ -10,6 +10,8 @@ import MijickNavigationView
 import MijickPopupView
 
 struct WriteSayu: NavigatableView {
+   private var date: Date
+   
    @Environment(\.dismiss)
    private var popOutView
    
@@ -21,10 +23,14 @@ struct WriteSayu: NavigatableView {
    @FocusState
    private var subFieldFocus: WriteSayuViewLogic.SubFieldFocus?
    
+   init(date: Date) {
+      self.date = date
+   }
+   
    var body: some View {
       VStack {
          // MARK: 상단 네비게이션 영역
-         AppNavbar(title: "오늘의 사유",
+         AppNavbar(title: "\(viewLogic.writeDateForView)의 사유",
                    isLeftButton: true,
                    leftButtonAction: dismissView,
                    leftButtonIcon: .arrowBack,
@@ -55,7 +61,9 @@ struct WriteSayu: NavigatableView {
          
          // MARK: 사유하기 버튼 영역
          Button {
-            
+            viewLogic.writeSayu {
+               return false
+            }
          } label: {
             asRoundedRect(
                title: "사유하기",
@@ -69,6 +77,9 @@ struct WriteSayu: NavigatableView {
          .background(.graySm)
       }
       .implementPopupView()
+      .task {
+         viewLogic.setDate(date)
+      }
    }
 }
 
@@ -162,7 +173,7 @@ extension WriteSayu {
 extension WriteSayu {
    private func createSubView() -> some View {
       let subItems = viewLogic.subItems
-      return FoldableGroupBox(title: "함께 사유할 내용 (\(subItems.count))") {
+      return FoldableGroupBox(title: "함께 사유할 내용 (\(subItems.count)개)") {
          VStack {
             asRoundedRect(
                title: "사유하면서도 추가할 수 있어요 :)",
@@ -200,7 +211,6 @@ extension WriteSayu {
          }
       } toggleHandler: { isNotOpen in
          if isNotOpen {
-            // 열려있는 상태
             if subFieldFocus == nil {
                return false
             } else {
@@ -274,7 +284,6 @@ extension WriteSayu {
 extension WriteSayu {
    private func createSayuTimer() -> some View {
       let selectedType = viewLogic.selectedTimerType
-      dump(viewLogic.sayuTime)
       return FoldableGroupBox(title: "사유 시간 설정") {
          VStack {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {

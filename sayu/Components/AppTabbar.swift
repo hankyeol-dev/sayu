@@ -51,7 +51,7 @@ struct AppTabbar: View {
                   isDisplayWriteView = true
                }
                .fullScreenCover(isPresented: $isDisplayWriteView) {
-                  WriteSayu()
+                  WriteSayu(date: .now)
                }
             } else {
                createTab(icon) {

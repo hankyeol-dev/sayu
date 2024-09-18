@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct SubjectViewItem: Identifiable, Hashable {
-   let id: String
+   let id: ObjectId
    var subject: String
    var isSelected: Bool
 }
