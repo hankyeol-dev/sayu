@@ -61,8 +61,10 @@ struct WriteSayu: NavigatableView {
          
          // MARK: 사유하기 버튼 영역
          Button {
-            viewLogic.writeSayu {
-               return false
+            if viewLogic.selectedSayuType == .run || viewLogic.selectedSayuType == .walk {
+               popAlertCheckCaution()
+            } else {
+               viewLogic.writeSayu()
             }
          } label: {
             asRoundedRect(
@@ -76,9 +78,22 @@ struct WriteSayu: NavigatableView {
          .padding()
          .background(.graySm)
       }
-      .implementPopupView()
+      .implementPopupView { config in
+         config.bottom { bottom in
+            bottom.tapOutsideToDismiss(true)
+         }
+      }
       .task {
          viewLogic.setDate(date)
+      }
+      .onChange(of: viewLogic.isWriteValid) { valid in
+         if valid == .needToSetSubject {
+            popAlertCheckSubject()
+         }
+         
+         if valid == .needToSetTime {
+            popAlertCheckTimer()
+         }
       }
    }
 }
@@ -355,12 +370,52 @@ extension WriteSayu {
          .init(title: "취소", background: .graySm, foreground: .grayXl, action: dismiss),
          .init(title: "확인", background: .error, foreground: .white, action: dismissAndPopOut)
       ]
-      BottomAlert(title: "작성을 중단하시나요?", content: "확인을 터치하시면 지금까지 작성하신 내용이 저장되지 않습니다.", buttons: buttons)
-         .showAndStack()
+      BottomAlert(title: "작성을 중단하시나요?",
+                  content: "확인을 터치하시면 지금까지 작성하신 내용이 저장되지 않습니다.",
+                  buttons: buttons)
+      .showAndStack()
    }
    
    private func dismissAndPopOut() {
       dismiss()
       popOutView()
+   }
+}
+
+extension WriteSayu {
+   private func popAlertCheckSubject() {
+      BottomAlert(
+         title: "사유 주제를 설정해주셨나요?",
+         content: "추천 주제를 선택하거나 직접 사유할 주제를 만들어보세요 :)"
+      )
+      .showAndStack()
+      .dismissAfter(2.5)
+      viewLogic.setWriteValidNil()
+   }
+   
+   private func popAlertCheckTimer() {
+      BottomAlert(
+         title: "사유 시간을 설정해주셨나요?",
+         content: "타이머 방식으로 사유하시는 경우,\n5분 이상 사유해보는 것은 어떨까요? :)"
+      )
+      .showAndStack()
+      .dismissAfter(2.5)
+      viewLogic.setWriteValidNil()
+   }
+   
+   private func popAlertCheckCaution() {
+      let cautions: [CautionItem] = [
+         .init(content: "걷거나 달리는 중에는 주변을 잘 살펴주세요."),
+         .init(content: "중요한 생각이 떠오르면 제자리에 멈춰서 작성해주세요."),
+      ]
+      BottomCautionCheckAlert(
+         title: "꼭 확인해주세요.",
+         content: "걷거나 달리면서 사유하시는군요 👍\n안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
+         cautions: cautions,
+         confirmButtonTitle: "사유 시작") {
+            viewLogic.writeSayu()
+            dismiss()
+         }
+         .showAndStack()
    }
 }

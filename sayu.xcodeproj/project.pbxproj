@@ -59,6 +59,7 @@
 		8191D2632C9AF8BD00B2A3C8 /* SayuTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */; };
 		8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2642C9B121300B2A3C8 /* +Date.swift */; };
 		8191D2672C9B1DC800B2A3C8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2662C9B1DC800B2A3C8 /* Repository.swift */; };
+		8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -126,6 +127,7 @@
 		8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTime.swift; sourceTree = "<group>"; };
 		8191D2642C9B121300B2A3C8 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
 		8191D2662C9B1DC800B2A3C8 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCautionCheckAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +321,7 @@
 				8191D2312C9961B000B2A3C8 /* AppTabbar.swift */,
 				8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */,
 				8191D2492C99782900B2A3C8 /* BottomAlert.swift */,
+				8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */,
 				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
 				8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */,
 			);
@@ -480,6 +483,7 @@
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
 				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,
+				8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */,
 				8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
 				8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */,

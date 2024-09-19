@@ -22,7 +22,6 @@ final class WriteSayuViewLogic: ObservableObject {
    enum WriteSayuValidErrors: Error {
       case needToSetSubject
       case needToSetTime
-      case needToConfirm
    }
    
    private var writeDate: String = ""
@@ -137,12 +136,18 @@ extension WriteSayuViewLogic {
          if sayuTime.hours == 0 && sayuTime.minutes == 0 && sayuTime.seconds == 0 {
             throw WriteSayuValidErrors.needToSetTime
          }
-         
-         if sayuTime.convertTimeToSeconds <= 5 * 60 {
-            throw WriteSayuValidErrors.needToConfirm
-         }
       }
    }
+   
+   /// 중복되는 주제일 경우, 컨펌이 필요함.
+   private func validisOverlapedSubject() -> Bool {
+      if subjects.first(where: { $0.title == subjectFieldText }) != nil {
+         return true
+      }
+      return false
+   }
+   
+   func setWriteValidNil() { isWriteValid = nil }
    
    private func addThinkRecord() {
       var sayuSubs: [Sub] = []
@@ -190,7 +195,7 @@ extension WriteSayuViewLogic {
       }
    }
    
-   func writeSayu(_ confirmHandler: @escaping () -> Bool) {
+   func writeSayu() {
       do {
          try validStartSayu()
          addThinkRecord()
@@ -198,15 +203,6 @@ extension WriteSayuViewLogic {
          isWriteValid = .needToSetSubject
       } catch WriteSayuValidErrors.needToSetTime {
          isWriteValid = .needToSetTime
-      } catch WriteSayuValidErrors.needToConfirm {
-         isWriteValid = .needToConfirm
-         if confirmHandler() {
-            addThinkRecord()
-         }
-      } catch {
-         // TODO: - 이미 저장된 주제인지 확인하는 에러 필요
-      }
+      } catch {}
    }
-   
-   
 }

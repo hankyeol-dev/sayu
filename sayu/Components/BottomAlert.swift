@@ -40,12 +40,10 @@ struct BottomAlert: BottomPopup {
          Spacer.height(16.0)
          
          Text(content)
-            .byCustomFont(.satoshiRegular, size: 12.0)
-         
-         Spacer.height(24.0)
-         
+            .byCustomFont(.satoshiRegular, size: 13.0)
          
          if let buttons {
+            Spacer.height(24.0)
             LazyVGrid(
                columns: Array(repeating: GridItem(), count: buttons.count),
                spacing: 16.0
@@ -68,8 +66,8 @@ struct BottomAlert: BottomPopup {
          }
       }
       .frame(maxWidth: .infinity)
-      .padding(.vertical, 20)
-      .padding(.horizontal, 20)
+      .padding(.vertical, 12.0)
+      .padding(.horizontal, 16.0)
       .background(.white)
       .clipShape(.rect(cornerRadius: 16.0))
    }

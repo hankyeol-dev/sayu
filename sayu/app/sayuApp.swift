@@ -21,9 +21,9 @@ struct sayuApp: App {
             .implementNavigationView(config: navigationConfig)
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
             .implementPopupView()
-            .task {
-               databaseManager.getDBURL()
-            }
+//            .task {
+//               databaseManager.getDBURL()
+//            }
       }
    }
 }
