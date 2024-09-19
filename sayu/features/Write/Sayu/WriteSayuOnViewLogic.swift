@@ -59,9 +59,23 @@ extension WriteSayuOnViewLogic {
    }
    
    private func setSayuTime() {
-      if let sayu, sayu.timerType == 0 {
-         sayuSettingTime = sayu.timeSetting
-         sayuStaticTime = sayu.timeSetting
+      if let sayu {
+         if sayu.timerType == SayuTimerType.timer.rawValue {
+            sayuSettingTime = sayu.timeSetting
+            sayuStaticTime = sayu.timeSetting
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+               guard let self else { return }
+               self.startTimer()
+            }
+         }
+         
+         if sayu.timerType == SayuTimerType.stopWatch.rawValue {
+            sayuSettingTime = 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+               guard let self else { return }
+               startStopwatch()
+            }
+         }
       }
    }
 }
@@ -73,7 +87,6 @@ extension WriteSayuOnViewLogic {
       isStopped = false
       
       guard timer == nil else { return }
-      
       
       timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
          guard let self else { return }
@@ -91,7 +104,6 @@ extension WriteSayuOnViewLogic {
       }
    }
    
-   /// isPaused가 false 일 때 실행
    func pauseTimer() {
       isPaused = true
       isStopped = false
@@ -113,5 +125,20 @@ extension WriteSayuOnViewLogic {
       let content = UNMutableNotificationContent()
       content.title = "설정한 사유 시간 종료"
       content.subtitle = "오늘도 풍부한 사유를 즐겨주셔서 감사합니다. :)"
+   }
+}
+
+// MARK: - stopwatch setting
+extension WriteSayuOnViewLogic {
+   func startStopwatch() {
+      isPaused = false
+      isStopped = false
+      
+      guard timer == nil else { return }
+      
+      timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+         guard let self else { return }
+         sayuSettingTime += 1
+      }
    }
 }
