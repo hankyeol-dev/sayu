@@ -14,18 +14,27 @@ struct WriteSayuOn: NavigatableView {
    
    private var createdSayuId: ObjectId
    
+   @StateObject
+   private var viewLogic: WriteSayuOnViewLogic = .init()
+   
    init(createdSayuId: ObjectId) {
       self.createdSayuId = createdSayuId
-      print(createdSayuId)
-   }
-   
-   
-   func configure(view: NavigationConfig) -> NavigationConfig {
-      view.navigationBackGesture(.drag)
    }
    
    var body: some View {
-      Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      VStack {
+         if let sayu = viewLogic.sayu {
+            AppNavbar(title: "\(viewLogic.sayuDate)의 사유", isLeftButton: false, isRightButton: false)
+            
+            ScrollView {
+               
+            }
+            
+         } else { EmptyView() }
+      }
+      .task {
+         viewLogic.setSayu(for: createdSayuId)
+      }
    }
 }
 

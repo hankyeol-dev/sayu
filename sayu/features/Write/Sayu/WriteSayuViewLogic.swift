@@ -157,6 +157,8 @@ extension WriteSayuViewLogic {
       let sayu = Think(date: writeDate,
                        content: "",
                        thinkType: selectedSayuType.rawValue,
+                       timerType: selectedTimerType.rawValue,
+                       timeSetting: sayuTime.convertTimeToSeconds,
                        isSaved: false)
       
       if !subItems.isEmpty {

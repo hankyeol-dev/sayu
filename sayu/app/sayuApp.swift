@@ -17,13 +17,14 @@ struct sayuApp: App {
    
    var body: some Scene {
       WindowGroup {
-         Home()
+         WriteSayuOn(createdSayuId: .init("66ebd66badbfb2ea8e02e9fd"))
+//         Home()
             .implementNavigationView(config: navigationConfig)
             .implementPopupView()
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
-         //            .task {
-//               databaseManager.getDBURL()
-//            }
+            .task {
+               databaseManager.getDBURL()
+            }
       }
    }
 }

@@ -61,6 +61,7 @@
 		8191D2672C9B1DC800B2A3C8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2662C9B1DC800B2A3C8 /* Repository.swift */; };
 		8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */; };
 		8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */; };
+		8191D26D2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,6 +131,7 @@
 		8191D2662C9B1DC800B2A3C8 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCautionCheckAlert.swift; sourceTree = "<group>"; };
 		8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOn.swift; sourceTree = "<group>"; };
+		8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOnViewLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 				8191D2362C9965D500B2A3C8 /* WriteSayu.swift */,
 				8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */,
 				8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */,
+				8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */,
 			);
 			path = Sayu;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
 				8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */,
 				8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */,
+				8191D26D2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift in Sources */,
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
 				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
