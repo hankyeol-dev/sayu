@@ -10,15 +10,24 @@ import SwiftUI
 import MijickNavigationView
 
 struct Home: NavigatableView {
+   @StateObject private var homeViewLogic: HomeViewLogic = .init()
+   
    var body: some View {
       VStack {
          ZStack {
+            // TODO: - selectedTabIndex에 따라서 View 체인지
+            if homeViewLogic.selectedTabIndex == 0 {
+               SayuCalendar()
+            }
             
+            if homeViewLogic.selectedTabIndex == 2 {
+               SayuChart()
+            }
          }
          
          Spacer()
          
-         // MARK: Tabbar
+         AppTabbar(selectedTabIndex: $homeViewLogic.selectedTabIndex)
       }
    }
 }

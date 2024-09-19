@@ -27,6 +27,6 @@ extension Font {
 
 extension Text {
    func byCustomFont(_ font: Font.CustomFont, size: CGFloat) -> Self {
-      self.font(.byCustomFont(font, size: size))
+      self.font(Font.byCustomFont(font, size: size))
    }
 }
