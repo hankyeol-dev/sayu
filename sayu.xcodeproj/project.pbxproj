@@ -62,6 +62,8 @@
 		8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */; };
 		8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */; };
 		8191D26D2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */; };
+		8191D26F2C9C3EB000B2A3C8 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */; };
+		8191D2712C9C40D400B2A3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2702C9C40D400B2A3C8 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -132,6 +134,8 @@
 		8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCautionCheckAlert.swift; sourceTree = "<group>"; };
 		8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOn.swift; sourceTree = "<group>"; };
 		8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOnViewLogic.swift; sourceTree = "<group>"; };
+		8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		8191D2702C9C40D400B2A3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,7 @@
 				8191D1FE2C9920C600B2A3C8 /* environment */,
 				8191D1E52C991C7A00B2A3C8 /* Preview Content */,
 				8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */,
+				8191D2702C9C40D400B2A3C8 /* AppDelegate.swift */,
 				8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */,
 			);
 			path = app;
@@ -278,6 +283,7 @@
 			children = (
 				8191D20E2C99355D00B2A3C8 /* DatabaseManager.swift */,
 				8191D2102C99359800B2A3C8 /* NetworkManager.swift */,
+				8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 				8191D2632C9AF8BD00B2A3C8 /* SayuTime.swift in Sources */,
 				8191D21E2C993A6900B2A3C8 /* +Font.swift in Sources */,
 				8191D2292C99518500B2A3C8 /* SystemSubjects.swift in Sources */,
+				8191D26F2C9C3EB000B2A3C8 /* NotificationManager.swift in Sources */,
 				8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */,
 				8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */,
 				8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */,
@@ -494,6 +501,7 @@
 				8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
 				8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */,
+				8191D2712C9C40D400B2A3C8 /* AppDelegate.swift in Sources */,
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
 				8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */,
 				8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */,

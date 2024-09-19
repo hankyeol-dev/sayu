@@ -13,6 +13,10 @@ import MijickPopupView
 
 @main
 struct sayuApp: App {
+   @UIApplicationDelegateAdaptor(AppDelegate.self)
+   private var appDelegate
+   
+   private let notificationManager: NotificationManager = .init()
    private let databaseManager: DatabaseManager = .manager
    
    var body: some Scene {
@@ -23,7 +27,8 @@ struct sayuApp: App {
             .implementPopupView()
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
             .task {
-               databaseManager.getDBURL()
+//               databaseManager.getDBURL()
+               notificationManager.askPermission()
             }
       }
    }
