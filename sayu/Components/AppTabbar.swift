@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+import MijickNavigationView
+import RealmSwift
+
 struct AppTabbar: View {
    
    @Binding var selectedTabIndex: Int
    @State var isDisplayWriteView: Bool = false
+   @State var isDisplayWriteOnView: Bool = false
+   @State var createdSayuId: ObjectId? = nil
    
    private enum TabIcons: Int, CaseIterable {
       case calendar
@@ -50,8 +55,17 @@ struct AppTabbar: View {
                   selectedTabIndex = icon.rawValue
                   isDisplayWriteView = true
                }
-               .fullScreenCover(isPresented: $isDisplayWriteView) {
-                  WriteSayu(date: .now)
+               .fullScreenCover(isPresented: $isDisplayWriteView)  {
+                  var coverView = WriteSayu(date: .now)
+                  coverView.disappearHandler = { sayuId in
+                     if let sayuId {
+                        self.createdSayuId = sayuId
+                        isDisplayWriteOnView = true
+                     } else {
+                        isDisplayWriteOnView = false
+                     }
+                  }
+                  return coverView
                }
             } else {
                createTab(icon) {
@@ -67,6 +81,14 @@ struct AppTabbar: View {
       .background(.grayXs)
       .shadow(color: .graySm, radius: 1, y: -0.5)
       .ignoresSafeArea()
+      .onChange(of: isDisplayWriteOnView) { isOn in
+         if isOn, let createdSayuId {
+            print(createdSayuId)
+            WriteSayuOn(createdSayuId: createdSayuId)
+               .push(with: .horizontalSlide)
+            isDisplayWriteOnView = false
+         }
+      }
    }
    
    private func createTab(_ tabIcon: TabIcons, action: @escaping () -> Void) -> some View {

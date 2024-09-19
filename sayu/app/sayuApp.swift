@@ -19,9 +19,9 @@ struct sayuApp: App {
       WindowGroup {
          Home()
             .implementNavigationView(config: navigationConfig)
-            .environment(\.realmConfiguration, databaseManager.getDBConfig())
             .implementPopupView()
-//            .task {
+            .environment(\.realmConfiguration, databaseManager.getDBConfig())
+         //            .task {
 //               databaseManager.getDBURL()
 //            }
       }

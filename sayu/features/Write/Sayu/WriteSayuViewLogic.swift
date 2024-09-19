@@ -22,6 +22,7 @@ final class WriteSayuViewLogic: ObservableObject {
    enum WriteSayuValidErrors: Error {
       case needToSetSubject
       case needToSetTime
+      case unknownError
    }
    
    private var writeDate: String = ""
@@ -75,6 +76,8 @@ final class WriteSayuViewLogic: ObservableObject {
    private let subjectRepository = Repository<Subject>()
    private let subRepository = Repository<Sub>()
    private let thinkRepository = Repository<Think>()
+   
+   var createdSayuId: ObjectId?
    
    init() {
       setSystemSubjectViewItems()
@@ -167,32 +170,44 @@ extension WriteSayuViewLogic {
             try subjectRepository.updateRecord(selectedSystemSubject.id) { subject in
                subject.thinks.append(sayu)
             }
+            addThinkRecord(subs: sayuSubs, sayu: sayu)
+         } catch {
+            isWriteValid = .unknownError
+         }
+      }
+      
+      if !subjectFieldText.isEmpty {
+         do {
+            try subjectRepository.addSingleRecord(.init(title: subjectFieldText)) { subject in
+               subject.thinks.append(sayu)
+            }
+            addThinkRecord(subs: sayuSubs, sayu: sayu)
+         } catch {
+            isWriteValid = .unknownError
+         }
+      }
+   }
+   
+   private func addThinkRecord(subs: [Sub], sayu: Think) {
+      if !subs.isEmpty {
+         do {
             try thinkRepository.addSingleRecord(sayu) { think in
-               sayuSubs.forEach { sub in
+               subs.forEach { sub in
                   think.subs.append(sub)
                }
             }
-            try subRepository.addMultiRecords(sayuSubs)
+            try subRepository.addMultiRecords(subs)
          } catch {
-            dump(error)
+            isWriteValid = .unknownError
          }
       } else {
-         if !subjectFieldText.isEmpty {
-            do {
-               try subjectRepository.addSingleRecord(.init(title: subjectFieldText)) { subject in
-                  subject.thinks.append(sayu)
-               }
-               try thinkRepository.addSingleRecord(sayu) { think in
-                  sayuSubs.forEach { sub in
-                     think.subs.append(sub)
-                  }
-               }
-               try subRepository.addMultiRecords(sayuSubs)
-            } catch {
-               dump(error)
-            }
+         do {
+            try thinkRepository.addSingleRecord(sayu) { _ in }
+         } catch {
+            isWriteValid = .unknownError
          }
       }
+      createdSayuId = sayu._id
    }
    
    func writeSayu() {

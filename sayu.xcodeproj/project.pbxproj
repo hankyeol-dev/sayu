@@ -60,6 +60,7 @@
 		8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2642C9B121300B2A3C8 /* +Date.swift */; };
 		8191D2672C9B1DC800B2A3C8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2662C9B1DC800B2A3C8 /* Repository.swift */; };
 		8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */; };
+		8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,6 +129,7 @@
 		8191D2642C9B121300B2A3C8 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
 		8191D2662C9B1DC800B2A3C8 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCautionCheckAlert.swift; sourceTree = "<group>"; };
+		8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +343,7 @@
 			children = (
 				8191D2362C9965D500B2A3C8 /* WriteSayu.swift */,
 				8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */,
+				8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */,
 			);
 			path = Sayu;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */,
 				8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */,
 				8191D2322C9961B000B2A3C8 /* AppTabbar.swift in Sources */,
+				8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */,
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
 				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,

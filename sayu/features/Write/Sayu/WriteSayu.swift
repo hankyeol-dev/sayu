@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+
 import MijickNavigationView
 import MijickPopupView
+import RealmSwift
 
 struct WriteSayu: NavigatableView {
    private var date: Date
+   var disappearHandler: ((ObjectId?) -> Void)?
    
    @Environment(\.dismiss)
    private var popOutView
@@ -65,6 +68,9 @@ struct WriteSayu: NavigatableView {
                popAlertCheckCaution()
             } else {
                viewLogic.writeSayu()
+               if viewLogic.createdSayuId != nil {
+                  popOutView()
+               }
             }
          } label: {
             asRoundedRect(
@@ -94,6 +100,9 @@ struct WriteSayu: NavigatableView {
          if valid == .needToSetTime {
             popAlertCheckTimer()
          }
+      }
+      .onDisappear {
+         disappearHandler?(viewLogic.createdSayuId)
       }
    }
 }
@@ -413,8 +422,12 @@ extension WriteSayu {
          content: "걷거나 달리면서 사유하시는군요 👍\n안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
          cautions: cautions,
          confirmButtonTitle: "사유 시작") {
-            viewLogic.writeSayu()
             dismiss()
+            viewLogic.writeSayu()
+            
+            if viewLogic.createdSayuId != nil {
+               popOutView()
+            }
          }
          .showAndStack()
    }
