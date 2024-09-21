@@ -35,12 +35,30 @@ struct WriteSayuOn: NavigatableView {
                   if sayu.timerType == SayuTimerType.timer.rawValue {
                      createTimerView()
                   }
+                  
                   if sayu.timerType == SayuTimerType.stopWatch.rawValue {
                      createStopwatchView()
                   }
+                  
+                  // 서브 내용 작성 뷰
+                  createSayuSubView()
                }
                .padding(.horizontal, 16.0)
             }
+            
+            Button {
+
+            } label: {
+               asRoundedRect(
+                  title: "사유 저장 하기",
+                  radius: 8.0,
+                  background: .baseGreen,
+                  foreground: .white,
+                  fontSize: 16.0,
+                  font: .gmMedium)
+            }
+            .padding()
+            .background(.graySm)
             
          } else { EmptyView() }
       }
@@ -75,10 +93,9 @@ extension WriteSayuOn {
                   .rotationEffect(.init(degrees: viewLogic.sayuTimerProgress * 360))
             }
             Text(viewLogic.sayuSettingTime.convertTimeToString())
-               .byCustomFont(.gmMedium, size: 32.0)
+               .byCustomFont(.gmBold, size: 44.0)
                .foregroundStyle(.baseBlack)
                .rotationEffect(.init(degrees: 90.0))
-               .animation(.easeInOut, value: viewLogic.sayuTimerProgress)
          }
          .padding(12.0)
          .frame(height: 320)
@@ -130,7 +147,7 @@ extension WriteSayuOn {
                .frame(width: 48, height: 48)
                .background(
                   Circle()
-                     .fill(.baseGreenLg)
+                     .fill(.baseGreen)
                )
          }
          
@@ -190,6 +207,7 @@ extension WriteSayuOn {
             }
             
             Button {
+               viewLogic.pauseTimer()
                displayStopConfirmAlert()
             } label: {
                asRoundedRect(
@@ -205,6 +223,9 @@ extension WriteSayuOn {
       }
       .padding()
       .frame(maxWidth: .infinity)
+      .background(.white)
+      .clipShape(.rect(cornerRadius: 12.0))
+      .shadow(color: .grayMd, radius: 1.2, y: 0.3)
       .onChange(of: scenePhase) { phaseStatus in
          if !viewLogic.isPaused {
             if phaseStatus == .background {
@@ -221,7 +242,10 @@ extension WriteSayuOn {
    
    private func displayStopConfirmAlert() {
       let buttons: [BottomPopupButtonItem] = [
-         .init(title: "안 멈출게요", background: .grayMd, foreground: .grayXl, action: dismiss),
+         .init(title: "안 멈출게요", background: .grayMd, foreground: .grayXl, action: {
+            viewLogic.startStopwatch()
+            dismiss()
+         }),
          .init(title: "네 멈출게요", background: .grayXl, foreground: .grayMd, action: {
             viewLogic.stopTimer()
             dismiss()
@@ -231,5 +255,11 @@ extension WriteSayuOn {
                   content: "지금까지 흘러간 사유 시간을 초기화 할 수 있습니다.\n측정한 시간은 임시 저장됩니다.",
                   buttons: buttons)
       .showAndStack()
+   }
+}
+
+extension WriteSayuOn {
+   private func createSayuSubView() -> some View {
+      SayuSubCreator(subItems: $viewLogic.sayuSubs, isAddMode: false, contentMode: true)
    }
 }

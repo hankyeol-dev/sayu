@@ -200,7 +200,7 @@ extension WriteSayu {
       return FoldableGroupBox(title: "함께 사유할 내용 (\(subItems.count)개)") {
          VStack {
             asRoundedRect(
-               title: "사유하면서도 추가할 수 있어요 :)",
+               title: "사유하는 중에는 추가가 어려워요",
                radius: 16.0,
                background: .basebeige,
                foreground: .grayXl,

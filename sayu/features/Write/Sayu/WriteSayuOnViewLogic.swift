@@ -39,6 +39,12 @@ final class WriteSayuOnViewLogic: ObservableObject {
    @Published
    var isActiveLastTimeStamp: Date = .init()
    
+   var sayuTimeTakes: [Int] = []
+   
+   // MARK: - subs
+   @Published
+   var sayuSubs: [SubViewItem] = []
+   
    
    // MARK: - database & managers
    private let thinkRepository = Repository<Think>()
@@ -50,6 +56,7 @@ extension WriteSayuOnViewLogic {
       sayu = thinkRepository.getRecordById(id)
       setSayuDate()
       setSayuTime()
+      setSayuSubs()
    }
    
    private func setSayuDate() {
@@ -57,7 +64,7 @@ extension WriteSayuOnViewLogic {
          sayuDate = date.formattedForView()
       }
    }
-   
+
    private func setSayuTime() {
       if let sayu {
          if sayu.timerType == SayuTimerType.timer.rawValue {
@@ -78,9 +85,15 @@ extension WriteSayuOnViewLogic {
          }
       }
    }
+   
+   private func setSayuSubs() {
+      if let sayu {
+         sayuSubs = sayu.subs.map { .init(sub: $0.title, content: $0.content) }
+      }
+   }
 }
 
-// MARK: - timer setting
+// MARK: - timer & stopwatch setting
 extension WriteSayuOnViewLogic {
    func startTimer() {
       isPaused = false
@@ -114,6 +127,9 @@ extension WriteSayuOnViewLogic {
    func stopTimer() {
       isPaused = true
       isStopped = true
+      
+      saveTimeTake()
+      
       sayuTimerProgress = 1.0
       sayuSettingTime = 0
       sayuStaticTime = 1
@@ -126,10 +142,7 @@ extension WriteSayuOnViewLogic {
       content.title = "설정한 사유 시간 종료"
       content.subtitle = "오늘도 풍부한 사유를 즐겨주셔서 감사합니다. :)"
    }
-}
-
-// MARK: - stopwatch setting
-extension WriteSayuOnViewLogic {
+   
    func startStopwatch() {
       isPaused = false
       isStopped = false
@@ -141,4 +154,17 @@ extension WriteSayuOnViewLogic {
          sayuSettingTime += 1
       }
    }
+   
+   private func saveTimeTake() {
+      if let sayu {
+         if sayu.timerType == SayuTimerType.timer.rawValue {
+            sayuTimeTakes.append(sayuStaticTime - sayuSettingTime)
+         }
+         
+         if sayu.timerType == SayuTimerType.stopWatch.rawValue {
+            sayuTimeTakes.append(sayuSettingTime)
+         }
+      }
+   }
 }
+

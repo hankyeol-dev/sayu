@@ -10,4 +10,5 @@ import Foundation
 struct SubViewItem: Identifiable, Hashable {
    let id: UUID = .init()
    var sub: String
+   var content: String
 }

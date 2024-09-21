@@ -114,13 +114,13 @@ extension WriteSayuViewLogic {
       }
       
       if let filtered {
-         subItems = filtered.getKoreanSubTitles.map { .init(sub: $0) }
+         subItems = filtered.getKoreanSubTitles.map { .init(sub: $0, content: "") }
       } else {
          subItems = []
       }
    }
    
-   func addSubItem() { subItems.append(.init(sub: "")) }
+   func addSubItem() { subItems.append(.init(sub: "", content: "")) }
    func removeSubItem(_ index: Int) { subItems.remove(at: index) }
 }
 
