@@ -16,23 +16,13 @@ final class SmartList: Object, ObjectKeyIdentifiable {
    var title: String
    
    @Persisted
-   var emoji: String
-   
-   @Persisted
-   var descript: String?
-   
-   @Persisted
    var createdAt: Date = .init()
    
    convenience init(
-      title: String,
-      emoji: String,
-      descript: String? = nil
+      title: String
    ) {
       self.init()
       
       self.title = title
-      self.emoji = emoji
-      self.descript = descript
    }
 }

@@ -21,8 +21,8 @@ struct sayuApp: App {
    
    var body: some Scene {
       WindowGroup {
-         WriteSayuOn(createdSayuId: .init("66ebd66badbfb2ea8e02e9fd"))
-//         Home()
+//         WriteSayuOn(createdSayuId: .init("66ee84320f26807a9a1ff40e"))
+         Home()
             .implementNavigationView(config: navigationConfig)
             .implementPopupView()
             .environment(\.realmConfiguration, databaseManager.getDBConfig())

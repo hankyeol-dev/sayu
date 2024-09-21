@@ -54,6 +54,9 @@ struct WriteSayu: NavigatableView {
             
             createSayuTimer()
             Spacer.height(12.0)
+            
+            createSayuSmartList()
+            Spacer.height(12.0)
          }
          .background(.white)
          .frame(maxWidth: .infinity)
@@ -301,7 +304,7 @@ extension WriteSayu {
       } toggleHandler: { isNotOpen in
          return !isNotOpen
       }
-
+      
    }
 }
 
@@ -365,7 +368,28 @@ extension WriteSayu {
       } toggleHandler: { isNotOpen in
          return !isNotOpen
       }
+      
+   }
+}
 
+extension WriteSayu {
+   private func createSayuSmartList() -> some View {
+      return FoldableGroupBox(title: "사유 목록을 추가해보세요") {
+         VStack {
+            asRoundedRect(
+               title: "최대 3개의 사유 목록을 지정할 수 있어요.",
+               radius: 16.0,
+               background: .basebeige,
+               foreground: .grayXl,
+               height: 32.0,
+               fontSize: 12.0,
+               font: .kjcRegular)
+            SmartListCreator(smartListIcon: $viewLogic.smartListIcon,
+                             smartLists: $viewLogic.smartList)
+         }
+      } toggleHandler: { isNotOpen in
+         return !isNotOpen
+      }
    }
 }
 

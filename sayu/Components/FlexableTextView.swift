@@ -19,6 +19,8 @@ struct FlexableTextView: UIViewRepresentable {
    /// Font, Color
    var textFont: Font.CustomFont = .kjcRegular
    var textColor: UIColor = .baseBlack
+   var textSize: CGFloat = 15.0
+   var tintColor: UIColor = .grayXl
    var placeholderColor: UIColor = .baseBlack.withAlphaComponent(0.5)
    
    /// UI
@@ -43,7 +45,8 @@ struct FlexableTextView: UIViewRepresentable {
       
       view.text = placeholder
       view.textColor = placeholderColor
-      view.font = .init(name: textFont.rawValue, size: 15.0)
+      view.tintColor = tintColor
+      view.font = .init(name: textFont.rawValue, size: textSize)
       view.isScrollEnabled = isScrollEnable
       view.isEditable = isEditable
       view.isUserInteractionEnabled = isUserInteractionEnable

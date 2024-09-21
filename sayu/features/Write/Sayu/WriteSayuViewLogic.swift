@@ -65,6 +65,12 @@ final class WriteSayuViewLogic: ObservableObject {
    @Published
    var sayuTime: SayuTime = .init(hours: 0, minutes: 0, seconds: 0)
    
+   // MARK: - smartlist
+   @Published
+   var smartListIcon: String = "⭐️"
+   @Published
+   var smartList: [String] = []
+   
    // MARK: - valid
    @Published
    var isWriteValid: WriteSayuValidErrors? = nil
@@ -76,6 +82,7 @@ final class WriteSayuViewLogic: ObservableObject {
    private let subjectRepository = Repository<Subject>()
    private let subRepository = Repository<Sub>()
    private let thinkRepository = Repository<Think>()
+   private let smartListRepository = Repository<SmartList>()
    
    var createdSayuId: ObjectId?
    
@@ -152,8 +159,9 @@ extension WriteSayuViewLogic {
    
    func setWriteValidNil() { isWriteValid = nil }
    
-   private func addThinkRecord() {
+   private func addSayuRecord() {
       var sayuSubs: [Sub] = []
+      var sayuSmartList: [SmartList] = []
       let sayu = Think(date: writeDate,
                        content: "",
                        thinkType: selectedSayuType.rawValue,
@@ -167,12 +175,18 @@ extension WriteSayuViewLogic {
          }
       }
       
+      if !smartList.isEmpty {
+         sayuSmartList = smartList.map { item in
+            return .init(title: item)
+         }
+      }
+      
       if let selectedSystemSubject {
          do {
             try subjectRepository.updateRecord(selectedSystemSubject.id) { subject in
                subject.thinks.append(sayu)
             }
-            addThinkRecord(subs: sayuSubs, sayu: sayu)
+            addThink(subs: sayuSubs, smartList: sayuSmartList, sayu: sayu)
          } catch {
             isWriteValid = .unknownError
          }
@@ -183,39 +197,47 @@ extension WriteSayuViewLogic {
             try subjectRepository.addSingleRecord(.init(title: subjectFieldText)) { subject in
                subject.thinks.append(sayu)
             }
-            addThinkRecord(subs: sayuSubs, sayu: sayu)
+            addThink(subs: sayuSubs, smartList: sayuSmartList, sayu: sayu)
          } catch {
             isWriteValid = .unknownError
          }
       }
+      
+      createdSayuId = sayu._id
    }
    
-   private func addThinkRecord(subs: [Sub], sayu: Think) {
-      if !subs.isEmpty {
-         do {
-            try thinkRepository.addSingleRecord(sayu) { think in
+   private func addThink(subs: [Sub], smartList: [SmartList], sayu: Think) {
+      
+      let sayuId = sayu._id
+      
+      do {
+         try thinkRepository.addSingleRecord(sayu) { _ in }
+         if !subs.isEmpty {
+            try thinkRepository.updateRecord(sayuId) { think in
                subs.forEach { sub in
                   think.subs.append(sub)
                }
             }
             try subRepository.addMultiRecords(subs)
-         } catch {
-            isWriteValid = .unknownError
          }
-      } else {
-         do {
-            try thinkRepository.addSingleRecord(sayu) { _ in }
-         } catch {
-            isWriteValid = .unknownError
+         
+         if !smartList.isEmpty {
+            try thinkRepository.updateRecord(sayuId) { think in
+               smartList.forEach { smart in
+                  think.smartList.append(smart)
+               }
+            }
+            try smartListRepository.addMultiRecords(smartList)
          }
+      } catch {
+         isWriteValid = .unknownError
       }
-      createdSayuId = sayu._id
    }
    
    func writeSayu() {
       do {
          try validStartSayu()
-         addThinkRecord()
+         addSayuRecord()
       } catch WriteSayuValidErrors.needToSetSubject {
          isWriteValid = .needToSetSubject
       } catch WriteSayuValidErrors.needToSetTime {

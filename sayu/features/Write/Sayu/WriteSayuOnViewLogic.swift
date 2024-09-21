@@ -41,9 +41,15 @@ final class WriteSayuOnViewLogic: ObservableObject {
    
    var sayuTimeTakes: [Int] = []
    
-   // MARK: - subs
+   // MARK: - about sayu
+   @Published
+   var sayuSubject: String = ""
+   
    @Published
    var sayuSubs: [SubViewItem] = []
+   
+   @Published
+   var sayuContent: String = ""
    
    
    // MARK: - database & managers
@@ -56,7 +62,9 @@ extension WriteSayuOnViewLogic {
       sayu = thinkRepository.getRecordById(id)
       setSayuDate()
       setSayuTime()
+      setSayuSubject()
       setSayuSubs()
+      setSayuContent()
    }
    
    private func setSayuDate() {
@@ -86,9 +94,21 @@ extension WriteSayuOnViewLogic {
       }
    }
    
+   private func setSayuSubject() {
+      if let sayu, let first = sayu.subject.first {
+         sayuSubject = first.title
+      }
+   }
+   
    private func setSayuSubs() {
       if let sayu {
          sayuSubs = sayu.subs.map { .init(sub: $0.title, content: $0.content) }
+      }
+   }
+   
+   private func setSayuContent() {
+      if let sayu {
+         sayuContent = sayu.content
       }
    }
 }

@@ -18,6 +18,9 @@ struct WriteSayuOn: NavigatableView {
    @StateObject
    private var viewLogic: WriteSayuOnViewLogic = .init()
    
+   @State
+   private var sayuContentHeight: CGFloat = 60.0
+   
    @Environment(\.scenePhase)
    private var scenePhase
    
@@ -40,8 +43,15 @@ struct WriteSayuOn: NavigatableView {
                      createStopwatchView()
                   }
                   
-                  // 서브 내용 작성 뷰
+                  Spacer.height(12.0)
+                  createSayuSubjectView(viewLogic.sayuSubject)
+
+                  Spacer.height(12.0)
+                  createSayuContentView($viewLogic.sayuContent)
+                  
+                  Spacer.height(12.0)
                   createSayuSubView()
+                  
                }
                .padding(.horizontal, 16.0)
             }
@@ -50,7 +60,7 @@ struct WriteSayuOn: NavigatableView {
 
             } label: {
                asRoundedRect(
-                  title: "사유 저장 하기",
+                  title: "오늘의 사유 저장",
                   radius: 8.0,
                   background: .baseGreen,
                   foreground: .white,
@@ -259,7 +269,44 @@ extension WriteSayuOn {
 }
 
 extension WriteSayuOn {
+   private func createSayuSubjectView(_ subject: String) -> some View {
+      return FoldableGroupBox(isOpenButton: false, title: "사유 주제") {
+         HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+            Spacer()
+            Text(subject)
+               .byCustomFont(.kjcRegular, size: 18.0)
+            Spacer()
+         }
+         .padding(.bottom, 8.0)
+      } toggleHandler: { _ in return true }
+   }
+   
    private func createSayuSubView() -> some View {
       SayuSubCreator(subItems: $viewLogic.sayuSubs, isAddMode: false, contentMode: true)
+   }
+   
+   private func createSayuContentView(_ sayuContent: Binding<String>) -> some View {
+      return FoldableGroupBox(isOpenButton: false, title: "구체적인 사유 내용") {
+         VStack {
+            asRoundedRect(
+               title: "최대 1000자까지 작성하실 수 있어요.",
+               radius: 16.0,
+               background: .basebeige,
+               foreground: .grayXl,
+               height: 32.0,
+               fontSize: 12.0,
+               font: .kjcRegular)
+            FlexableTextView(text: sayuContent,
+                             height: $sayuContentHeight,
+                             placeholder: "오늘의 사유 내용을 작성해보세요.",
+                             maxHeight: 200.0,
+                             maxTextCount: 1000, 
+                             textFont: .kjcRegular,
+                             textSize: 13.0)
+         }
+      } toggleHandler: { _ in
+         return true
+      }
+      .frame(minHeight: sayuContentHeight + 200.0, maxHeight: .infinity)
    }
 }

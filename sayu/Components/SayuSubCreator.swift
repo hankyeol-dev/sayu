@@ -99,6 +99,8 @@ extension SayuSubCreator {
                height: $textViewHeight,
                placeholder: "떠오르는 생각을 자유롭게 작성해보세요.",
                maxHeight: 100.0,
+               textFont: .kjcRegular,
+               textSize: 13.0,
                placeholderColor: .grayMd
             )
             .focused($textViewFocus, equals: SubContentFocus.init(rawValue: index))
