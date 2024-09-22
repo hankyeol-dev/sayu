@@ -51,10 +51,30 @@ final class WriteSayuOnViewLogic: ObservableObject {
    @Published
    var sayuContent: String = ""
    
+   // MARK: - motion
+   @Published
+   var motionStart: Date?
+   
+   @Published
+   var motionEnd: Date?
+   
+   @Published
+   var steps: Int = 0
+   
+   @Published
+   var distance: Double = 0.0
+   
+   @Published
+   var avgPace: Double = 0.0
+   
+   @Published
+   var motionPermission: Bool = true
    
    // MARK: - database & managers
    private let thinkRepository = Repository<Think>()
+   private let subRepository = Repository<Sub>()
    private let notificationManager: NotificationManager = .init()
+   private let motionManager: MotionManager = .init()
 }
 
 extension WriteSayuOnViewLogic {
@@ -72,23 +92,26 @@ extension WriteSayuOnViewLogic {
          sayuDate = date.formattedForView()
       }
    }
-
+   
    private func setSayuTime() {
       if let sayu {
          if sayu.timerType == SayuTimerType.timer.rawValue {
             sayuSettingTime = sayu.timeSetting
-            sayuStaticTime = sayu.timeSetting
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
-               guard let self else { return }
-               self.startTimer()
-            }
+            sayuStaticTime = sayu.timeSetting + sayu.timeTake
          }
          
          if sayu.timerType == SayuTimerType.stopWatch.rawValue {
             sayuSettingTime = 0
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
-               guard let self else { return }
-               startStopwatch()
+         }
+         
+         sayuTimeTakes.append(sayu.timeTake)
+         
+         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+            guard let self else { return }
+            startTimer()
+            if sayu.thinkType == ThinkType.run.rawValue
+                  || sayu.thinkType == ThinkType.walk.rawValue {
+               motionStart = .init()
             }
          }
       }
@@ -121,18 +144,31 @@ extension WriteSayuOnViewLogic {
       
       guard timer == nil else { return }
       
-      timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-         guard let self else { return }
-         if sayuSettingTime > 0 {
-            sayuSettingTime -= 1
-            sayuTimerProgress = CGFloat(sayuSettingTime) / CGFloat(sayuStaticTime)
-            sayuTimerProgress = sayuTimerProgress < 0 ? 0 : sayuTimerProgress
-         } else {
-            stopTimer()
-            notificationManager.addNotification(
-               title: "지정한 사유 시간이 다 되었어요!",
-               body: "시간을 추가하셔도 좋고, 조금더 사유하셔도 좋아요 :)",
-               identifier: .sayuTimeEnded)
+      if let sayu {
+         setMotionStart(sayu)
+         
+         if sayu.timerType == SayuTimerType.timer.rawValue {
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+               guard let self else { return }
+               if sayuSettingTime > 0 {
+                  sayuSettingTime -= 1
+                  sayuTimerProgress = CGFloat(sayuSettingTime) / CGFloat(sayuStaticTime)
+                  sayuTimerProgress = sayuTimerProgress < 0 ? 0 : sayuTimerProgress
+               } else {
+                  stopTimer()
+                  notificationManager.addNotification(
+                     title: "지정한 사유 시간이 다 되었어요!",
+                     body: "시간을 추가하셔도 좋고, 조금더 사유하셔도 좋아요 :)",
+                     identifier: .sayuTimeEnded)
+               }
+            }
+         }
+         
+         if sayu.timerType == SayuTimerType.stopWatch.rawValue {
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+               guard let self else { return }
+               sayuSettingTime += 1
+            }
          }
       }
    }
@@ -145,10 +181,16 @@ extension WriteSayuOnViewLogic {
    }
    
    func stopTimer() {
+      
       isPaused = true
       isStopped = true
       
       saveTimeTake()
+
+      if let sayu {
+         setMotionEnd(sayu)
+         collectMotion(sayu)
+      }
       
       sayuTimerProgress = 1.0
       sayuSettingTime = 0
@@ -163,22 +205,10 @@ extension WriteSayuOnViewLogic {
       content.subtitle = "오늘도 풍부한 사유를 즐겨주셔서 감사합니다. :)"
    }
    
-   func startStopwatch() {
-      isPaused = false
-      isStopped = false
-      
-      guard timer == nil else { return }
-      
-      timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-         guard let self else { return }
-         sayuSettingTime += 1
-      }
-   }
-   
    private func saveTimeTake() {
       if let sayu {
          if sayu.timerType == SayuTimerType.timer.rawValue {
-            sayuTimeTakes.append(sayuStaticTime - sayuSettingTime)
+            sayuTimeTakes.append(sayuStaticTime - sayuSettingTime - sayu.timeTake)
          }
          
          if sayu.timerType == SayuTimerType.stopWatch.rawValue {
@@ -188,3 +218,93 @@ extension WriteSayuOnViewLogic {
    }
 }
 
+// MARK: - motion setting
+extension WriteSayuOnViewLogic {
+   private func setMotionStart(_ sayu: Think) {
+      if sayu.thinkType == ThinkType.run.rawValue
+            || sayu.thinkType == ThinkType.walk.rawValue {
+         motionStart = .init()
+      }
+   }
+   
+   private func setMotionEnd(_ sayu: Think) {
+      if sayu.thinkType == ThinkType.run.rawValue
+            || sayu.thinkType == ThinkType.walk.rawValue {
+         motionEnd = .init()
+      }
+   }
+   
+   private func collectMotion(_ sayu: Think) {
+      if sayu.thinkType == ThinkType.run.rawValue
+            || sayu.thinkType == ThinkType.walk.rawValue,
+         let motionStart,
+         let motionEnd
+      {
+         do {
+            try motionManager.stopUpdate()
+            try motionManager.getMotionData(
+               start: motionStart,
+               end: motionEnd
+            ) { [weak self] steps, distance, avgPace in
+               guard let self else { return }
+               self.steps += Int(truncating: steps)
+               self.distance += Double(truncating: distance)
+               self.avgPace += Double(truncating: avgPace)
+               self.motionStart = nil
+               self.motionEnd = nil
+            }
+         } catch MotionManager.MotionManagerError.authorizationDenied {
+            motionPermission = false
+         } catch {}
+      }
+   }
+}
+
+// MARK: - save
+extension WriteSayuOnViewLogic {
+   func tempSave() -> Bool {
+      if let sayu, checkIsToday() {
+         isStopped = true
+         saveTimeTake()
+         setMotionEnd(sayu)
+         collectMotion(sayu)
+         
+         let totalTimeTake = sayuTimeTakes.reduce(0) { cv, fv in return (cv + fv) }
+         let remainTime = sayuSettingTime <= totalTimeTake ? 0 : sayuStaticTime - totalTimeTake
+         
+         do {
+            try thinkRepository.updateRecord(sayu._id) { [weak self] sayu in
+               guard let self else { return }
+               sayu.content = sayuContent
+               sayu.timeTake = totalTimeTake
+               sayu.timeSetting = remainTime
+               sayu.avgPace = avgPace
+               sayu.distance = distance
+               sayu.steps = steps
+               
+               if !sayuSubs.isEmpty {
+                  sayuSubs.enumerated().forEach { idx, sub in
+                     sayu.subs[idx].content = sub.content
+                  }
+               }
+            }
+            if !sayuSubs.isEmpty {
+               try sayu.subs.forEach { sub in
+                  try subRepository.updateRecord(sub._id) { record in
+                     record.content = sub.content
+                  }
+               }
+            }
+            return true
+         } catch {
+            return false
+         }
+      } else {
+         return false
+      }
+   }
+   
+   private func checkIsToday() -> Bool {
+      return sayuDate == Date().formattedForView()
+   }
+}

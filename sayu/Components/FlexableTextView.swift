@@ -43,7 +43,7 @@ struct FlexableTextView: UIViewRepresentable {
       view.layer.borderWidth = borderWidth
       view.layer.borderColor = borderColor
       
-      view.text = placeholder
+      view.text = text.isEmpty ? placeholder : text
       view.textColor = placeholderColor
       view.tintColor = tintColor
       view.font = .init(name: textFont.rawValue, size: textSize)

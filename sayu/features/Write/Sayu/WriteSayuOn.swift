@@ -23,6 +23,8 @@ struct WriteSayuOn: NavigatableView {
    
    @Environment(\.scenePhase)
    private var scenePhase
+   @Environment(\.dismiss)
+   private var dismissView
    
    init(createdSayuId: ObjectId) {
       self.createdSayuId = createdSayuId
@@ -31,7 +33,11 @@ struct WriteSayuOn: NavigatableView {
    var body: some View {
       VStack {
          if let sayu = viewLogic.sayu{
-            AppNavbar(title: "\(viewLogic.sayuDate)의 사유", isLeftButton: false, isRightButton: false)
+            AppNavbar(title: "\(viewLogic.sayuDate)의 사유", 
+                      isLeftButton: false,
+                      isRightButton: true,
+                      rightButtonAction: tempSaveDisplayAlert,
+                      rightButtonIcon: .saveTemp)
             
             ScrollView {
                VStack {
@@ -49,9 +55,13 @@ struct WriteSayuOn: NavigatableView {
                   Spacer.height(12.0)
                   createSayuContentView($viewLogic.sayuContent)
                   
-                  Spacer.height(12.0)
-                  createSayuSubView()
                   
+                  if !viewLogic.sayuSubs.isEmpty {
+                     Spacer.height(12.0)
+                     createSayuSubView()
+                  }
+                  
+                  Spacer.height(12.0)
                }
                .padding(.horizontal, 16.0)
             }
@@ -200,7 +210,7 @@ extension WriteSayuOn {
             Button {
                withAnimation(.snappy) {
                   if isPaused {
-                     viewLogic.startStopwatch()
+                     viewLogic.startTimer()
                   } else {
                      viewLogic.pauseTimer()
                   }
@@ -253,7 +263,7 @@ extension WriteSayuOn {
    private func displayStopConfirmAlert() {
       let buttons: [BottomPopupButtonItem] = [
          .init(title: "안 멈출게요", background: .grayMd, foreground: .grayXl, action: {
-            viewLogic.startStopwatch()
+            viewLogic.startTimer()
             dismiss()
          }),
          .init(title: "네 멈출게요", background: .grayXl, foreground: .grayMd, action: {
@@ -298,7 +308,7 @@ extension WriteSayuOn {
                font: .kjcRegular)
             FlexableTextView(text: sayuContent,
                              height: $sayuContentHeight,
-                             placeholder: "오늘의 사유 내용을 작성해보세요.",
+                             placeholder: "구체적인 사유 내용을 자유롭게 작성해보세요.",
                              maxHeight: 200.0,
                              maxTextCount: 1000, 
                              textFont: .kjcRegular,
@@ -310,3 +320,28 @@ extension WriteSayuOn {
       .frame(minHeight: sayuContentHeight + 200.0, maxHeight: .infinity)
    }
 }
+
+extension WriteSayuOn {
+   private func tempSaveDisplayAlert() {
+      viewLogic.pauseTimer()
+      
+      let buttons: [BottomPopupButtonItem] = [
+         .init(title: "아니요", background: .baseGreen, foreground: .white, action: {
+            viewLogic.startTimer()
+            dismiss()
+         }),
+         .init(title: "좋아요", background: .grayMd, foreground: .baseBlack, action: {
+            dismiss()
+            if viewLogic.tempSave() {
+               pop(to: Home.self)
+            }
+         })
+      ]
+      BottomAlert(title: "오늘의 사유를 잠시 멈출까요?",
+                  content: "사유 내용을 오늘까지만 잠시 저장합니다.\n오늘 안에는 언제든지 다시 불러와서 기록할 수 있어요.",
+                  buttons: buttons)
+      .showAndStack()
+   }
+   
+}
+   

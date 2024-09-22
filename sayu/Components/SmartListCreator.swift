@@ -34,6 +34,9 @@ struct SmartListCreator: View {
             RoundedTextField(fieldText: $smartListFieldText, placeholder: "사유 목록을 등록해보세요.")
                .focused($smartListfieldFocus)
                .disabled(smartLists.count >= 3)
+               .onSubmit {
+                  smartListfieldFocus = false
+               }
          }
          
          Button {

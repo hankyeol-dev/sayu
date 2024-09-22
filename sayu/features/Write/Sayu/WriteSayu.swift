@@ -295,7 +295,7 @@ extension WriteSayu {
                   )
                   .onTapGesture {
                      withAnimation(.bouncy) {
-                        viewLogic.selectedSayuType = type.type
+                        viewLogic.setSayuType(type.type)
                      }
                   }
                }

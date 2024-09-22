@@ -68,6 +68,7 @@
 		8191D2752C9E648000B2A3C8 /* FlexableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */; };
 		8191D2772C9EA31100B2A3C8 /* SmartListCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2762C9EA31100B2A3C8 /* SmartListCreator.swift */; };
 		8191D27D2C9EAA6B00B2A3C8 /* MCEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8191D27C2C9EAA6B00B2A3C8 /* MCEmojiPicker */; };
+		8191D2802C9EEF0800B2A3C8 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -143,6 +144,7 @@
 		8191D2722C9C7A6E00B2A3C8 /* SayuSubCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuSubCreator.swift; sourceTree = "<group>"; };
 		8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexableTextView.swift; sourceTree = "<group>"; };
 		8191D2762C9EA31100B2A3C8 /* SmartListCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListCreator.swift; sourceTree = "<group>"; };
+		8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 				8191D20E2C99355D00B2A3C8 /* DatabaseManager.swift */,
 				8191D2102C99359800B2A3C8 /* NetworkManager.swift */,
 				8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */,
+				8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */,
 				8191D26D2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift in Sources */,
 				8191D2752C9E648000B2A3C8 /* FlexableTextView.swift in Sources */,
+				8191D2802C9EEF0800B2A3C8 /* MotionManager.swift in Sources */,
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
 				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
@@ -666,6 +670,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sayu/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "걸으면서 사유하기, 달리면서 사유하기에 필요한 움직임 데이터를 수집합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
@@ -702,6 +707,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sayu/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "걸으면서 사유하기, 달리면서 사유하기에 필요한 움직임 데이터를 수집합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;

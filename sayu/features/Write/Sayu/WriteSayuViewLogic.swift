@@ -53,6 +53,9 @@ final class WriteSayuViewLogic: ObservableObject {
    @Published
    var selectedSayuType: ThinkType = .stay
    
+   @Published
+   var isPermittedMotion: Bool = true
+   
    // MARK: - timer
    @Published
    var sayuTimerTypes: [SayuTimerTypeItem] = SayuTimerType.allCases.map {
@@ -83,6 +86,7 @@ final class WriteSayuViewLogic: ObservableObject {
    private let subRepository = Repository<Sub>()
    private let thinkRepository = Repository<Think>()
    private let smartListRepository = Repository<SmartList>()
+   private let motionManager: MotionManager = .init()
    
    var createdSayuId: ObjectId?
    
@@ -129,6 +133,18 @@ extension WriteSayuViewLogic {
    
    func addSubItem() { subItems.append(.init(sub: "", content: "")) }
    func removeSubItem(_ index: Int) { subItems.remove(at: index) }
+   
+   func setSayuType(_ type: ThinkType) {
+      selectedSayuType = type
+      if type == .run || type == .walk {
+         if !motionManager.checkAuth() {
+            motionManager.getAuth()
+            isPermittedMotion = false
+         } else {
+            isPermittedMotion = true
+         }
+      }
+   }
 }
 
 // MARK: timer logic

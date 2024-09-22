@@ -40,6 +40,15 @@ final class Think: Object, ObjectKeyIdentifiable {
    var timeTake: Int = 0
    
    @Persisted
+   var steps: Int?
+   
+   @Persisted
+   var distance: Double?
+   
+   @Persisted
+   var avgPace: Double?
+   
+   @Persisted
    var isSaved: Bool = false
    
    @Persisted
@@ -52,6 +61,9 @@ final class Think: Object, ObjectKeyIdentifiable {
       timerType: Int = SayuTimerType.timer.rawValue,
       timeSetting: Int = 0,
       timeTake: Int = 0,
+      steps: Int? = nil,
+      distance: Double? = nil,
+      avgPace: Double? = nil,
       isSaved: Bool = false
    ) {
       self.init()
@@ -62,7 +74,9 @@ final class Think: Object, ObjectKeyIdentifiable {
       self.timerType = timerType
       self.timeSetting = timeSetting
       self.timeTake = timeTake
+      self.steps = steps
+      self.distance = distance
+      self.avgPace = avgPace
       self.isSaved = isSaved
-      self.createdAt = createdAt
    }
 }
