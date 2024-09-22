@@ -70,11 +70,19 @@ final class WriteSayuOnViewLogic: ObservableObject {
    @Published
    var motionPermission: Bool = true
    
+   // MARK: - save & errors
+   @Published
+   var isSaveError: Bool = false
+   
+   @Published
+   var isEarningTodaySayu: Bool = false
+   
    // MARK: - database & managers
    private let thinkRepository = Repository<Think>()
    private let subRepository = Repository<Sub>()
    private let notificationManager: NotificationManager = .init()
    private let motionManager: MotionManager = .init()
+   private let sayuPointManager: SayuPointManager = .init()
 }
 
 extension WriteSayuOnViewLogic {
@@ -262,7 +270,7 @@ extension WriteSayuOnViewLogic {
 
 // MARK: - save
 extension WriteSayuOnViewLogic {
-   func tempSave() -> Bool {
+   func saveSayu(_ isTemp: Bool) {
       if let sayu, checkIsToday() {
          isStopped = true
          saveTimeTake()
@@ -281,13 +289,15 @@ extension WriteSayuOnViewLogic {
                sayu.avgPace = avgPace
                sayu.distance = distance
                sayu.steps = steps
-               
+               sayu.isSaved = !isTemp
+                              
                if !sayuSubs.isEmpty {
                   sayuSubs.enumerated().forEach { idx, sub in
                      sayu.subs[idx].content = sub.content
                   }
                }
             }
+            
             if !sayuSubs.isEmpty {
                try sayu.subs.forEach { sub in
                   try subRepository.updateRecord(sub._id) { record in
@@ -295,12 +305,17 @@ extension WriteSayuOnViewLogic {
                   }
                }
             }
-            return true
+            
+            if !isTemp {
+               isEarningTodaySayu = sayuPointManager.earningTodaySayu()
+            }
+            
+            isSaveError = false
          } catch {
-            return false
+            isSaveError = true
          }
       } else {
-         return false
+         isSaveError = true
       }
    }
    

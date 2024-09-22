@@ -91,6 +91,7 @@ extension SayuSubCreator {
             .onSubmit {
                fieldFocus = nil
             }
+            .disabled(contentMode)
          }
          
          if contentMode {

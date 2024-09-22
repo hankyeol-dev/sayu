@@ -67,7 +67,7 @@ struct WriteSayuOn: NavigatableView {
             }
             
             Button {
-
+               saveSayu()
             } label: {
                asRoundedRect(
                   title: "오늘의 사유 저장",
@@ -85,7 +85,14 @@ struct WriteSayuOn: NavigatableView {
       .task {
          viewLogic.setSayu(for: createdSayuId)
       }
-      
+      .onChange(of: viewLogic.isEarningTodaySayu) { value in
+         if value {
+            CentreSayuPointAlert()
+               .showAndStack()
+               .dismissAfter(1.0)
+            viewLogic.isEarningTodaySayu = false
+         }
+      }
    }
 }
 
@@ -310,14 +317,15 @@ extension WriteSayuOn {
                              height: $sayuContentHeight,
                              placeholder: "구체적인 사유 내용을 자유롭게 작성해보세요.",
                              maxHeight: 200.0,
-                             maxTextCount: 1000, 
+                             maxTextCount: 1000,
                              textFont: .kjcRegular,
-                             textSize: 13.0)
+                             textSize: 13.0,
+                             placeholderColor: .grayXl)
          }
       } toggleHandler: { _ in
          return true
       }
-      .frame(minHeight: sayuContentHeight + 200.0, maxHeight: .infinity)
+      .frame(minHeight: sayuContentHeight + 160.0, maxHeight: .infinity)
    }
 }
 
@@ -332,7 +340,8 @@ extension WriteSayuOn {
          }),
          .init(title: "좋아요", background: .grayMd, foreground: .baseBlack, action: {
             dismiss()
-            if viewLogic.tempSave() {
+            viewLogic.saveSayu(true)
+            if !viewLogic.isSaveError {
                pop(to: Home.self)
             }
          })
@@ -343,5 +352,12 @@ extension WriteSayuOn {
       .showAndStack()
    }
    
+   private func saveSayu() {
+      viewLogic.pauseTimer()
+      viewLogic.saveSayu(false)
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+         pop()
+      }
+   }
 }
    

@@ -13,6 +13,7 @@ enum SayuPointType: Int {
    case pay
    
    enum EarningCase: String {
+      case firstJoin = "앱 처음 접속"
       case dailyVisit = "매일매일 접속"
       case dailySayu = "데일리 사유 작성"
       case dailyOver5000Steps = "데일리 5000보 걷기 성공"
