@@ -8,10 +8,22 @@
 import SwiftUI
 
 struct SayuCalendar: View {
+   @EnvironmentObject
+   var pointManager: SayuPointManager
+   
+   @StateObject
+   private var viewLogic: SayuCalendarViewLogic = .init()
+   
    var body: some View {
       VStack {
-         Text("여기에 캘린더뷰가 올거야")
-            .byCustomFont(.kjcRegular, size: 22)         
+         AppMainNavbar(point: pointManager.getLastAccumulatedPoint())
+         Spacer.height(12.0)
+         
+         ScrollView(.vertical, showsIndicators: false) {
+            CalendarView(current: $viewLogic.current,
+                         currentMonth: $viewLogic.currentMonth)
+            .environmentObject(viewLogic)
+         }
       }
    }
 }

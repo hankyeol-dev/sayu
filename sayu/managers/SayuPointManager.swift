@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct SayuPointManager {
+final class SayuPointManager: ObservableObject {
+   static let manager: SayuPointManager = .init()
    private let pointRepository = Repository<SayuPoint>()
+   private init() {}
    
    func addJoinPoint() {
       guard pointRepository.getLastRecord() == nil else { return }
@@ -32,7 +34,7 @@ struct SayuPointManager {
       return filtered.isEmpty
    }
    
-   private func getLastAccumulatedPoint() -> Int {
+   func getLastAccumulatedPoint() -> Int {
       if let last = pointRepository.getLastRecord() {
          return last.accumulated
       } else {

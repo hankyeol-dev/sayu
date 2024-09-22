@@ -82,7 +82,7 @@ final class WriteSayuOnViewLogic: ObservableObject {
    private let subRepository = Repository<Sub>()
    private let notificationManager: NotificationManager = .init()
    private let motionManager: MotionManager = .init()
-   private let sayuPointManager: SayuPointManager = .init()
+   private let sayuPointManager: SayuPointManager = .manager
 }
 
 extension WriteSayuOnViewLogic {

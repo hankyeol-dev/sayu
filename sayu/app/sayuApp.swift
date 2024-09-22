@@ -17,7 +17,7 @@ struct sayuApp: App {
    private var appDelegate
    
    private let notificationManager: NotificationManager = .init()
-   private let sayuPointManager: SayuPointManager = .init()
+   private let sayuPointManager: SayuPointManager = .manager
    private let databaseManager: DatabaseManager = .manager
    
    var body: some Scene {
@@ -30,6 +30,7 @@ struct sayuApp: App {
                }
             })
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
+            .environmentObject(sayuPointManager)
             .task {
                notificationManager.askPermission()
                sayuPointManager.addJoinPoint()
