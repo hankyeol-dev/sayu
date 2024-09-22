@@ -21,11 +21,31 @@ struct Repository<O: Object> {
       return db.object(ofType: O.self, forPrimaryKey: id)
    }
    
+   func getRecordsByQuery(_ queryHandler: @escaping (O) -> Bool) -> LazyFilterSequence<Results<O>> {
+      db.objects(O.self).filter { record in
+         queryHandler(record)
+      }
+   }
+   
+   func getLastRecord() -> O? {
+      return db.objects(O.self).last
+   }
+   
    func addSingleRecord(_ record: O, addHandler: @escaping (O) -> Void) throws {
       do {
          try db.write {
             db.add(record)
             addHandler(record)
+         }
+      } catch {
+         throw RepositoryErrors.failForAdd
+      }
+   }
+   
+   func addSingleRecord(_ record: O) throws {
+      do {
+         try db.write {
+            db.add(record)
          }
       } catch {
          throw RepositoryErrors.failForAdd

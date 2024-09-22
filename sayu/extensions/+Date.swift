@@ -24,3 +24,13 @@ extension Date {
       return formatter.string(from: self)
    }
 }
+
+extension String {
+   func formattedForView() -> Date? {
+      let formatter = DateFormatter()
+      formatter.locale = .init(identifier: "ko_KR")
+      formatter.timeZone = .autoupdatingCurrent
+      formatter.dateFormat = "yyyy-MM-dd"
+      return formatter.date(from: self)
+   }
+}

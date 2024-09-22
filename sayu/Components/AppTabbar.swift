@@ -10,7 +10,7 @@ import SwiftUI
 import MijickNavigationView
 import RealmSwift
 
-struct AppTabbar: View {
+struct AppTabbar: NavigatableView {
    
    @Binding var selectedTabIndex: Int
    @State var isDisplayWriteView: Bool = false
@@ -47,34 +47,41 @@ struct AppTabbar: View {
      
    var body: some View {
       HStack(alignment: .center) {
-         ForEach(TabIcons.allCases, id: \.self.rawValue) { icon in
-            Spacer()
-            
-            if icon.rawValue == 1 {
-               createTab(icon) {
-                  selectedTabIndex = icon.rawValue
-                  isDisplayWriteView = true
-               }
-               .fullScreenCover(isPresented: $isDisplayWriteView)  {
-                  var coverView = WriteSayu(date: .now)
-                  coverView.disappearHandler = { sayuId in
-                     if let sayuId {
-                        self.createdSayuId = sayuId
-                        isDisplayWriteOnView = true
-                     } else {
-                        isDisplayWriteOnView = false
-                     }
-                  }
-                  return coverView
-               }
-            } else {
-               createTab(icon) {
-                  selectedTabIndex = icon.rawValue
+         
+         Spacer()
+         createTab(TabIcons.calendar) {
+            selectedTabIndex = TabIcons.calendar.rawValue
+         }
+         Spacer()
+         
+         Spacer()
+         Button {
+            isDisplayWriteView = true
+         } label: {
+            TabIcons.plus.bySelected
+               .resizable()
+               .frame(width: 32, height: 32)
+         }
+         .fullScreenCover(isPresented: $isDisplayWriteView)  {
+            var coverView = WriteSayu(date: .now)
+            coverView.disappearHandler = { sayuId in
+               if let sayuId {
+                  self.createdSayuId = sayuId
+                  isDisplayWriteOnView = true
+               } else {
+                  isDisplayWriteOnView = false
                }
             }
-            
-            Spacer()
+            return coverView
          }
+         Spacer()
+         
+         Spacer()
+         createTab(TabIcons.chart) {
+            selectedTabIndex = TabIcons.chart.rawValue
+         }
+         Spacer()
+         
       }
       .padding(.vertical, 16.0)
       .frame(maxWidth: .infinity, maxHeight: 56.0)

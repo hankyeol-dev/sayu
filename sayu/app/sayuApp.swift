@@ -13,17 +13,27 @@ import MijickPopupView
 
 @main
 struct sayuApp: App {
+   @UIApplicationDelegateAdaptor(AppDelegate.self)
+   private var appDelegate
+   
+   private let notificationManager: NotificationManager = .init()
+   private let sayuPointManager: SayuPointManager = .init()
    private let databaseManager: DatabaseManager = .manager
    
    var body: some Scene {
       WindowGroup {
          Home()
             .implementNavigationView(config: navigationConfig)
-            .implementPopupView()
+            .implementPopupView(config: { config in
+               config.bottom { bottom in
+                  bottom.tapOutsideToDismiss(true)
+               }
+            })
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
-         //            .task {
-//               databaseManager.getDBURL()
-//            }
+            .task {
+               notificationManager.askPermission()
+               sayuPointManager.addJoinPoint()
+            }
       }
    }
 }
