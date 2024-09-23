@@ -12,6 +12,8 @@ struct SayuCardItem: Identifiable, Hashable {
    let id: ObjectId
    let subject: String
    let content: String
+   let subCount: Int
+   let smartList: [String]
    let thinkType: String
    let timeTake: String
    let isSaved: Bool

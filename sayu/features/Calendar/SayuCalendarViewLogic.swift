@@ -15,6 +15,9 @@ final class SayuCalendarViewLogic: ObservableObject {
    var currentMonth: Int = 0
    
    @Published
+   var selectedDayString: String = ""
+   
+   @Published
    var dayConstant: [String] = ["일", "월", "화", "수", "목", "금", "토"]
    
    @Published
@@ -48,28 +51,34 @@ extension SayuCalendarViewLogic {
       return days
    }
    
-   func getCurrentMonth() -> Date {
+   func setCurrentMonth() {
       let calendar = Calendar.current
       guard let month = calendar.date(byAdding: .month, value: currentMonth, to: .now)
-      else { return .now }
+      else { return }
       
-      return month
+      current = month
    }
 }
 
 extension SayuCalendarViewLogic {
+   func setSelectedDay(_ dateString: String) {
+      if selectedDayString != dateString {
+         selectedDayString = dateString
+      }
+   }
+   
    func getSayuCountByDate(_ dateString: String) -> Int {
       sayuRepository.getRecordsByQuery { sayu in
          sayu.date == dateString && sayu.isSaved
       }.count
    }
    
-   func setSayuList(_ dateString: String) {
-      let queriedSayu = sayuRepository.getRecordsByQuery { sayu in
+   func setSayuList() {
+      let queriedSayu = sayuRepository.getRecordsByQuery { [weak self] sayu in
          if Date().formattedAppConfigure() == sayu.date {
-            return sayu.date == dateString
+            return sayu.date == self?.selectedDayString
          } else {
-            return sayu.date == dateString && sayu.isSaved
+            return sayu.date == self?.selectedDayString && sayu.isSaved
          }
       }
       
@@ -78,6 +87,8 @@ extension SayuCalendarViewLogic {
             id: sayu._id,
             subject: mappingSubject(sayu),
             content: sayu.content,
+            subCount: sayu.subs.count,
+            smartList: sayu.smartList.map { $0.title },
             thinkType: mappingThinkType(sayu.thinkType),
             timeTake: sayu.timeTake.converTimeToCardViewString(),
             isSaved: sayu.isSaved

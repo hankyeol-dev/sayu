@@ -24,11 +24,7 @@ struct sayuApp: App {
       WindowGroup {
          Home()
             .implementNavigationView(config: navigationConfig)
-            .implementPopupView(config: { config in
-               config.bottom { bottom in
-                  bottom.tapOutsideToDismiss(true)
-               }
-            })
+            .implementPopupView(config: configurePopup)
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
             .environmentObject(sayuPointManager)
             .task {
@@ -45,5 +41,11 @@ extension sayuApp {
       config.backGestureThreshold = 0.2
       config.backgroundColour = .white
       return config
+   }
+   
+   func configurePopup(_ config: GlobalConfig) -> GlobalConfig {
+      config.top { $0.dragGestureEnabled(true) }
+      .centre { $0.tapOutsideToDismiss(true) }
+      .bottom { $0.tapOutsideToDismiss(true)  }
    }
 }

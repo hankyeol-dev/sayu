@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct CalendarView: View {
-   @Binding var current: Date
-   @Binding var currentMonth: Int
    @EnvironmentObject
    var calendarViewLogic: SayuCalendarViewLogic
    
    var body: some View {
       VStack(spacing: 20.0) {
-         createPicker(current)
+         createPicker(calendarViewLogic.current)
       }
       .padding(.horizontal, 16.0)
    }
@@ -35,8 +33,8 @@ extension CalendarView {
          createCalendarView()
          Spacer.height(16.0)
       }
-      .onChange(of: currentMonth) { month in
-         self.current = calendarViewLogic.getCurrentMonth()
+      .onChange(of: calendarViewLogic.currentMonth) { month in
+         calendarViewLogic.setCurrentMonth()
       }
    }
   
@@ -55,10 +53,10 @@ extension CalendarView {
          
          Spacer()
          
-         VStack(alignment: .leading, spacing: 10.0) {
-            Text(current.formattedForCalendarYear())
+         VStack(alignment: .center, spacing: 10.0) {
+            Text(calendarViewLogic.current.formattedForCalendarYear())
                .byCustomFont(.gmMedium, size: 13.0)
-            Text(current.formattedForCalendarMonth())
+            Text(calendarViewLogic.current.formattedForCalendarMonth())
                .byCustomFont(.gmBold, size: 18.0)
          }
          
@@ -109,23 +107,27 @@ extension CalendarView {
                Text("\(date.day)")
                   .byCustomFont(.gmMedium, size: 15.0)
             }
-         }
-         
-         if sayuCount != 0 {
-            Spacer.height(16.0)
-            HStack(alignment: .center) {
-               Image(.sayuCloud)
-                  .resizable()
-                  .frame(width: 12.0, height: 12.0)
-               Text(String(sayuCount))
-                  .byCustomFont(.gmlight, size: 12.0)
+            
+            if sayuCount != 0 {
+               Spacer.height(16.0)
+               HStack(alignment: .center) {
+                  Image(.sayuCloud)
+                     .resizable()
+                     .frame(width: 12.0, height: 12.0)
+                  Text(String(sayuCount))
+                     .byCustomFont(.gmlight, size: 12.0)
+               }
             }
          }
       }
-      .padding(.vertical, 4.0)
+      .padding(.vertical, 8.0)
+      .padding(.horizontal, 8.0)
       .frame(height: 56.0, alignment: .top)
+      .background(calendarViewLogic.selectedDayString == dateString ? .graySm : .clear)
+      .clipShape(.rect(cornerRadius: 12.0))
       .onTapGesture {
-         calendarViewLogic.setSayuList(dateString)
+         calendarViewLogic.setSelectedDay(dateString)
+         calendarViewLogic.setSayuList()
       }
    }
    

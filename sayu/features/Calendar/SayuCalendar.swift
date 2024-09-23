@@ -20,9 +20,11 @@ struct SayuCalendar: View {
          Spacer.height(12.0)
          
          ScrollView(.vertical, showsIndicators: false) {
-            CalendarView(current: $viewLogic.current,
-                         currentMonth: $viewLogic.currentMonth)
+            CalendarView()
             .environmentObject(viewLogic)
+            
+            SayuCardListView(dateString: viewLogic.selectedDayString,
+                             sayuCardItemList: $viewLogic.daySayuCardList)
          }
       }
    }

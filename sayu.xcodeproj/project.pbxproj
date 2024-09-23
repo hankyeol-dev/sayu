@@ -78,6 +78,7 @@
 		8191D28E2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D28D2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift */; };
 		8191D2902CA04C2300B2A3C8 /* SayuCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */; };
 		8191D2922CA04FBF00B2A3C8 /* +Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2912CA04FBF00B2A3C8 /* +Int.swift */; };
+		8191D2942CA057F200B2A3C8 /* SayuCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2932CA057F200B2A3C8 /* SayuCardListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -163,6 +164,7 @@
 		8191D28D2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCalendarViewLogic.swift; sourceTree = "<group>"; };
 		8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCardItem.swift; sourceTree = "<group>"; };
 		8191D2912CA04FBF00B2A3C8 /* +Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Int.swift"; sourceTree = "<group>"; };
+		8191D2932CA057F200B2A3C8 /* SayuCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCardListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,7 +370,6 @@
 				8191D2492C99782900B2A3C8 /* BottomAlert.swift */,
 				8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */,
 				8191D2812C9FD81A00B2A3C8 /* CentreSaveAlert.swift */,
-				8191D2872CA005B500B2A3C8 /* CalendarView.swift */,
 				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
 				8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */,
 				8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */,
@@ -400,6 +401,8 @@
 		8191D23A2C9969D500B2A3C8 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				8191D2872CA005B500B2A3C8 /* CalendarView.swift */,
+				8191D2932CA057F200B2A3C8 /* SayuCardListView.swift */,
 				8191D23B2C9969EE00B2A3C8 /* SayuCalendar.swift */,
 				8191D28D2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift */,
 			);
@@ -548,6 +551,7 @@
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
 				8191D2882CA005B500B2A3C8 /* CalendarView.swift in Sources */,
 				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,
+				8191D2942CA057F200B2A3C8 /* SayuCardListView.swift in Sources */,
 				8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */,
 				8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
