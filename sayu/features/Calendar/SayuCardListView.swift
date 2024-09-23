@@ -11,9 +11,7 @@ import MijickNavigationView
 
 struct SayuCardListView: NavigatableView {
    let dateString: String
-   
-   @Binding
-   var sayuCardItemList: [SayuCardItem]
+   let sayuCardItemList: [SayuCardItem]
    
    var body: some View {
       VStack(alignment: .leading) {
@@ -29,7 +27,7 @@ struct SayuCardListView: NavigatableView {
          
          Spacer.height(20.0)
          
-         ForEach($sayuCardItemList, id: \.id) { cardItem in
+         ForEach(sayuCardItemList, id: \.id) { cardItem in
             SayuCardView(sayuCardItem: cardItem)
             Spacer.height(16.0)
          }
@@ -42,8 +40,7 @@ struct SayuCardListView: NavigatableView {
 
 struct SayuCardView: NavigatableView {
    
-   @Binding
-   var sayuCardItem: SayuCardItem
+   let sayuCardItem: SayuCardItem
    
    var body: some View {
       VStack(alignment: .center) {

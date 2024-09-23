@@ -25,22 +25,22 @@ struct AppTabbar: NavigatableView {
       var byUnselected: Image {
          switch self {
          case .calendar:
-               .init(.calendarUnSelected)
+               .init(.calendarPixeledUnselected)
          case .chart:
-               .init(.chartUnSelected)
+               .init(.chartPixeledUnselected)
          case .plus:
-               .init(.plusSelected)
+               .init(.plusPixeledSelectedTint)
          }
       }
       
       var bySelected: Image {
          switch self {
          case .calendar:
-               .init(.calendarSelected)
+               .init(.calendarPixeledSelectedTint)
          case .chart:
-               .init(.chartSelected)
+               .init(.chartPixeledSelectedTint)
          case .plus:
-               .init(.plusSelected)
+               .init(.plusPixeledSelectedTint)
          }
       }
    }
@@ -85,9 +85,8 @@ struct AppTabbar: NavigatableView {
       }
       .padding(.vertical, 16.0)
       .frame(maxWidth: .infinity, maxHeight: 56.0)
-      .background(.grayXs)
+      .background(.white)
       .shadow(color: .graySm, radius: 1, y: -0.5)
-      .ignoresSafeArea()
       .onChange(of: isDisplayWriteOnView) { isOn in
          if isOn, let createdSayuId {
             print(createdSayuId)
@@ -105,11 +104,11 @@ struct AppTabbar: NavigatableView {
          if selectedTabIndex == tabIcon.rawValue {
             tabIcon.bySelected
                .resizable()
-               .frame(width: 32, height: 32)
+               .frame(width: 24.0, height: 24.0)
          } else {
             tabIcon.byUnselected
                .resizable()
-               .frame(width: 32, height: 32)
+               .frame(width: 24.0, height: 24.0)
          }
       }
    }

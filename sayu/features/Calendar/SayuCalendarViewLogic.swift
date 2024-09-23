@@ -6,8 +6,17 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class SayuCalendarViewLogic: ObservableObject {
+   enum CalendarViewType: CaseIterable, Hashable {
+      case calendar
+      case timeline
+   }
+   
+   @Published
+   var calendarViewType: CalendarViewType = .calendar
+   
    @Published
    var current: Date = .init()
    
@@ -23,13 +32,29 @@ final class SayuCalendarViewLogic: ObservableObject {
    @Published
    var daySayuCardList: [SayuCardItem] = []
    
+   @Published
+   var sayuCardSectionList: [SayuCardListSectionItem] = []
+   
    private let pointManager: SayuPointManager = .manager
    private let sayuRepository: Repository<Think> = .init()
 }
 
 extension SayuCalendarViewLogic {
-   func setNextMonth() { currentMonth += 1 }
-   func setPreviousMonth() { currentMonth -= 1 }
+   func setCalendarViewType() {
+      if calendarViewType == .calendar {
+         calendarViewType = .timeline
+      } else {
+         calendarViewType = .calendar
+      }
+      setList()
+   }
+   
+   func setNextMonth() {
+      currentMonth += 1
+   }
+   func setPreviousMonth() {
+      currentMonth -= 1
+   }
    
    func createMonthDates() -> [SayuCalendarItem] {
       let calendar = Calendar.current
@@ -57,6 +82,8 @@ extension SayuCalendarViewLogic {
       else { return }
       
       current = month
+      
+      setList()
    }
 }
 
@@ -72,28 +99,63 @@ extension SayuCalendarViewLogic {
          sayu.date == dateString && sayu.isSaved
       }.count
    }
+}
+
+extension SayuCalendarViewLogic {
+   func setList() {
+      if calendarViewType == .calendar {
+         setSayuCardList()
+      } else {
+         setSayuCardSectionList()
+      }
+   }
    
-   func setSayuList() {
+   func setSayuCardList() {
       let queriedSayu = sayuRepository.getRecordsByQuery { [weak self] sayu in
-         if Date().formattedAppConfigure() == sayu.date {
-            return sayu.date == self?.selectedDayString
+         return sayu.date == self?.selectedDayString && sayu.isSaved
+      }
+      daySayuCardList = queriedSayu.map { sayu in
+         mappingSayuToCardItem(sayu)
+      }
+   }
+   
+   func setSayuCardSectionList() {
+      let targetMonth = current.formattedForCalendarMonth()
+      
+      let queried = sayuRepository.getRecordsByQuery { sayu in
+         if let date = sayu.date.formattedForView() {
+            return date.formattedForCalendarMonth() == targetMonth && sayu.isSaved
          } else {
-            return sayu.date == self?.selectedDayString && sayu.isSaved
+            return false
          }
       }
       
-      daySayuCardList = queriedSayu.map { sayu in
-         return .init(
-            id: sayu._id,
-            subject: mappingSubject(sayu),
-            content: sayu.content,
-            subCount: sayu.subs.count,
-            smartList: sayu.smartList.map { $0.title },
-            thinkType: mappingThinkType(sayu.thinkType),
-            timeTake: sayu.timeTake.converTimeToCardViewString(),
-            isSaved: sayu.isSaved
-         )
+      var lists: [SayuCardListSectionItem] = []
+      queried.forEach { sayu in
+         if var first = lists.first(where: { item in item.sectionKey == sayu.date }) {
+            if let index = lists.firstIndex(of: first) {
+               first.sectionCardItems.append(mappingSayuToCardItem(sayu))
+               lists[index] = first
+            }
+         } else {
+            lists.append(.init(sectionKey: sayu.date, sectionCardItems: [mappingSayuToCardItem(sayu)]))
+         }
       }
+      
+      sayuCardSectionList = lists.reversed()
+   }
+   
+   private func mappingSayuToCardItem(_ sayu: Think) -> SayuCardItem {
+      return .init(
+         id: sayu._id,
+         subject: mappingSubject(sayu),
+         content: sayu.content,
+         subCount: sayu.subs.count,
+         smartList: sayu.smartList.map { $0.title },
+         thinkType: mappingThinkType(sayu.thinkType),
+         timeTake: sayu.timeTake.converTimeToCardViewString(),
+         isSaved: sayu.isSaved
+      )
    }
    
    private func mappingSubject(_ sayu: Think) -> String {

@@ -18,3 +18,9 @@ struct SayuCardItem: Identifiable, Hashable {
    let timeTake: String
    let isSaved: Bool
 }
+
+struct SayuCardListSectionItem: Identifiable, Hashable {
+   let id: UUID = .init()
+   let sectionKey: String
+   var sectionCardItems: [SayuCardItem]
+}

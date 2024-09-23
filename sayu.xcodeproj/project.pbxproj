@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63652CA14B8B000F040D /* SayuPointView.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		812F63652CA14B8B000F040D /* SayuPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointView.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		812F63642CA14B7C000F040D /* SayuPoint */ = {
+			isa = PBXGroup;
+			children = (
+				812F63652CA14B8B000F040D /* SayuPointView.swift */,
+			);
+			path = SayuPoint;
+			sourceTree = "<group>";
+		};
 		8191D1D32C991C7A00B2A3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +247,7 @@
 		8191D1F02C991F0300B2A3C8 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				812F63642CA14B7C000F040D /* SayuPoint */,
 				8191D23D2C996A4200B2A3C8 /* Chart */,
 				8191D23A2C9969D500B2A3C8 /* Calendar */,
 				8191D2342C9965B400B2A3C8 /* Write */,
@@ -549,6 +560,7 @@
 				8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */,
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
+				812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */,
 				8191D2882CA005B500B2A3C8 /* CalendarView.swift in Sources */,
 				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,
 				8191D2942CA057F200B2A3C8 /* SayuCardListView.swift in Sources */,

@@ -16,6 +16,7 @@ struct CalendarView: View {
          createPicker(calendarViewLogic.current)
       }
       .padding(.horizontal, 16.0)
+      .padding(.top, 8.0)
    }
 }
 
@@ -27,13 +28,15 @@ extension CalendarView {
          .padding(.top, 16.0)
          Spacer.height(24.0)
          
-         createDayGrid()
-         Spacer.height(16.0)
-         
-         createCalendarView()
-         Spacer.height(16.0)
+         if calendarViewLogic.calendarViewType == .calendar {
+            createDayGrid()
+            Spacer.height(16.0)
+            
+            createCalendarView()
+            Spacer.height(16.0)            
+         }
       }
-      .onChange(of: calendarViewLogic.currentMonth) { month in
+      .onChange(of: calendarViewLogic.currentMonth) { _ in
          calendarViewLogic.setCurrentMonth()
       }
    }
@@ -127,7 +130,7 @@ extension CalendarView {
       .clipShape(.rect(cornerRadius: 12.0))
       .onTapGesture {
          calendarViewLogic.setSelectedDay(dateString)
-         calendarViewLogic.setSayuList()
+         calendarViewLogic.setSayuCardList()
       }
    }
    

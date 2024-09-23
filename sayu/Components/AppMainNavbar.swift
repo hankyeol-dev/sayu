@@ -7,31 +7,32 @@
 
 import SwiftUI
 
-struct AppMainNavbar: View {
-   private var point: Int
+import MijickNavigationView
+
+struct AppMainNavbar<Left, Right>: NavigatableView where Left: View, Right: View {
    
-   init(point: Int) {
-      self.point = point
+   private var leftButton: (() -> Left)?
+   private var rightButton: (() -> Right)?
+   
+   init(
+      leftButton: (() -> Left)? = nil,
+      rightButton: (() -> Right)? = nil
+   ) {
+      self.leftButton = leftButton
+      self.rightButton = rightButton
    }
    
    var body: some View {
       HStack(alignment: .center) {
-         Spacer.width(16.0)
-         Button {
-            
-         } label: {
-            HStack(alignment: .center) {
-               Image(.sayuPoint)
-                  .resizable()
-                  .frame(width: 20.0, height: 20.0)
-               Spacer.width(4.0)
-               Text(String(point))
-                  .byCustomFont(.gmMedium, size: 13.0)
-                  .foregroundStyle(.grayXl)
-            }
+         if let leftButton {
+            Spacer.width(16.0)
+            leftButton()
          }
-         
          Spacer()
+         if let rightButton {
+            rightButton()
+            Spacer.width(16.0)
+         }
       }
       .padding(.vertical, 12.0)
       .frame(maxHeight: 48.0)
