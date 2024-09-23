@@ -23,14 +23,31 @@ extension Date {
       formatter.dateFormat = "M월 d일"
       return formatter.string(from: self)
    }
-}
-
-extension String {
-   func formattedForView() -> Date? {
+   
+   func formattedForCalendarYear() -> String {
       let formatter = DateFormatter()
       formatter.locale = .init(identifier: "ko_KR")
-      formatter.timeZone = .autoupdatingCurrent
-      formatter.dateFormat = "yyyy-MM-dd"
-      return formatter.date(from: self)
+      formatter.dateFormat = "yyyy"
+      return formatter.string(from: self)
+   }
+   
+   func formattedForCalendarMonth() -> String {
+      let formatter = DateFormatter()
+      formatter.locale = .init(identifier: "ko_KR")
+      formatter.dateFormat = "M월"
+      return formatter.string(from: self)
+   }
+   
+   func getAllDatesInMonth() -> [Self]? {
+      let calendar = Calendar.current
+      guard let startDate = calendar.date(
+         from: calendar.dateComponents([.year, .month], from: self))
+      else { return nil }
+      
+      let range = calendar.range(of: .day, in: .month, for: startDate)
+      
+      return range?.compactMap { day in
+         return calendar.date(byAdding: .day, value: day - 1, to: startDate)
+      }
    }
 }

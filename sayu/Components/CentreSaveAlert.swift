@@ -9,7 +9,7 @@ import SwiftUI
 
 import MijickPopupView
 
-struct CentreSayuPointAlert: BottomPopup {
+struct CentreSayuPointAlert: CentrePopup {
    
    func createContent() -> some View {
       VStack(alignment: .center) {
@@ -27,7 +27,7 @@ struct CentreSayuPointAlert: BottomPopup {
          Spacer.height(8.0)
          
          HStack(alignment: .bottom) {
-            Text("1")
+            Text("3")
                .byCustomFont(.gmBold, size: 24.0)
             Text("사유 포인트")
                .byCustomFont(.gmBold, size: 20.0)
@@ -41,9 +41,8 @@ struct CentreSayuPointAlert: BottomPopup {
       .clipShape(.rect(cornerRadius: 16.0))
    }
    
-   func configurePopup(popup: BottomPopupConfig) -> BottomPopupConfig {
+   func configurePopup(popup: CentrePopupConfig) -> CentrePopupConfig {
       popup
          .horizontalPadding(16.0)
-         .bottomPadding(16.0)
    }
 }

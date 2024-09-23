@@ -17,19 +17,16 @@ struct sayuApp: App {
    private var appDelegate
    
    private let notificationManager: NotificationManager = .init()
-   private let sayuPointManager: SayuPointManager = .init()
+   private let sayuPointManager: SayuPointManager = .manager
    private let databaseManager: DatabaseManager = .manager
    
    var body: some Scene {
       WindowGroup {
          Home()
             .implementNavigationView(config: navigationConfig)
-            .implementPopupView(config: { config in
-               config.bottom { bottom in
-                  bottom.tapOutsideToDismiss(true)
-               }
-            })
+            .implementPopupView(config: configurePopup)
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
+            .environmentObject(sayuPointManager)
             .task {
                notificationManager.askPermission()
                sayuPointManager.addJoinPoint()
@@ -44,5 +41,11 @@ extension sayuApp {
       config.backGestureThreshold = 0.2
       config.backgroundColour = .white
       return config
+   }
+   
+   func configurePopup(_ config: GlobalConfig) -> GlobalConfig {
+      config.top { $0.dragGestureEnabled(true) }
+      .centre { $0.tapOutsideToDismiss(true) }
+      .bottom { $0.tapOutsideToDismiss(true)  }
    }
 }
