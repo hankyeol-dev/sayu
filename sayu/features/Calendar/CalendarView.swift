@@ -58,9 +58,9 @@ extension CalendarView {
          
          VStack(alignment: .center, spacing: 10.0) {
             Text(calendarViewLogic.current.formattedForCalendarYear())
-               .byCustomFont(.gmMedium, size: 13.0)
+               .byCustomFont(.gmlight, size: 13.0)
             Text(calendarViewLogic.current.formattedForCalendarMonth())
-               .byCustomFont(.gmBold, size: 18.0)
+               .byCustomFont(.gmMedium, size: 18.0)
          }
          
          Spacer()
@@ -112,20 +112,20 @@ extension CalendarView {
             }
             
             if sayuCount != 0 {
-               Spacer.height(16.0)
-               HStack(alignment: .center) {
+               Spacer.height(8.0)
+               VStack(alignment: .center) {
                   Image(.sayuCloud)
                      .resizable()
                      .frame(width: 12.0, height: 12.0)
                   Text(String(sayuCount))
-                     .byCustomFont(.gmlight, size: 12.0)
+                     .byCustomFont(.gmlight, size: 14.0)
                }
             }
          }
       }
       .padding(.vertical, 8.0)
       .padding(.horizontal, 8.0)
-      .frame(height: 56.0, alignment: .top)
+      .frame(height: 72.0, alignment: .top)
       .background(calendarViewLogic.selectedDayString == dateString ? .graySm : .clear)
       .clipShape(.rect(cornerRadius: 12.0))
       .onTapGesture {
