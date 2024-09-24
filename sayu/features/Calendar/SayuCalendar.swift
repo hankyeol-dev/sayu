@@ -22,7 +22,6 @@ struct SayuCalendar: View {
             createRightViewChangeButtonView()
          }
 
-
          ScrollView(.vertical, showsIndicators: false) {
             CalendarView()
             .environmentObject(viewLogic)
@@ -37,13 +36,14 @@ struct SayuCalendar: View {
                }
             }
          }
-         .background(.basebeige, ignoresSafeAreaEdges: .top)
+         .background(.basebeige)
          .padding(.vertical, -8.0)
       }
    }
 }
 
 extension SayuCalendar {
+   @ViewBuilder
    private func createLeftPointButtonView() -> some View {
       Button {
          SayuPointView()
@@ -60,6 +60,8 @@ extension SayuCalendar {
          }
       }
    }
+   
+   @ViewBuilder
    private func createRightViewChangeButtonView() -> some View {
       Button {
          withAnimation(.snappy) {

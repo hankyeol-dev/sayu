@@ -10,17 +10,20 @@ import SwiftUI
 struct FoldableGroupBox<Content>: View where Content: View {
    @State private var isOpen: Bool = true
    
+   private var bg: Color
    private var isOpenButton: Bool = true
    private var title: String
    private var content: () -> Content
    private var toggleHandler: (Bool) -> Bool
    
    init(
+      bg: Color = .grayXs,
       isOpenButton: Bool = true,
       title: String,
       content: @escaping () -> Content,
       toggleHandler: @escaping (Bool) -> Bool
    ) {
+      self.bg = bg
       self.isOpenButton = isOpenButton
       self.title = title
       self.content = content
@@ -64,5 +67,22 @@ struct FoldableGroupBox<Content>: View where Content: View {
          }
       }
       .clipShape(.rect(cornerRadius: 20.0))
+      .groupBoxStyle(FoldableGroupBoxStyle(bg))
+   }
+}
+
+struct FoldableGroupBoxStyle: GroupBoxStyle {
+   let color: Color
+   init(_ bg: Color) {
+      self.color = bg
+   }
+   
+   func makeBody(configuration: Configuration) -> some View {
+      VStack {
+         configuration.label
+         configuration.content
+      }
+      .padding()
+      .background(color)
    }
 }

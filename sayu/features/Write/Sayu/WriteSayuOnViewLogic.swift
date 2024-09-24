@@ -194,11 +194,6 @@ extension WriteSayuOnViewLogic {
       isStopped = true
       
       saveTimeTake()
-
-      if let sayu {
-         setMotionEnd(sayu)
-         collectMotion(sayu)
-      }
       
       sayuTimerProgress = 1.0
       sayuSettingTime = 0
@@ -283,6 +278,8 @@ extension WriteSayuOnViewLogic {
          do {
             try thinkRepository.updateRecord(sayu._id) { [weak self] sayu in
                guard let self else { return }
+               print(distance, steps, avgPace)
+               
                sayu.content = sayuContent
                sayu.timeTake = totalTimeTake
                sayu.timeSetting = remainTime

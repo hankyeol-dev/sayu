@@ -22,7 +22,8 @@ struct sayuApp: App {
    
    var body: some Scene {
       WindowGroup {
-         Home()
+         SayuDetailView(sayuId: .init("66f0afe210da298a6ed244b6"))
+//         Home()
             .implementNavigationView(config: navigationConfig)
             .implementPopupView(config: configurePopup)
             .environment(\.realmConfiguration, databaseManager.getDBConfig())

@@ -125,5 +125,9 @@ struct SayuCardView: NavigatableView {
             .foregroundStyle(.baseBlack)
       }
       .clipShape(.rect(cornerRadius: 8.0))
+      .onTapGesture {
+         SayuDetailView(sayuId: sayuCardItem.id)
+            .push(with: .dissolve)
+      }
    }
 }
