@@ -26,6 +26,9 @@ final class SayuDetailViewLogic: ObservableObject {
    @Published
    var sayuSubs: [SubViewItem] = []
    
+   @Published
+   var isSavedError: Bool = false
+   
    // MARK: - db & managers
    private let sayuRepository: Repository<Think> = .init()
    private let subRepository: Repository<Sub> = .init()
@@ -62,7 +65,33 @@ extension SayuDetailViewLogic {
    }
    
    func turnOffEditModeAndSave() {
-      isEditMode = false
-      // save logic
+      reSave()
+      if !isSavedError {
+         isEditMode = false
+      }
+   }
+   
+   private func reSave() {
+      if let sayu {
+         do {
+            try sayuRepository.updateRecord(sayu._id) { [weak self] record in
+               guard let self else { return }
+               record.content = sayuContents
+               record.subs.enumerated().forEach { [weak self] index, sub in
+                  guard let self else { return }
+                  sub.content = sayuSubs[index].content
+               }
+            }
+            try sayu.subs.enumerated().forEach { index, sub in
+               try subRepository.updateRecord(sub._id) { [weak self] record in
+                  guard let self else { return }
+                  record.content = sayuSubs[index].content
+               }
+            }
+            isSavedError = false
+         } catch {
+            isSavedError = true
+         }
+      }
    }
 }

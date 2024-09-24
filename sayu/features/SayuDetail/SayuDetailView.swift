@@ -55,6 +55,11 @@ struct SayuDetailView: NavigatableView {
             displayEmptyPopup()
          }
       }
+      .onChange(of: sayuDetailViewLogic.isSavedError) { error in
+         if error {
+            displaySaveErrorPopup()
+         }
+      }
    }
 }
 
@@ -89,6 +94,7 @@ extension SayuDetailView {
       } label: {
          Text(isEditmode ? "다시 저장" : "사유 내용 수정")
             .byCustomFont(.satoshiRegular, size: 15.0)
+            .foregroundStyle(isEditmode ? .baseGreen : .grayXl)
       }
    }
    
@@ -116,6 +122,12 @@ extension SayuDetailView {
                   content: "수정하던 사유 내용이 저장되지 않아요.\n그래도 괜찮으시다면 좋아요 버튼을 터치해주세요.",
                   buttons: buttons)
       .showAndStack()
+   }
+   
+   private func displaySaveErrorPopup() {
+      BottomAlert(title: "앗, 무언가 문제가 있어요.", content: "수정해주신 내용을 수정하는데 잠시 문제가 생겼어요.\n잠시 후 다시 시도해주세요.")
+         .showAndStack()
+         .dismissAfter(1.5)
    }
 }
 
