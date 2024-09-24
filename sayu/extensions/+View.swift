@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension View {
    func asRoundedRect(
@@ -26,5 +27,15 @@ extension View {
          fontSize: fontSize,
          font: font)
       )
+   }
+   
+   func transparentScrolling() -> some View {
+      if #available(iOS 16.0, *) {
+         return scrollContentBackground(.hidden)
+      } else {
+         return onAppear {
+            UITextView.appearance().backgroundColor = .clear
+         }
+      }
    }
 }

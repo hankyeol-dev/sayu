@@ -23,4 +23,8 @@ enum ThinkType: Int, CaseIterable {
          "달리면서"
       }
    }
+   
+   static func byKoreanString(_ index: Int) -> String {
+      return Self(rawValue: index)?.byKoreanTypes ?? ""
+   }
 }

@@ -38,6 +38,5 @@ struct AppMainNavbar<Left, Right>: NavigatableView where Left: View, Right: View
       .frame(maxHeight: 48.0)
       .frame(maxWidth: .infinity)
       .background(.basebeige)
-      .shadow(color: .graySm, radius: 1.0, y: 0.5)
    }
 }

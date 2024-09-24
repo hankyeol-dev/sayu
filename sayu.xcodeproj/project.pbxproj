@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63652CA14B8B000F040D /* SayuPointView.swift */; };
+		812F63692CA18F5C000F040D /* SayuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63682CA18F5C000F040D /* SayuDetailView.swift */; };
+		812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */; };
+		812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */; };
+		812F63712CA27740000F040D /* WrappedChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63702CA27740000F040D /* WrappedChip.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -98,6 +102,10 @@
 
 /* Begin PBXFileReference section */
 		812F63652CA14B8B000F040D /* SayuPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointView.swift; sourceTree = "<group>"; };
+		812F63682CA18F5C000F040D /* SayuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuDetailView.swift; sourceTree = "<group>"; };
+		812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuDetailViewLogic.swift; sourceTree = "<group>"; };
+		812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreEmptySayuAlert.swift; sourceTree = "<group>"; };
+		812F63702CA27740000F040D /* WrappedChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedChip.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -192,6 +200,15 @@
 			path = SayuPoint;
 			sourceTree = "<group>";
 		};
+		812F63672CA18F4D000F040D /* SayuDetail */ = {
+			isa = PBXGroup;
+			children = (
+				812F63682CA18F5C000F040D /* SayuDetailView.swift */,
+				812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */,
+			);
+			path = SayuDetail;
+			sourceTree = "<group>";
+		};
 		8191D1D32C991C7A00B2A3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +264,7 @@
 		8191D1F02C991F0300B2A3C8 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				812F63672CA18F4D000F040D /* SayuDetail */,
 				812F63642CA14B7C000F040D /* SayuPoint */,
 				8191D23D2C996A4200B2A3C8 /* Chart */,
 				8191D23A2C9969D500B2A3C8 /* Calendar */,
@@ -381,6 +399,8 @@
 				8191D2492C99782900B2A3C8 /* BottomAlert.swift */,
 				8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */,
 				8191D2812C9FD81A00B2A3C8 /* CentreSaveAlert.swift */,
+				812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */,
+				812F63702CA27740000F040D /* WrappedChip.swift */,
 				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
 				8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */,
 				8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */,
@@ -556,6 +576,7 @@
 				8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */,
 				8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */,
 				8191D2902CA04C2300B2A3C8 /* SayuCardItem.swift in Sources */,
+				812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */,
 				8191D2322C9961B000B2A3C8 /* AppTabbar.swift in Sources */,
 				8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */,
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
@@ -567,6 +588,7 @@
 				8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */,
 				8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
+				812F63692CA18F5C000F040D /* SayuDetailView.swift in Sources */,
 				8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */,
 				8191D2712C9C40D400B2A3C8 /* AppDelegate.swift in Sources */,
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
@@ -580,9 +602,11 @@
 				8191D28C2CA00D0500B2A3C8 /* SayuCalendarItem.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
 				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
+				812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */,
 				8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */,
 				8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */,
 				8191D28E2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift in Sources */,
+				812F63712CA27740000F040D /* WrappedChip.swift in Sources */,
 				8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */,
 				8191D2592C9AF37600B2A3C8 /* SayuTimerType.swift in Sources */,
 			);
@@ -734,7 +758,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = teamhk.sayu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -771,7 +795,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = teamhk.sayu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

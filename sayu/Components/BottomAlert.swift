@@ -36,11 +36,11 @@ struct BottomAlert: BottomPopup {
       VStack(alignment: .center) {
          Text(title)
             .byCustomFont(.satoshiMedium, size: 16.0)
-         
+            .frame(maxWidth: .infinity, alignment: .center)
          Spacer.height(16.0)
          
          Text(content)
-            .byCustomFont(.satoshiRegular, size: 13.0)
+            .byCustomFont(.satoshiRegular, size: 15.0)
          
          if let buttons {
             Spacer.height(24.0)
@@ -60,7 +60,7 @@ struct BottomAlert: BottomPopup {
                               .foregroundStyle(item.foreground)
                         }
                   }
-                  .frame(height: 36.0)
+                  .frame(height: 48.0)
                }
             }
          }

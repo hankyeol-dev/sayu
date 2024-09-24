@@ -74,7 +74,10 @@ struct MotionManager {
                let steps = pedometerData.numberOfSteps
                if let distance = pedometerData.distance,
                   let avgPace = pedometerData.averageActivePace {
-                  getHandler(steps, distance, avgPace)
+                  print(steps, distance, avgPace)
+                  DispatchQueue.main.async {
+                     getHandler(steps, distance, avgPace)                     
+                  }
                }
             }
          }
