@@ -11,6 +11,7 @@ import MijickNavigationView
 
 struct Home: NavigatableView {
    @StateObject private var homeViewLogic: HomeViewLogic = .init()
+   @StateObject private var sayuPointManager: SayuPointManager = .manager
    
    var body: some View {
       VStack {
@@ -18,7 +19,7 @@ struct Home: NavigatableView {
             // TODO: - selectedTabIndex에 따라서 View 체인지
             if homeViewLogic.selectedTabIndex == 0 {
                SayuCalendar()
-                  .environmentObject(SayuPointManager.manager)
+                  .environmentObject(sayuPointManager)
             }
             
             if homeViewLogic.selectedTabIndex == 2 {

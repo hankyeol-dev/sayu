@@ -12,6 +12,7 @@
 		812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */; };
 		812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */; };
 		812F63712CA27740000F040D /* WrappedChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63702CA27740000F040D /* WrappedChip.swift */; };
+		812F63752CA29C1E000F040D /* SayuPointEarningButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -106,6 +107,7 @@
 		812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuDetailViewLogic.swift; sourceTree = "<group>"; };
 		812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreEmptySayuAlert.swift; sourceTree = "<group>"; };
 		812F63702CA27740000F040D /* WrappedChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedChip.swift; sourceTree = "<group>"; };
+		812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointEarningButtonItem.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */,
 				8191D28B2CA00D0500B2A3C8 /* SayuCalendarItem.swift */,
 				8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */,
+				812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */,
 			);
 			path = viewItem;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
 				812F63692CA18F5C000F040D /* SayuDetailView.swift in Sources */,
 				8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */,
+				812F63752CA29C1E000F040D /* SayuPointEarningButtonItem.swift in Sources */,
 				8191D2712C9C40D400B2A3C8 /* AppDelegate.swift in Sources */,
 				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
 				8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */,

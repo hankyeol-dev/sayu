@@ -85,7 +85,7 @@ struct AppTabbar: NavigatableView {
       }
       .padding(.vertical, 16.0)
       .frame(maxWidth: .infinity, maxHeight: 56.0)
-      .background(.white)
+      .background(.basebeige)
       .shadow(color: .graySm, radius: 1, y: -0.5)
       .onChange(of: isDisplayWriteOnView) { isOn in
          if isOn, let createdSayuId {
