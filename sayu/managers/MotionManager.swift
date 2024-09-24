@@ -8,14 +8,29 @@
 import Foundation
 import CoreMotion
 
-struct MotionManager {
+final class MotionManager: ObservableObject {
    private let pedometer = CMPedometer()
-   
+   private let todayStart = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+   private let todayEnd = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
+
    enum MotionManagerError: Error {
       case authorizationDenied
       case unknownError
    }
       
+   func getTodaySteps(_ handler: @escaping (Int) -> Void)  {
+      if checkAuth(), let todayStart, let todayEnd {
+         pedometer.queryPedometerData(from: todayStart, to: todayEnd) { data, error in
+            if let data {
+               handler(Int(truncating: data.numberOfSteps))
+            }
+         }
+      }
+   }
+}
+
+// MARK: - check CoreMotion Authorization
+extension MotionManager {
    func getAuth() {
       pedometer.queryPedometerData(from: .now, to: .now) { _, _ in
          
@@ -23,13 +38,16 @@ struct MotionManager {
    }
    
    func checkAuth() -> Bool {
-      if CMPedometer.authorizationStatus() == .denied
-            || CMPedometer.authorizationStatus() == .notDetermined {
-         return false
+      if CMMotionManager().isDeviceMotionAvailable && (CMPedometer.authorizationStatus() == .authorized
+            || CMPedometer.authorizationStatus() == .restricted) {
+         return true
       }
-      return true
+      return false
    }
-   
+}
+
+// MARK: - fetch Motion Data
+extension MotionManager {
    func startUpdate(
       _ start: Date,
       startHandler: @escaping (NSNumber, NSNumber, NSNumber) -> Void) throws {
@@ -55,7 +73,7 @@ struct MotionManager {
       if !checkAuth() {
          throw MotionManagerError.authorizationDenied
       } else {
-         pedometer.stopUpdates()         
+         pedometer.stopUpdates()
       }
    }
    
@@ -76,7 +94,7 @@ struct MotionManager {
                   let avgPace = pedometerData.averageActivePace {
                   print(steps, distance, avgPace)
                   DispatchQueue.main.async {
-                     getHandler(steps, distance, avgPace)                     
+                     getHandler(steps, distance, avgPace)
                   }
                }
             }

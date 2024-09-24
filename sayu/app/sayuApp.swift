@@ -19,11 +19,11 @@ struct sayuApp: App {
    private let notificationManager: NotificationManager = .init()
    private let sayuPointManager: SayuPointManager = .manager
    private let databaseManager: DatabaseManager = .manager
+   private let motionManager: MotionManager = .init()
    
    var body: some Scene {
       WindowGroup {
-         SayuDetailView(sayuId: .init("66f0afe210da298a6ed244b6"))
-//         Home()
+         Home()
             .implementNavigationView(config: navigationConfig)
             .implementPopupView(config: configurePopup)
             .environment(\.realmConfiguration, databaseManager.getDBConfig())
@@ -31,6 +31,7 @@ struct sayuApp: App {
             .task {
                notificationManager.askPermission()
                sayuPointManager.addJoinPoint()
+               motionManager.getAuth()
             }
       }
    }

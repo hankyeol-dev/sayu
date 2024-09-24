@@ -87,7 +87,9 @@ struct WriteSayuOn: NavigatableView {
       }
       .onChange(of: viewLogic.isEarningTodaySayu) { value in
          if value {
-            CentreSayuPointAlert()
+            CentreSayuPointAlert(
+               title: SayuPointType.EarningCase.dailySayu.rawValue,
+               point: SayuPointType.EarningCase.dailySayu.byEarningPoint)
                .showAndStack()
                .dismissAfter(1.0)
             viewLogic.isEarningTodaySayu = false

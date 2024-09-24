@@ -48,6 +48,7 @@ extension SayuCalendar {
       Button {
          SayuPointView()
             .push(with: .horizontalSlide)
+            .environmentObject(pointManager)
       } label: {
          HStack(alignment: .center) {
             Image(.sayuPoint)

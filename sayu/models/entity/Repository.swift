@@ -27,6 +27,10 @@ struct Repository<O: Object> {
       }
    }
    
+   func getRecords() -> Results<O> {
+      return db.objects(O.self)
+   }
+   
    func getLastRecord() -> O? {
       return db.objects(O.self).last
    }
