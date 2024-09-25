@@ -60,7 +60,7 @@ extension CalendarView {
             Text(calendarViewLogic.current.formattedForCalendarYear())
                .byCustomFont(.gmlight, size: 13.0)
             Text(calendarViewLogic.current.formattedForCalendarMonth())
-               .byCustomFont(.gmMedium, size: 18.0)
+               .byCustomFont(.dos, size: 18.0)
          }
          
          Spacer()
@@ -80,7 +80,7 @@ extension CalendarView {
       HStack(spacing: 4.0) {
          ForEach(calendarViewLogic.dayConstant, id: \.self) { day in
             Text(day)
-               .byCustomFont(.satoshiLight, size: 15.0)
+               .byCustomFont(.gmMedium, size: 15.0)
                .foregroundStyle(day == "일" ? .error : day == "토" ? .errorSm : .grayLg)
                .frame(maxWidth: .infinity)
          }

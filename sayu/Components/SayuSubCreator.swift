@@ -52,9 +52,9 @@ struct SayuSubCreator: View {
                      radius: 8.0,
                      background: .grayMd,
                      foreground: .grayXl,
-                     height: 32.0,
+                     height: 40.0,
                      fontSize: 15.0,
-                     font: .satoshiMedium)
+                     font: .gmMedium)
                }
             }
          }

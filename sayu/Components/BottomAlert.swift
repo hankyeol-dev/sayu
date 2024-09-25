@@ -35,12 +35,12 @@ struct BottomAlert: BottomPopup {
    func createContent() -> some View {
       VStack(alignment: .center) {
          Text(title)
-            .byCustomFont(.satoshiMedium, size: 16.0)
+            .byCustomFont(.gmMedium, size: 16.0)
             .frame(maxWidth: .infinity, alignment: .center)
          Spacer.height(16.0)
          
          Text(content)
-            .byCustomFont(.satoshiRegular, size: 15.0)
+            .byCustomFont(.gmMedium, size: 15.0)
          
          if let buttons {
             Spacer.height(24.0)
@@ -56,7 +56,7 @@ struct BottomAlert: BottomPopup {
                         .fill(item.background)
                         .overlay {
                            Text(item.title)
-                              .byCustomFont(.satoshiMedium, size: 15.0)
+                              .byCustomFont(.gmMedium, size: 15.0)
                               .foregroundStyle(item.foreground)
                         }
                   }

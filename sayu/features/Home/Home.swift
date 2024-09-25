@@ -24,6 +24,7 @@ struct Home: NavigatableView {
             
             if homeViewLogic.selectedTabIndex == 2 {
                SayuChart()
+                  .environmentObject(sayuPointManager)
             }
          }
          

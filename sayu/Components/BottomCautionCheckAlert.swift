@@ -39,12 +39,12 @@ struct BottomCautionCheckAlert: BottomPopup {
    func createContent() -> some View {      
       VStack(alignment: .center) {
          Text(title)
-            .byCustomFont(.satoshiMedium, size: 16.0)
+            .byCustomFont(.gmMedium, size: 16.0)
          
          Spacer.height(16.0)
          
          Text(content)
-            .byCustomFont(.satoshiRegular, size: 13.0)
+            .byCustomFont(.gmMedium, size: 13.0)
          
          Spacer.height(12.0)
                   
@@ -59,7 +59,7 @@ struct BottomCautionCheckAlert: BottomPopup {
                      HStack(alignment: .center) {
                         Spacer.width(12.0)
                         Text(caution.content)
-                           .byCustomFont(.satoshiRegular, size: 13.0)
+                           .byCustomFont(.gmMedium, size: 13.0)
                            .foregroundStyle(valid ? .baseGreenLg : .grayLg)
                         Spacer()
                         Image(valid ? .checked : .unChecked)
@@ -91,7 +91,7 @@ struct BottomCautionCheckAlert: BottomPopup {
                foreground: validAllCautionChecked() ? .white : .grayXl,
                height: 48.0,
                fontSize: 15.0,
-               font: .satoshiMedium)
+               font: .gmMedium)
          }
          .disabled(!validAllCautionChecked())
          .padding(.horizontal, 12.0)
