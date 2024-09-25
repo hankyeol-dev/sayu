@@ -21,7 +21,7 @@ struct RoundedTextField: View {
    init(
       fieldText: Binding<String>,
       placeholder: String = "",
-      font: Font.CustomFont = .satoshiRegular,
+      font: Font.CustomFont = .gmlight,
       fontSize: CGFloat = 12.0,
       tint: Color = .baseBlack,
       background: Color = .white,

@@ -82,7 +82,7 @@ struct WriteSayu: NavigatableView {
                background: .baseGreen,
                foreground: .white,
                fontSize: 15.0,
-               font: .satoshiMedium)
+               font: .gmMedium)
          }
          .padding()
          .background(.graySm)
@@ -131,8 +131,8 @@ extension WriteSayu {
                              background: valid ? .baseGreen : .grayMd,
                              foreground: valid ? .white : .grayXl,
                              height: 40.0,
-                             fontSize: valid ? 13.0 : 12.0,
-                             font: valid ? .kjcBold : .kjcRegular)
+                             fontSize: valid ? 15.0 : 14.0,
+                             font: valid ? .gmBold : .gmMedium)
             }
             .disabled(!viewLogic.subjectFieldText.isEmpty)
          }
@@ -232,7 +232,7 @@ extension WriteSayu {
                      foreground: .grayXl,
                      height: 32.0,
                      fontSize: 15.0,
-                     font: .satoshiMedium)
+                     font: .gmMedium)
                }
             }
          }
@@ -291,7 +291,7 @@ extension WriteSayu {
                      foreground: selectedType == type.type ? .white : .grayXl,
                      height: 32.0,
                      fontSize: 13.0,
-                     font: selectedType == type.type ? .satoshiBold : .satoshiMedium
+                     font: selectedType == type.type ? .gmBold : .gmMedium
                   )
                   .onTapGesture {
                      withAnimation(.bouncy) {
@@ -322,7 +322,7 @@ extension WriteSayu {
                      foreground: selectedType == type.type ? .white : .grayXl,
                      height: 32.0,
                      fontSize: 13.0,
-                     font: selectedType == type.type ? .satoshiBold : .satoshiMedium
+                     font: selectedType == type.type ? .gmBold : .gmMedium
                   )
                   .onTapGesture {
                      withAnimation(.bouncy) {

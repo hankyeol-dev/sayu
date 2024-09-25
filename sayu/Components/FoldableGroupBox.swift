@@ -43,7 +43,7 @@ struct FoldableGroupBox<Content>: View where Content: View {
       } label: {
          HStack {
             Text(title)
-               .byCustomFont(.satoshiMedium, size: 15.0)
+               .byCustomFont(.gmMedium, size: 15.0)
             Spacer()
             if isOpenButton {
                Button {

@@ -80,7 +80,7 @@ extension CalendarView {
       HStack(spacing: 4.0) {
          ForEach(calendarViewLogic.dayConstant, id: \.self) { day in
             Text(day)
-               .byCustomFont(.satoshiLight, size: 15.0)
+               .byCustomFont(.gmMedium, size: 15.0)
                .foregroundStyle(day == "일" ? .error : day == "토" ? .errorSm : .grayLg)
                .frame(maxWidth: .infinity)
          }

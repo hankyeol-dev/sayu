@@ -93,7 +93,7 @@ extension SayuDetailView {
          }
       } label: {
          Text(isEditmode ? "다시 저장" : "사유 내용 수정")
-            .byCustomFont(.satoshiRegular, size: 15.0)
+            .byCustomFont(.gmMedium, size: 15.0)
             .foregroundStyle(isEditmode ? .baseGreen : .grayXl)
       }
    }

@@ -16,7 +16,7 @@ extension View {
       foreground: Color = .white,
       height: CGFloat = 44.0,
       fontSize: CGFloat = 16.0,
-      font: Font.CustomFont = .satoshiRegular
+      font: Font.CustomFont = .gmMedium
    ) -> some View {
       return self.modifier(AsRoundedRect(
          title: title,

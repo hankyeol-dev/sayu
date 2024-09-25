@@ -56,7 +56,7 @@ struct AppNavbar: View {
          Spacer()
          
          Text(title)
-            .byCustomFont(.satoshiMedium, size: 16.0)
+            .byCustomFont(.gmMedium, size: 16.0)
             .foregroundStyle(.baseBlack)
             .offset(x: isLeftButton && !isRightButton
                     ? -8.0
