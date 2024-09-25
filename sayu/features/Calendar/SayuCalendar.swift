@@ -43,7 +43,6 @@ struct SayuCalendar: View {
 }
 
 extension SayuCalendar {
-   @ViewBuilder
    private func createLeftPointButtonView() -> some View {
       Button {
          SayuPointView()
@@ -62,7 +61,6 @@ extension SayuCalendar {
       }
    }
    
-   @ViewBuilder
    private func createRightViewChangeButtonView() -> some View {
       Button {
          withAnimation(.snappy) {

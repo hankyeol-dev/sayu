@@ -14,6 +14,10 @@
 		812F63712CA27740000F040D /* WrappedChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63702CA27740000F040D /* WrappedChip.swift */; };
 		812F63752CA29C1E000F040D /* SayuPointEarningButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */; };
 		812F637E2CA3CB0D000F040D /* DOSIyagiBoldface.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */; };
+		812F63802CA3CCF0000F040D /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F637F2CA3CCF0000F040D /* BarChartView.swift */; };
+		812F63822CA3CEAA000F040D /* SayuChartViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */; };
+		812F63842CA3D223000F040D /* SayuStatisticItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63832CA3D223000F040D /* SayuStatisticItem.swift */; };
+		812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -107,6 +111,10 @@
 		812F63702CA27740000F040D /* WrappedChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedChip.swift; sourceTree = "<group>"; };
 		812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointEarningButtonItem.swift; sourceTree = "<group>"; };
 		812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DOSIyagiBoldface.ttf; sourceTree = "<group>"; };
+		812F637F2CA3CCF0000F040D /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuChartViewLogic.swift; sourceTree = "<group>"; };
+		812F63832CA3D223000F040D /* SayuStatisticItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuStatisticItem.swift; sourceTree = "<group>"; };
+		812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuBarChartItem.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -334,6 +342,8 @@
 				8191D28B2CA00D0500B2A3C8 /* SayuCalendarItem.swift */,
 				8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */,
 				812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */,
+				812F63832CA3D223000F040D /* SayuStatisticItem.swift */,
+				812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */,
 			);
 			path = viewItem;
 			sourceTree = "<group>";
@@ -441,6 +451,8 @@
 			isa = PBXGroup;
 			children = (
 				8191D23E2C996A5800B2A3C8 /* SayuChart.swift */,
+				812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */,
+				812F637F2CA3CCF0000F040D /* BarChartView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -543,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8191D2772C9EA31100B2A3C8 /* SmartListCreator.swift in Sources */,
+				812F63842CA3D223000F040D /* SayuStatisticItem.swift in Sources */,
 				8191D22D2C99552500B2A3C8 /* SayuPointType.swift in Sources */,
 				8191D2112C99359800B2A3C8 /* NetworkManager.swift in Sources */,
 				8191D23F2C996A5800B2A3C8 /* SayuChart.swift in Sources */,
@@ -569,6 +582,7 @@
 				8191D2732C9C7A6E00B2A3C8 /* SayuSubCreator.swift in Sources */,
 				8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */,
 				8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */,
+				812F63822CA3CEAA000F040D /* SayuChartViewLogic.swift in Sources */,
 				8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */,
 				8191D2902CA04C2300B2A3C8 /* SayuCardItem.swift in Sources */,
 				812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */,
@@ -597,7 +611,9 @@
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
 				8191D28C2CA00D0500B2A3C8 /* SayuCalendarItem.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
+				812F63802CA3CCF0000F040D /* BarChartView.swift in Sources */,
 				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
+				812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */,
 				812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */,
 				8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */,
 				8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */,

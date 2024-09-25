@@ -38,6 +38,13 @@ extension Date {
       return formatter.string(from: self)
    }
    
+   func formattedForCalendarDay() -> String {
+      let formatter = DateFormatter()
+      formatter.locale = .init(identifier: "ko_KR")
+      formatter.dateFormat = "d일"
+      return formatter.string(from: self)
+   }
+   
    func getAllDatesInMonth() -> [Self]? {
       let calendar = Calendar.current
       guard let startDate = calendar.date(

@@ -60,7 +60,7 @@ extension CalendarView {
             Text(calendarViewLogic.current.formattedForCalendarYear())
                .byCustomFont(.gmlight, size: 13.0)
             Text(calendarViewLogic.current.formattedForCalendarMonth())
-               .byCustomFont(.gmMedium, size: 18.0)
+               .byCustomFont(.dos, size: 18.0)
          }
          
          Spacer()

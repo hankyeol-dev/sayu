@@ -52,18 +52,18 @@ extension SayuPointView {
       } label: {
          Image(.arrowBack)
             .resizable()
-            .frame(width: 16.0, height: 16.0)
+            .frame(width: 16.0, height: 8.0)
       }
    }
    
    private func createDailySayuPointSection() -> some View {
       return VStack {
          HStack(alignment: .center, spacing: 8.0) {
+            Text("오늘의 사유 포인트 받아가기")
+               .byCustomFont(.dos, size: 15.0)
             Image(.sayuPoint)
                .resizable()
                .frame(width: 16.0, height: 14.0)
-            Text("오늘의 사유 포인트 받아가기")
-               .byCustomFont(.gmMedium, size: 15.0)
             Spacer()
          }
          Spacer.height(12.0)
@@ -120,11 +120,11 @@ extension SayuPointView {
    private func createLatestSayuPointList() -> some View {
       VStack {
          HStack(alignment: .center, spacing: 8.0) {
+            Text("포인트 획득/차감 내역 (최근 10개)")
+               .byCustomFont(.dos, size: 15.0)
             Image(.folder)
                .resizable()
                .frame(width: 14.0, height: 12.0)
-            Text("포인트 획득/차감 내역 (최근 10개)")
-               .byCustomFont(.gmMedium, size: 15.0)
             Spacer()
          }
          
