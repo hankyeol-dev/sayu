@@ -44,11 +44,11 @@ struct AppNavbar: View {
                if let leftButtonIcon {
                   Image(leftButtonIcon)
                      .resizable()
-                     .frame(width: 16.0, height: 16.0)
+                     .frame(width: 16.0, height: 8.0)
                } else {
                   Image(.arrowBack)
                      .resizable()
-                     .frame(width: 16.0, height: 16.0)
+                     .frame(width: 16.0, height: 8.0)
                }
             }
          }

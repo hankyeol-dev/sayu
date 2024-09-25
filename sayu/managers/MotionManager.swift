@@ -80,25 +80,34 @@ extension MotionManager {
    func getMotionData(
       start: Date,
       end: Date,
-      getHandler: @escaping(NSNumber, NSNumber, NSNumber) -> Void
+      getHandler: @escaping(Int, Double, Double) -> Void
    ) throws {
       if !checkAuth() {
          throw MotionManagerError.authorizationDenied
       } else {
          pedometer.queryPedometerData(from: start, to: end) { pedometerData, error in
+            
             guard error == nil else { return }
             
             if let pedometerData {
                let steps = pedometerData.numberOfSteps
                if let distance = pedometerData.distance,
                   let avgPace = pedometerData.averageActivePace {
-                  print(steps, distance, avgPace)
-                  DispatchQueue.main.async {
-                     getHandler(steps, distance, avgPace)
+                  DispatchQueue.main.async { [weak self] in
+                     guard let self else { return }
+                     getHandler(steps.intValue,
+                                convertDistancePerKM(distance.doubleValue),
+                                avgPace.doubleValue)
                   }
                }
             }
          }
       }
+   }
+   
+   private func convertDistancePerKM(_ distance: Double) -> Double {
+      let convertedMeter = round(distance * 10.0) / 10.0
+      let convertedKM = convertedMeter / 1000.0
+      return (round(convertedKM * 100.0) / 100.0)
    }
 }
