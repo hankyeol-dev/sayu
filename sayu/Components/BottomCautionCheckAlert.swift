@@ -40,27 +40,29 @@ struct BottomCautionCheckAlert: BottomPopup {
       VStack(alignment: .center) {
          Text(title)
             .byCustomFont(.gmMedium, size: 16.0)
-         
          Spacer.height(16.0)
          
          Text(content)
-            .byCustomFont(.gmMedium, size: 13.0)
-         
-         Spacer.height(12.0)
+            .byCustomFont(.gmMedium, size: 15.0)
+            .lineSpacing(6.0)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 12.0)
+         Spacer.height(16.0)
                   
          VStack {
             ForEach(cautions.indices, id: \.self) { index in
                let caution = cautions[index]
                let valid = caution.isChecked
                RoundedRectangle(cornerRadius: 8.0)
-                  .stroke(valid ? .baseGreenLg : .grayLg, lineWidth: valid ? 1.5 : 0.8)
+                  .stroke(valid ? .baseGreen : .grayLg, lineWidth: valid ? 1.5 : 0.8)
                   .clipShape(.rect(cornerRadius: 8.0))
                   .overlay {
                      HStack(alignment: .center) {
                         Spacer.width(12.0)
                         Text(caution.content)
-                           .byCustomFont(.gmMedium, size: 13.0)
-                           .foregroundStyle(valid ? .baseGreenLg : .grayLg)
+                           .byCustomFont(.gmMedium, size: 15.0)
+                           .foregroundStyle(valid ? .baseGreen : .grayLg)
+                           .lineSpacing(4.0)
                         Spacer()
                         Image(valid ? .checked : .unChecked)
                            .resizable()
@@ -69,7 +71,7 @@ struct BottomCautionCheckAlert: BottomPopup {
                         Spacer.width(12.0)
                      }
                   }
-                  .frame(height: 48)
+                  .frame(height: 52.0)
                   .onTapGesture {
                      withAnimation(.snappy) {
                         cautions[index].isChecked.toggle()
@@ -87,7 +89,7 @@ struct BottomCautionCheckAlert: BottomPopup {
             asRoundedRect(
                title: confirmButtonTitle,
                radius: 8.0,
-               background: validAllCautionChecked() ? .baseGreenLg : .grayMd,
+               background: validAllCautionChecked() ? .baseGreen : .grayMd,
                foreground: validAllCautionChecked() ? .white : .grayXl,
                height: 48.0,
                fontSize: 15.0,
@@ -96,7 +98,7 @@ struct BottomCautionCheckAlert: BottomPopup {
          .disabled(!validAllCautionChecked())
          .padding(.horizontal, 12.0)
       }
-      .frame(maxWidth: .infinity)
+      .frame(maxWidth: .infinity, alignment: .topLeading)
       .padding(.vertical, 12.0)
       .padding(.horizontal, 16.0)
       .background(.white)
@@ -108,20 +110,4 @@ struct BottomCautionCheckAlert: BottomPopup {
          return cautions.filter({ $0.isChecked }).count == cautions.count
       }
    }
-}
-
-#Preview {
-   let cautions: [CautionItem] = [
-      .init(content: "걷거나 달리는 중에는 주변을 잘 살펴주세요."),
-      .init(content: "중요한 생각이 떠오르면 제자리에 멈춰서 작성해주세요."),
-   ]
-   
-   return BottomCautionCheckAlert(
-      title: "꼭 확인해주세요.",
-      content: "걷거나 달리면서 사유하시는군요 👍\n안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
-      cautions: cautions,
-      confirmButtonTitle: "사유 시작") {
-         print("confirm")
-      }
-      .showAndStack()
 }

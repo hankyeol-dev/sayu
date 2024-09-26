@@ -490,7 +490,7 @@ extension WriteSayu {
    private func popAlertCheckTimer() {
       BottomAlert(
          title: "사유 시간을 설정해주셨나요?",
-         content: "타이머 방식으로 사유하시는 경우,\n5분 이상 사유해보는 것은 어떨까요? :)"
+         content: "타이머 방식으로 사유하시는 경우, 5분 이상 사유해보는 것은 어떨까요? :)"
       )
       .showAndStack()
       .dismissAfter(2.5)
@@ -504,7 +504,7 @@ extension WriteSayu {
       ]
       BottomCautionCheckAlert(
          title: "꼭 확인해주세요.",
-         content: "걷거나 달리면서 사유하시는군요 👍\n안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
+         content: "안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
          cautions: cautions,
          confirmButtonTitle: "사유 시작") {
             dismiss()

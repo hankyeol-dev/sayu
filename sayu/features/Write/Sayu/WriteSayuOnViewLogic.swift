@@ -105,10 +105,6 @@ extension WriteSayuOnViewLogic {
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             guard let self else { return }
             startTimer()
-            if sayu.thinkType == ThinkType.run.rawValue
-                  || sayu.thinkType == ThinkType.walk.rawValue {
-               motionStart = .init()
-            }
          }
       }
    }
@@ -177,7 +173,6 @@ extension WriteSayuOnViewLogic {
    }
    
    func stopTimer() {
-      
       isPaused = true
       isStopped = true
       
@@ -205,6 +200,15 @@ extension WriteSayuOnViewLogic {
          if sayu.timerType == SayuTimerType.stopWatch.rawValue {
             sayuTimeTakes.append(sayuSettingTime)
          }
+      }
+   }
+   
+   func addTimeSetting(_ timeSetting: SayuTime) {
+      sayuSettingTime = timeSetting.convertTimeToSeconds
+      sayuStaticTime = sayuSettingTime
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+         guard let self else { return }
+         startTimer()
       }
    }
 }

@@ -41,6 +41,8 @@ struct BottomAlert: BottomPopup {
          
          Text(content)
             .byCustomFont(.gmMedium, size: 15.0)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .lineSpacing(4.0)
          
          if let buttons {
             Spacer.height(24.0)
@@ -63,6 +65,7 @@ struct BottomAlert: BottomPopup {
                   .frame(height: 48.0)
                }
             }
+            
          }
       }
       .frame(maxWidth: .infinity)
