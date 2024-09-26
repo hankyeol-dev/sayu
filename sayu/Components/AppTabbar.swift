@@ -89,7 +89,6 @@ struct AppTabbar: NavigatableView {
       .shadow(color: .graySm, radius: 1, y: -0.5)
       .onChange(of: isDisplayWriteOnView) { isOn in
          if isOn, let createdSayuId {
-            print(createdSayuId)
             WriteSayuOn(createdSayuId: createdSayuId)
                .push(with: .horizontalSlide)
             isDisplayWriteOnView = false

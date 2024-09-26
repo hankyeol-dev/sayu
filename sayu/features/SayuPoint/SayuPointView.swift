@@ -14,6 +14,11 @@ struct SayuPointView: NavigatableView {
    
    @EnvironmentObject
    var pointManager: SayuPointManager
+   
+   @AppStorage(AppEnvironment.isShowAppDeleteNotiKey)
+   private var isShowAppDeleteNoti = UserDefaults.standard.bool(
+      forKey: AppEnvironment.isShowAppDeleteNotiKey
+   )
   
    func configure(view: NavigationConfig) -> NavigationConfig {
       view.navigationBackGesture(.drag)
@@ -28,8 +33,14 @@ struct SayuPointView: NavigatableView {
          }
          ScrollView(showsIndicators: false) {
             VStack {
+               if !isShowAppDeleteNoti {
+                  createInitialNoti()
+                  Spacer.height(32.0)
+               }
+               
                createDailySayuPointSection()
                Spacer.height(32.0)
+               
                createLatestSayuPointList()
             }
             .padding(.horizontal, 16.0)
@@ -56,11 +67,45 @@ extension SayuPointView {
       }
    }
    
+   private func createInitialNoti() -> some View {
+      ZStack {
+         HStack {
+            Spacer()
+            Button {
+               isShowAppDeleteNoti = true
+            } label: {
+               Image(.xmark)
+                  .resizable()
+                  .frame(width: 10.0, height: 10.0)
+            }
+            .frame(alignment: .trailing)
+         }
+         .padding(.trailing, 8.0)
+         
+         VStack {
+            Text("슬기로운 사유생활 앱을 삭제하면")
+               .byCustomFont(.gmMedium, size: 15.0)
+               .foregroundStyle(.grayXl)
+            Spacer.height(4.0)
+            Text("포인트는 초기화 되어요.")
+               .byCustomFont(.gmMedium, size: 15.0)
+               .foregroundStyle(.grayXl)
+         }
+      }
+      .padding()
+      .frame(maxWidth: .infinity)
+      .background(
+         RoundedRectangle(cornerRadius: 12.0)
+            .fill(.graySm)
+      )
+   }
+   
    private func createDailySayuPointSection() -> some View {
       return VStack {
          HStack(alignment: .center, spacing: 8.0) {
             Text("오늘의 사유 포인트 받아가기")
                .byCustomFont(.dos, size: 15.0)
+               .foregroundStyle(.baseBlack)
             Image(.sayuPoint)
                .resizable()
                .frame(width: 16.0, height: 14.0)
@@ -72,6 +117,7 @@ extension SayuPointView {
                HStack {
                   Text(button.title)
                      .byCustomFont(.gmMedium, size: 16.0)
+                     .foregroundStyle(.grayXl)
                   
                   Spacer()
                   
@@ -122,6 +168,7 @@ extension SayuPointView {
          HStack(alignment: .center, spacing: 8.0) {
             Text("포인트 획득/차감 내역 (최근 10개)")
                .byCustomFont(.dos, size: 15.0)
+               .foregroundStyle(.baseBlack)
             Image(.folder)
                .resizable()
                .frame(width: 14.0, height: 12.0)
@@ -135,10 +182,11 @@ extension SayuPointView {
                HStack(alignment: .center) {
                   Text(record.createdAt.formattedForView())
                      .byCustomFont(.gmlight, size: 13.0)
-                     .foregroundStyle(.grayLg)
+                     .foregroundStyle(.grayXl)
                   Spacer()
                   Text(record.descript)
                      .byCustomFont(.gmlight, size: 15.0)
+                     .foregroundStyle(.baseBlack)
                   Spacer.width(8.0)
                   Text(record.pointType == 0 ? "+ \(String(record.point))" : "- \(String(record.point))")
                      .byCustomFont(.gmlight, size: 15.0)

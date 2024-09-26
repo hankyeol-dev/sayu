@@ -247,8 +247,6 @@ extension WriteSayuOnViewLogic {
          } else {
             updateSayu(sayu, isMotion: false, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
          }
-         
-         isSaveError = false
       }
    }
    
@@ -263,6 +261,9 @@ extension WriteSayuOnViewLogic {
                distance = d
                avgPace = a
                updateSayu(sayu, isMotion: true, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
+            } errorHandler: { [weak self] in
+               guard let self else { return }
+               updateSayu(sayu, isMotion: false, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
             }
          motionStart = nil
          motionEnd = nil
@@ -282,6 +283,7 @@ extension WriteSayuOnViewLogic {
             record.timeTake = totalTime
             record.timeSetting = remainTime
             record.isSaved = !isTemp
+            
             if isMotion {
                record.avgPace = avgPace
                record.distance = distance

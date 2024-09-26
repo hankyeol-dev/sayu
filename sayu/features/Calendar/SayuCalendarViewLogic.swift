@@ -24,7 +24,7 @@ final class SayuCalendarViewLogic: ObservableObject {
    var currentMonth: Int = 0
    
    @Published
-   var selectedDayString: String = ""
+   var selectedDayString: String = Date().formattedAppConfigure()
    
    @Published
    var dayConstant: [String] = ["일", "월", "화", "수", "목", "금", "토"]
@@ -37,6 +37,10 @@ final class SayuCalendarViewLogic: ObservableObject {
    
    private let pointManager: SayuPointManager = .manager
    private let sayuRepository: Repository<Think> = .init()
+   
+   init() {
+      setList()
+   }
 }
 
 extension SayuCalendarViewLogic {

@@ -8,7 +8,7 @@
 import Foundation
 
 final class SayuChartViewLogic: ObservableObject {
-   private let sevenDays = [7, 6, 5, 4, 3, 2, 1]
+   private let sevenDays = [6, 5, 4, 3, 2, 1, 0]
    
    @Published
    var sayuStatisticItems: [SayuStatisticItem] = []
@@ -19,6 +19,9 @@ final class SayuChartViewLogic: ObservableObject {
    @Published
    var sayuBarChartAverage: Double = 0.0
    
+   @Published
+   var todaySteps: Int?
+   
    // MARK: - db & manager
    private let sayuRepository: Repository<Think> = .init()
    private let subjectRepository: Repository<Subject> = .init()
@@ -27,6 +30,7 @@ final class SayuChartViewLogic: ObservableObject {
    init() {
       setSayuStatisticItems()
       setSayuBarChartItems()
+      setTodaySteps()
    }
 }
 
@@ -61,7 +65,7 @@ extension SayuChartViewLogic {
    
    private func mappingTotalSubCount() -> SayuStatisticItem {
       let quried = sayuRepository.getRecordsByQuery { sayu in
-         !sayu.subs.isEmpty
+         !sayu.subs.isEmpty && sayu.isSaved
       }
       let count = quried.reduce(0) { cv, sayu in
          cv + sayu.subs.count
@@ -78,7 +82,8 @@ extension SayuChartViewLogic {
          cv + sayu.timeTake
       }
       
-      return .init(title: "총 사유 시간", content: timeTake.converTimeToCardViewString())
+      return .init(title: "총 사유 시간",
+                   content: timeTake == 0 ? "0" : timeTake.converTimeToCardViewString())
    }
    
    private func mappingMaxSelectedSubject() -> SayuStatisticItem  {
@@ -86,10 +91,12 @@ extension SayuChartViewLogic {
          a.thinks.count > b.thinks.count
       }
       
-      if let first = queried.first {
+      let sayus = sayuRepository.getRecords()
+
+      if !sayus.isEmpty, let first = queried.first {
          return .init(title: "가장 많이 사유한 주제", content: first.title)
       } else {
-         return .init(title: "가장 많이 사유한 주제", content: "아직 충분하지 않아요.")
+         return .init(title: "가장 많이 사유한 주제", content: "-")
       }
    }
    
@@ -119,7 +126,7 @@ extension SayuChartViewLogic {
 }
 
 extension SayuChartViewLogic {
-   private func setSayuBarChartItems() {
+   func setSayuBarChartItems() {
       let quried: [(String, Int)] = sevenDays.map { day in
          let records = sayuRepository.getRecordsByQuery { [weak self] sayu in
             guard let self else { return false }
@@ -153,5 +160,14 @@ extension SayuChartViewLogic {
          return date.formattedAppConfigure()
       }
       return ""
+   }
+}
+
+extension SayuChartViewLogic {
+   func setTodaySteps() {
+      motionManager.getTodaySteps { [weak self] steps in
+         guard let self else { return }
+         todaySteps = steps
+      }
    }
 }

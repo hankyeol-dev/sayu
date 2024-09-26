@@ -41,6 +41,7 @@ struct WriteSayuOn: NavigatableView {
             
             ScrollView {
                VStack {
+                  Spacer.height(12.0)
                   if sayu.timerType == SayuTimerType.timer.rawValue {
                      createTimerView()
                   }
@@ -65,6 +66,7 @@ struct WriteSayuOn: NavigatableView {
                }
                .padding(.horizontal, 16.0)
             }
+            .padding(.vertical, -8.0)
             
             Button {
                saveSayu()
@@ -407,7 +409,7 @@ extension WriteSayuOn {
    private func saveSayu() {
       viewLogic.pauseTimer()
       viewLogic.saveSayu(false)
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
          pop()
       }
    }

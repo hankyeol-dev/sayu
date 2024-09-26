@@ -13,6 +13,11 @@ struct SayuChart: NavigatableView {
    @EnvironmentObject
    var pointManager: SayuPointManager
    
+   @AppStorage(AppEnvironment.isShowAppDeleteChartNotiKey)
+   private var isShowAppDeleteChartNoti = UserDefaults.standard.bool(
+      forKey: AppEnvironment.isShowAppDeleteChartNotiKey
+   )
+   
    @StateObject
    private var sayuChartViewLogic: SayuChartViewLogic = .init()
    
@@ -26,14 +31,22 @@ struct SayuChart: NavigatableView {
          
          ScrollView {
             VStack(spacing: 20.0) {
+               if !isShowAppDeleteChartNoti {
+                  createInitialNoti()
+               }
                createTotalStatisticSection()
                createSevenDaysChartSection()
+               if let todaySteps = sayuChartViewLogic.todaySteps {
+                  createTodayStepView(todaySteps)                  
+               }
             }
             .padding(.horizontal, 16.0)
          }
          .refreshable {
             withAnimation(.bouncy) {
                sayuChartViewLogic.setSayuStatisticItems()
+               sayuChartViewLogic.setSayuBarChartItems()
+               sayuChartViewLogic.setTodaySteps()
             }
          }
       }
@@ -43,6 +56,36 @@ struct SayuChart: NavigatableView {
 }
 
 extension SayuChart {
+   private func createInitialNoti() -> some View {
+      ZStack {
+         HStack {
+            Spacer()
+            Button {
+               isShowAppDeleteChartNoti = true
+            } label: {
+               Image(.xmark)
+                  .resizable()
+                  .frame(width: 10.0, height: 10.0)
+            }
+            .frame(alignment: .trailing)
+         }.padding(.trailing, 8.0)
+         
+         VStack {
+            Text("슬기로운 사유생활 앱을 삭제하면")
+               .byCustomFont(.gmMedium, size: 15.0)
+            Spacer.height(4.0)
+            Text("사유 데이터는 초기화 되어요.")
+               .byCustomFont(.gmMedium, size: 15.0)
+         }
+      }
+      .padding()
+      .frame(maxWidth: .infinity)
+      .background(
+         RoundedRectangle(cornerRadius: 12.0)
+            .fill(.graySm)
+      )
+   }
+   
    private func createLeftPointButtonView() -> some View {
       Button {
          SayuPointView()
@@ -67,10 +110,6 @@ extension SayuChart {
             Text("지금까지의 사유 활동")
                .byCustomFont(.dos, size: 15.0)
                .foregroundStyle(.grayXl)
-            Image(.chartPixeledSelected)
-               .resizable()
-               .frame(width: 14.0, height: 14.0)
-               .foregroundStyle(.baseBlack)
             Spacer()
          }
          .padding(.top, 12.0)
@@ -110,10 +149,6 @@ extension SayuChart {
             Text("최근 7일 사유 내역")
                .byCustomFont(.dos, size: 15.0)
                .foregroundStyle(.grayXl)
-            Image(.chartPixeledSelected)
-               .resizable()
-               .frame(width: 14.0, height: 14.0)
-               .foregroundStyle(.baseBlack)
             Spacer()
          }
          .padding(.top, 12.0)
@@ -135,54 +170,87 @@ extension SayuChart {
    private func createChartView() -> some View {
       VStack {
          if sayuChartViewLogic.sayuBarChartAverage == 0 {
-            HStack {
-               Spacer()
-               Text("아직 충분한 사유 데이터가 저장되지 않았어요.")
-                  .byCustomFont(.gmMedium, size: 15.0)
-                  .lineSpacing(4.0)
-                  .frame(maxWidth: .infinity)
-               Spacer()
-            }
+            Text("아직 충분한 사유 데이터가 없어, 예시로 보여드려요")
+               .byCustomFont(.gmlight, size: 13.0)
+            Spacer.height(15.0)
+            createBarCharts(
+               average: AppEnvironment.initialExampleAverage,
+               chartItems: AppEnvironment.initialExampleChartData)
          } else {
-            VStack {
-               ZStack {
-                  RoundedRectangle(cornerRadius: 2.0)
-                     .fill(.errorSm.opacity(0.5))
-                     .frame(maxWidth: .infinity)
-                     .frame(height: 1.0)
-                  Text(String(sayuChartViewLogic.sayuBarChartAverage))
-                     .byCustomFont(.dos, size: 12.0)
-                     .frame(maxWidth: .infinity, alignment: .trailing)
-                     .offset(x: 20.0)
-               }
-               .zIndex(100)
-               .offset(y: 84.0)
-               HStack(alignment: .bottom) {
-                  ForEach(sayuChartViewLogic.sayuBarChartItems, id: \.id) { item in
-                     VStack {
-                        ZStack(alignment: .bottom) {
-                           RoundedRectangle(cornerRadius: 8.0)
-                              .fill(.baseYellow)
-                              .frame(width: 36.0, height: item.height == 0 ? 10.0 : item.height)
-                              .frame(maxHeight: 150.0, alignment: .bottom)
-                           if item.figure != 0 {
-                              Text(String(item.figure) + "개")
-                                 .byCustomFont(.dos, size: 10.0)
-                                 .foregroundStyle(.grayXl.opacity(0.8))
-                                 .offset(y: -8.0)
-                           }
-                        }
-                        Spacer.height(12.0)
-                        Text(item.date)
-                           .byCustomFont(.dos, size: 13.0)
-                     }
-                  }
-               }
-            }
+            createBarCharts(
+               average: sayuChartViewLogic.sayuBarChartAverage,
+               chartItems: sayuChartViewLogic.sayuBarChartItems)
          }
       }
       .padding(.horizontal, 8.0)
       .padding(.vertical, 4.0)
       .frame(maxWidth: .infinity, alignment: .topLeading)
+   }
+   
+   private func createBarCharts(average: Double, chartItems: [SayuBarChartItem]) -> some View {
+      VStack {
+         ZStack {
+            RoundedRectangle(cornerRadius: 2.0)
+               .fill(.errorSm.opacity(0.5))
+               .frame(maxWidth: .infinity)
+               .frame(height: 1.0)
+            Text(String(average))
+               .byCustomFont(.dos, size: 12.0)
+               .frame(maxWidth: .infinity, alignment: .trailing)
+               .offset(x: 20.0)
+         }
+         .zIndex(100)
+         .offset(y: 84.0)
+         HStack(alignment: .bottom) {
+            ForEach(chartItems, id: \.id) { item in
+               VStack {
+                  ZStack(alignment: .bottom) {
+                     RoundedRectangle(cornerRadius: 8.0)
+                        .fill(.baseYellow)
+                        .frame(width: 36.0, height: item.height == 0 ? 10.0 : item.height)
+                        .frame(maxHeight: 150.0, alignment: .bottom)
+                     if item.figure != 0 {
+                        Text(String(item.figure) + "개")
+                           .byCustomFont(.dos, size: 10.0)
+                           .foregroundStyle(.grayXl.opacity(0.8))
+                           .offset(y: -8.0)
+                     }
+                  }
+                  Spacer.height(12.0)
+                  Text(item.date)
+                     .byCustomFont(.dos, size: 13.0)
+               }
+            }
+         }
+      }
+   }
+   
+   private func createTodayStepView(_ steps: Int) -> some View {
+      VStack {
+         ZStack {
+            HStack {
+               Spacer()
+               Button {
+                  sayuChartViewLogic.setTodaySteps()
+               } label: {
+                  Image(.retry)
+                     .resizable()
+                     .frame(width: 12.0, height: 12.0)
+               }
+            }
+            .padding(.trailing, 8.0)
+            Text("오늘의 걸음 수")
+               .byCustomFont(.dos, size: 15.0)
+               .frame(maxWidth: .infinity, alignment: .center)
+         }
+         
+         Text(String(steps) + " 걸음")
+      }
+      .padding()
+      .frame(maxWidth: .infinity, alignment: .center)
+      .background(
+         RoundedRectangle(cornerRadius: 12.0)
+            .fill(.white)
+      )
    }
 }

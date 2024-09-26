@@ -22,7 +22,9 @@ struct SayuCardListView: NavigatableView {
                   .frame(width: 16.0, height: 14.0)
                Text(date + "의 사유")
                   .byCustomFont(.gmMedium, size: 15.0)
+                  .foregroundStyle(.baseBlack)
             }
+            .padding(.leading, 12.0)
          }
          
          Spacer.height(20.0)
@@ -30,6 +32,7 @@ struct SayuCardListView: NavigatableView {
          if sayuCardItemList.isEmpty {
             Text("아직 사유한 내용이 없어요.")
                .byCustomFont(.gmMedium, size: 15.0)
+               .foregroundStyle(.baseBlack)
                .frame(maxWidth: .infinity, alignment: .center)
                .padding()
          } else {
@@ -81,10 +84,12 @@ struct SayuCardView: NavigatableView {
                         .frame(width: 8.0, height: 10.0)
                      Text("\(sayuCardItem.subCount)개의 세부 사유")
                         .byCustomFont(.gmlight, size: 13.0)
+                        .foregroundStyle(.grayXl)
                   }
                   
                   Text(" · ")
                      .byCustomFont(.gmlight, size: 13.0)
+                     .foregroundStyle(.grayXl)
                }
                
                HStack(alignment: .center, spacing: 4.0) {
@@ -93,13 +98,16 @@ struct SayuCardView: NavigatableView {
                      .frame(width: 12, height: 12)
                   Text("\(sayuCardItem.timeTake)")
                      .byCustomFont(.gmlight, size: 13.0)
+                     .foregroundStyle(.grayXl)
                }
                
                Text(" · ")
                   .byCustomFont(.gmlight, size: 13.0)
+                  .foregroundStyle(.grayXl)
                
                Text("\(sayuCardItem.thinkType)")
                   .byCustomFont(.gmlight, size: 13.0)
+                  .foregroundStyle(.grayXl)
                
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -110,6 +118,7 @@ struct SayuCardView: NavigatableView {
                   ForEach(sayuCardItem.smartList, id: \.self) { list in
                      Text(list)
                         .byCustomFont(.gmlight, size: 12.0)
+                        .foregroundStyle(.baseBlack)
                         .padding(.horizontal, 8.0)
                         .padding(.vertical, 6.0)
                         .background(Capsule()

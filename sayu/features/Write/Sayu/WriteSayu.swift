@@ -41,27 +41,30 @@ struct WriteSayu: NavigatableView {
          
          // MARK: 사유하기 설정 영역
          ScrollView(.vertical, showsIndicators: false) {
-            Spacer.height(12.0)
-            
-            createSubjectView()
-            Spacer.height(12.0)
-            
-            createSubView()
-            Spacer.height(12.0)
-            
-            createSayuTypeView()
-            Spacer.height(12.0)
-            
-            createSayuTimer()
-            Spacer.height(12.0)
-            
-            createSayuSmartList()
-            Spacer.height(12.0)
+            VStack {
+               Spacer.height(12.0)
+               
+               createSubjectView()
+               Spacer.height(12.0)
+               
+               createSubView()
+               Spacer.height(12.0)
+               
+               createSayuTypeView()
+               Spacer.height(12.0)
+               
+               createSayuTimer()
+               Spacer.height(12.0)
+               
+               createSayuSmartList()
+               Spacer.height(12.0)
+            }
+            .padding(.horizontal, 16.0)
          }
-         .background(.white)
-         .frame(maxWidth: .infinity)
-         .padding(.horizontal, 16.0)
          .padding(.vertical, -8.0)
+         .background(.white)
+         .foregroundStyle(.baseBlack)
+         .frame(maxWidth: .infinity)
          
          Spacer()
          
@@ -379,19 +382,20 @@ extension WriteSayu {
                
                HStack {
                   Picker("시", selection: $viewLogic.sayuTime.hours) {
-                     ForEach(0..<3) { Text("\($0) 시") }
+                     ForEach(0..<3) { Text("\($0) 시").foregroundStyle(.baseBlack) }
                   }
                   
                   Picker("분", selection: $viewLogic.sayuTime.minutes) {
-                     ForEach(0..<60) { Text("\($0) 분") }
+                     ForEach(0..<60) { Text("\($0) 분").foregroundStyle(.baseBlack) }
                   }
                   
                   Picker("초", selection: $viewLogic.sayuTime.seconds) {
-                     ForEach(0..<60) { Text("\($0) 초") }
+                     ForEach(0..<60) { Text("\($0) 초").foregroundStyle(.baseBlack) }
                   }
                }
                .labelStyle(.titleOnly)
                .pickerStyle(.inline)
+               .foregroundStyle(.baseBlack)
                .frame(maxHeight: 80)
             }
          }

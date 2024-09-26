@@ -59,8 +59,10 @@ extension CalendarView {
          VStack(alignment: .center, spacing: 10.0) {
             Text(calendarViewLogic.current.formattedForCalendarYear())
                .byCustomFont(.gmlight, size: 13.0)
+               .foregroundStyle(.baseBlack)
             Text(calendarViewLogic.current.formattedForCalendarMonth())
                .byCustomFont(.dos, size: 18.0)
+               .foregroundStyle(.baseBlack)
          }
          
          Spacer()
@@ -90,7 +92,7 @@ extension CalendarView {
    private func createCalendarView() -> some View {
       LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 7), spacing: 15.0) {
          ForEach(calendarViewLogic.createMonthDates(), id: \.id) { date in
-            createDayView(date)
+            createDayView(date).foregroundStyle(.grayXl)
          }
       }
    }
