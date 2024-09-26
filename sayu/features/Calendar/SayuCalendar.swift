@@ -21,12 +21,13 @@ struct SayuCalendar: View {
          } rightButton: {
             createRightViewChangeButtonView()
          }
-
+         
          ScrollView(.vertical, showsIndicators: false) {
             CalendarView()
-            .environmentObject(viewLogic)
+               .environmentObject(viewLogic)
             
-            if viewLogic.calendarViewType == .calendar {
+            if viewLogic.calendarViewType == .calendar
+                  && !viewLogic.selectedDayString.isEmpty {
                SayuCardListView(dateString: viewLogic.selectedDayString,
                                 sayuCardItemList: viewLogic.daySayuCardList)
             } else {

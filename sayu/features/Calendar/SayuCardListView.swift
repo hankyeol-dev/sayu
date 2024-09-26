@@ -27,9 +27,16 @@ struct SayuCardListView: NavigatableView {
          
          Spacer.height(20.0)
          
-         ForEach(sayuCardItemList, id: \.id) { cardItem in
-            SayuCardView(sayuCardItem: cardItem)
-            Spacer.height(16.0)
+         if sayuCardItemList.isEmpty {
+            Text("아직 사유한 내용이 없어요.")
+               .byCustomFont(.gmMedium, size: 15.0)
+               .frame(maxWidth: .infinity, alignment: .center)
+               .padding()
+         } else {
+            ForEach(sayuCardItemList, id: \.id) { cardItem in
+               SayuCardView(sayuCardItem: cardItem)
+               Spacer.height(16.0)
+            }
          }
       }
       .frame(maxWidth: .infinity, alignment: .topLeading)
