@@ -29,9 +29,19 @@ struct SmartListCreator: View {
                   .overlay {
                      Text(smartListIcon)
                   }
-            }.emojiPicker(isPresented: $isOpen, selectedEmoji: $smartListIcon, customHeight: 300.0)
+            }.emojiPicker(
+               isPresented: $isOpen,
+               selectedEmoji: $smartListIcon,
+               arrowDirection: .up,
+               customHeight: 300.0
+            )
             
-            RoundedTextField(fieldText: $smartListFieldText, placeholder: "사유 목록을 등록해보세요.")
+            RoundedTextField(
+               fieldText: $smartListFieldText,
+               placeholder: "사유 목록을 등록해보세요.",
+               font: .gmMedium,
+               fontSize: 13.0
+            )
                .focused($smartListfieldFocus)
                .disabled(smartLists.count >= 3)
                .onSubmit {
@@ -47,14 +57,14 @@ struct SmartListCreator: View {
             }
          } label: {
             asRoundedRect(title: "생성",
-                          background: smartListFieldText.isEmpty ? .grayMd : .baseGreen,
-                          foreground: smartListFieldText.isEmpty ? .baseBlack : .white)
+                          background: smartListFieldText.isEmpty ? .graySm : .baseGreen,
+                          foreground: smartListFieldText.isEmpty ? .grayXl : .white)
          }
          .disabled(smartLists.count >= 3)
          
-         Spacer.height(12.0)
          
          if !smartLists.isEmpty {
+            Spacer.height(12.0)
             createChipListview(smartLists)
          }
       }

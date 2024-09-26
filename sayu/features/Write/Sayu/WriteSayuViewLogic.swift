@@ -30,6 +30,9 @@ final class WriteSayuViewLogic: ObservableObject {
    @Published
    var writeDateForView: String = ""
    
+   var lastSayuSubject: String = ""
+   var lastSayuSmartList: [String] = []
+   
    // MARK: - subjectItems
    @Published
    var selectedSystemSubject: SubjectViewItem?
@@ -84,7 +87,7 @@ final class WriteSayuViewLogic: ObservableObject {
    
    private let subjectRepository = Repository<Subject>()
    private let subRepository = Repository<Sub>()
-   private let thinkRepository = Repository<Think>()
+   private let sayuRepository = Repository<Think>()
    private let smartListRepository = Repository<SmartList>()
    private let motionManager: MotionManager = .init()
    
@@ -92,6 +95,7 @@ final class WriteSayuViewLogic: ObservableObject {
    
    init() {
       setSystemSubjectViewItems()
+      setLatestSayu()
    }
 }
 
@@ -115,6 +119,15 @@ extension WriteSayuViewLogic {
    func setDate(_ date: Date) {
       writeDate = date.formattedAppConfigure()
       writeDateForView = date.formattedForView()
+   }
+   
+   private func setLatestSayu() {
+      if let record = sayuRepository.getLastRecord() {
+         if let subject = record.subject.first {
+            lastSayuSubject = subject.title
+         }
+         lastSayuSmartList = record.smartList.map { $0.title }
+      }
    }
 }
 
@@ -192,7 +205,13 @@ extension WriteSayuViewLogic {
       }
       
       if !smartList.isEmpty {
+         
          sayuSmartList = smartList.map { item in
+            if let first = smartListRepository.getRecordsByQuery({ list in
+               list.title == item
+            }).first {
+               return first
+            }
             return .init(title: item)
          }
       }
@@ -209,9 +228,20 @@ extension WriteSayuViewLogic {
       }
       
       if !subjectFieldText.isEmpty {
+         let valid = subjectRepository.getRecordsByQuery { [weak self] subject in
+            guard let self else { return false }
+            return subject.title == subjectFieldText
+         }.first
+         
          do {
-            try subjectRepository.addSingleRecord(.init(title: subjectFieldText)) { subject in
-               subject.thinks.append(sayu)
+            if valid == nil {
+               try subjectRepository.addSingleRecord(.init(title: subjectFieldText)) { subject in
+                     subject.thinks.append(sayu)
+               }
+            } else {
+               try subjectRepository.updateRecord(valid!._id) { subject in
+                  subject.thinks.append(sayu)
+               }
             }
             addThink(subs: sayuSubs, smartList: sayuSmartList, sayu: sayu)
          } catch {
@@ -227,9 +257,9 @@ extension WriteSayuViewLogic {
       let sayuId = sayu._id
       
       do {
-         try thinkRepository.addSingleRecord(sayu) { _ in }
+         try sayuRepository.addSingleRecord(sayu) { _ in }
          if !subs.isEmpty {
-            try thinkRepository.updateRecord(sayuId) { think in
+            try sayuRepository.updateRecord(sayuId) { think in
                subs.forEach { sub in
                   think.subs.append(sub)
                }
@@ -238,12 +268,20 @@ extension WriteSayuViewLogic {
          }
          
          if !smartList.isEmpty {
-            try thinkRepository.updateRecord(sayuId) { think in
+            try sayuRepository.updateRecord(sayuId) { think in
                smartList.forEach { smart in
                   think.smartList.append(smart)
                }
             }
-            try smartListRepository.addMultiRecords(smartList)
+            try smartList.forEach { item in
+               let target = smartListRepository.getRecordsByQuery({ list in
+                  list.title == item.title
+               })
+               
+               if target.isEmpty {
+                  try smartListRepository.addSingleRecord(item)
+               }
+            }
          }
       } catch {
          isWriteValid = .unknownError

@@ -82,5 +82,5 @@ struct Repository<O: Object> {
       } else {
          throw RepositoryErrors.recordNotFound
       }
-   }
+   }   
 }

@@ -18,6 +18,7 @@
 		812F63822CA3CEAA000F040D /* SayuChartViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */; };
 		812F63842CA3D223000F040D /* SayuStatisticItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63832CA3D223000F040D /* SayuStatisticItem.swift */; };
 		812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */; };
+		812F63892CA4267A000F040D /* AppTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63882CA4267A000F040D /* AppTexts.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -115,6 +116,7 @@
 		812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuChartViewLogic.swift; sourceTree = "<group>"; };
 		812F63832CA3D223000F040D /* SayuStatisticItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuStatisticItem.swift; sourceTree = "<group>"; };
 		812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuBarChartItem.swift; sourceTree = "<group>"; };
+		812F63882CA4267A000F040D /* AppTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTexts.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -215,6 +217,14 @@
 			path = SayuDetail;
 			sourceTree = "<group>";
 		};
+		812F63872CA42666000F040D /* constants */ = {
+			isa = PBXGroup;
+			children = (
+				812F63882CA4267A000F040D /* AppTexts.swift */,
+			);
+			path = constants;
+			sourceTree = "<group>";
+		};
 		8191D1D32C991C7A00B2A3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +267,7 @@
 		8191D1EF2C991EE700B2A3C8 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				812F63872CA42666000F040D /* constants */,
 				8191D2152C993A0400B2A3C8 /* fonts */,
 				8191D1FE2C9920C600B2A3C8 /* environment */,
 				8191D1E52C991C7A00B2A3C8 /* Preview Content */,
@@ -588,6 +599,7 @@
 				812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */,
 				8191D2322C9961B000B2A3C8 /* AppTabbar.swift in Sources */,
 				8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */,
+				812F63892CA4267A000F040D /* AppTexts.swift in Sources */,
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
 				812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */,
