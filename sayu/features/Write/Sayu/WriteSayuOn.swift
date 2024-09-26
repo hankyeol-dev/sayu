@@ -14,6 +14,7 @@ import RealmSwift
 struct WriteSayuOn: NavigatableView {
    
    private var createdSayuId: ObjectId
+   private var isTempSavedModify: Bool
    
    @StateObject
    private var viewLogic: WriteSayuOnViewLogic = .init()
@@ -26,18 +27,21 @@ struct WriteSayuOn: NavigatableView {
    @Environment(\.dismiss)
    private var dismissView
    
-   init(createdSayuId: ObjectId) {
+   init(createdSayuId: ObjectId, isTempSavedModify: Bool) {
       self.createdSayuId = createdSayuId
+      self.isTempSavedModify = isTempSavedModify
    }
    
    var body: some View {
       VStack {
          if let sayu = viewLogic.sayu{
             AppNavbar(title: "\(viewLogic.sayuDate)의 사유", 
-                      isLeftButton: false,
-                      isRightButton: true,
-                      rightButtonAction: tempSaveDisplayAlert,
-                      rightButtonIcon: .saveTemp)
+                      isLeftButton: isTempSavedModify,
+                      leftButtonAction: tempSaveModifyDisplayAlert,
+                      leftButtonIcon: isTempSavedModify ? .xmark : nil,
+                      isRightButton: !isTempSavedModify,
+                      rightButtonAction: isTempSavedModify ? nil : tempSaveDisplayAlert,
+                      rightButtonIcon: isTempSavedModify ? nil : .saveTemp)
             
             ScrollView {
                VStack {
@@ -95,6 +99,7 @@ struct WriteSayuOn: NavigatableView {
                .showAndStack()
                .dismissAfter(1.0)
             viewLogic.isEarningTodaySayu = false
+            pop()
          }
       }
       .onChange(of: viewLogic.isSaved) { value in
@@ -411,7 +416,26 @@ extension WriteSayuOn {
          })
       ]
       BottomAlert(title: "오늘의 사유를 잠시 멈출까요?",
-                  content: "사유 내용을 오늘까지만 잠시 저장합니다.\n오늘 안에는 언제든지 다시 불러와서 기록할 수 있어요.",
+                  content: "사유 내용을 안전하게 저장해둘게요.",
+                  buttons: buttons)
+      .showAndStack()
+   }
+   
+   private func tempSaveModifyDisplayAlert() {
+      viewLogic.pauseTimer()
+      
+      let buttons: [BottomPopupButtonItem] = [
+         .init(title: "아니요", background: .baseGreen, foreground: .white, action: {
+            viewLogic.startTimer()
+            dismiss()
+         }),
+         .init(title: "네, 괜찮아요", background: .grayMd, foreground: .baseBlack, action: {
+            dismiss()
+            pop()
+         })
+      ]
+      BottomAlert(title: "정말 작성을 그만두시나요?",
+                  content: "같은 사유를 다시 시작하시려면, 다시 포션을 교환해주셔야 해요.",
                   buttons: buttons)
       .showAndStack()
    }

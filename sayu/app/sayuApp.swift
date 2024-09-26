@@ -31,8 +31,6 @@ struct sayuApp: App {
             .task {
                notificationManager.askPermission()
                sayuPointManager.addJoinPoint()
-               motionManager.getAuth()
-               setInitialUserDefaults()
             }
       }
    }
@@ -51,16 +49,5 @@ extension sayuApp {
       .centre { $0.tapOutsideToDismiss(true) }
       .bottom { $0.tapOutsideToDismiss(true)  }
    }
-   
-   private func setInitialUserDefaults() {
-      let standard = UserDefaults.standard
-      guard standard.object(forKey: AppEnvironment.isShowAppDeleteNotiKey) != nil else {
-         standard.setValue(false, forKey: AppEnvironment.isShowAppDeleteNotiKey)
-         return
-      }
-      guard standard.object(forKey: AppEnvironment.isShowAppDeleteChartNotiKey) != nil else {
-         standard.setValue(false, forKey: AppEnvironment.isShowAppDeleteChartNotiKey)
-         return
-      }
-   }
+
 }

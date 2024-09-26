@@ -128,7 +128,7 @@ extension CalendarView {
       .padding(.vertical, 8.0)
       .padding(.horizontal, 8.0)
       .frame(height: 72.0, alignment: .top)
-      .background(calendarViewLogic.selectedDayString == dateString ? .graySm : .clear)
+      .background((calendarViewLogic.selectedDayString == dateString && date.day != 0) ? .graySm : .clear)
       .clipShape(.rect(cornerRadius: 12.0))
       .onTapGesture {
          calendarViewLogic.setSelectedDay(dateString)

@@ -14,7 +14,6 @@
 		812F63712CA27740000F040D /* WrappedChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63702CA27740000F040D /* WrappedChip.swift */; };
 		812F63752CA29C1E000F040D /* SayuPointEarningButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */; };
 		812F637E2CA3CB0D000F040D /* DOSIyagiBoldface.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */; };
-		812F63802CA3CCF0000F040D /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F637F2CA3CCF0000F040D /* BarChartView.swift */; };
 		812F63822CA3CEAA000F040D /* SayuChartViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */; };
 		812F63842CA3D223000F040D /* SayuStatisticItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63832CA3D223000F040D /* SayuStatisticItem.swift */; };
 		812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */; };
@@ -23,6 +22,8 @@
 		812F638D2CA51835000F040D /* BottomAddTimerTimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F638C2CA51835000F040D /* BottomAddTimerTimeAlert.swift */; };
 		812F638F2CA578B6000F040D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 812F638E2CA578B6000F040D /* Launch Screen.storyboard */; };
 		812F63912CA59AC3000F040D /* CentreSaveSuccessAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63902CA59AC3000F040D /* CentreSaveSuccessAlert.swift */; };
+		812F63932CA5A145000F040D /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63922CA5A145000F040D /* UserDefaultsManager.swift */; };
+		812F63952CA5AB36000F040D /* CentreSayuPointPayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63942CA5AB36000F040D /* CentreSayuPointPayAlert.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -116,7 +117,6 @@
 		812F63702CA27740000F040D /* WrappedChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedChip.swift; sourceTree = "<group>"; };
 		812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointEarningButtonItem.swift; sourceTree = "<group>"; };
 		812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DOSIyagiBoldface.ttf; sourceTree = "<group>"; };
-		812F637F2CA3CCF0000F040D /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuChartViewLogic.swift; sourceTree = "<group>"; };
 		812F63832CA3D223000F040D /* SayuStatisticItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuStatisticItem.swift; sourceTree = "<group>"; };
 		812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuBarChartItem.swift; sourceTree = "<group>"; };
@@ -125,6 +125,8 @@
 		812F638C2CA51835000F040D /* BottomAddTimerTimeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAddTimerTimeAlert.swift; sourceTree = "<group>"; };
 		812F638E2CA578B6000F040D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		812F63902CA59AC3000F040D /* CentreSaveSuccessAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreSaveSuccessAlert.swift; sourceTree = "<group>"; };
+		812F63922CA5A145000F040D /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		812F63942CA5AB36000F040D /* CentreSayuPointPayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreSayuPointPayAlert.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */,
 				8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */,
 				8191D2832C9FEE4E00B2A3C8 /* SayuPointManager.swift */,
+				812F63922CA5A145000F040D /* UserDefaultsManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				8191D2812C9FD81A00B2A3C8 /* CentreSaveAlert.swift */,
 				812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */,
 				812F63902CA59AC3000F040D /* CentreSaveSuccessAlert.swift */,
+				812F63942CA5AB36000F040D /* CentreSayuPointPayAlert.swift */,
 				812F63702CA27740000F040D /* WrappedChip.swift */,
 				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
 				8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */,
@@ -475,7 +479,6 @@
 			children = (
 				8191D23E2C996A5800B2A3C8 /* SayuChart.swift */,
 				812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */,
-				812F637F2CA3CCF0000F040D /* BarChartView.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				8191D2822C9FD81A00B2A3C8 /* CentreSaveAlert.swift in Sources */,
 				8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */,
 				8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */,
+				812F63932CA5A145000F040D /* UserDefaultsManager.swift in Sources */,
 				8191D2142C9935FD00B2A3C8 /* +Spacer.swift in Sources */,
 				8191D2212C99450800B2A3C8 /* Subject.swift in Sources */,
 				8191D2672C9B1DC800B2A3C8 /* Repository.swift in Sources */,
@@ -616,6 +620,7 @@
 				8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */,
 				812F63892CA4267A000F040D /* AppTexts.swift in Sources */,
 				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
+				812F63952CA5AB36000F040D /* CentreSayuPointPayAlert.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
 				812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */,
 				8191D2882CA005B500B2A3C8 /* CalendarView.swift in Sources */,
@@ -639,7 +644,6 @@
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
 				8191D28C2CA00D0500B2A3C8 /* SayuCalendarItem.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
-				812F63802CA3CCF0000F040D /* BarChartView.swift in Sources */,
 				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
 				812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */,
 				812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */,
@@ -787,7 +791,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sayu/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "슬기로운 사유생활";
-				INFOPLIST_KEY_NSMotionUsageDescription = "걸으면서 사유하기, 달리면서 사유하기에 필요한 움직임 데이터를 수집합니다.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "걷거나 달리면서 사유할 때 수집한 걸음 수와 이동 거리 데이터를 활용하여 차트 데이터를 보여드릴 때 활용해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -827,7 +831,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = sayu/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "슬기로운 사유생활";
-				INFOPLIST_KEY_NSMotionUsageDescription = "걸으면서 사유하기, 달리면서 사유하기에 필요한 움직임 데이터를 수집합니다.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "걷거나 달리면서 사유할 때 수집한 걸음 수와 이동 거리 데이터를 활용하여 차트 데이터를 보여드릴 때 활용해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";

@@ -15,10 +15,8 @@ struct SayuPointView: NavigatableView {
    @EnvironmentObject
    var pointManager: SayuPointManager
    
-   @AppStorage(AppEnvironment.isShowAppDeleteNotiKey)
-   private var isShowAppDeleteNoti = UserDefaults.standard.bool(
-      forKey: AppEnvironment.isShowAppDeleteNotiKey
-   )
+   @AppStorage(AppEnvironment.UserDefaultsKeys.isShowAppDeleteNotikey.rawValue)
+   private var isShowAppDeleteNoti = UserDefaultsManager.isShowSayuPointDeleteNoti
   
    func configure(view: NavigationConfig) -> NavigationConfig {
       view.navigationBackGesture(.drag)
@@ -52,6 +50,9 @@ struct SayuPointView: NavigatableView {
          if isError {
             displayErrorAlert()
          }
+      }
+      .task {
+         pointManager.mappingDailyEarningButtonList()
       }
    }
 }

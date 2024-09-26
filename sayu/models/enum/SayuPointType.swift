@@ -43,7 +43,7 @@ enum SayuPointType: Int {
    
    enum PayCase: String {
       case getSayuItem = "사유 아이템 교환"
-      case getPastSayuWrite = "지난 사유 작성권 교환"
+      case getPastSayuWrite = "지난 사유 작성 포션 교환"
       
       var byPayPoint: Int {
          switch self {

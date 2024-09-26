@@ -76,6 +76,19 @@ extension SayuPointManager {
       return records.map{ $0 }.suffix(10)
    }
    
+   func exchangeSayuItem(_ point: Int) -> Bool {
+      let lastPoint = getLastAccumulatedPoint()
+      
+      if point < lastPoint {
+         addSayuPointRecord(.pay,
+                            point: point,
+                            descript: SayuPointType.PayCase.getPastSayuWrite.rawValue)
+         return true
+      } else {
+         return false
+      }
+   }
+   
    private func addSayuPointRecord(_ type: SayuPointType, point: Int, descript: String) {
       let lastPoint = getLastAccumulatedPoint()
       
@@ -86,11 +99,16 @@ extension SayuPointManager {
                                                       accumulated: lastPoint + point,
                                                       pointType: type.rawValue,
                                                       descript: descript))
-         } catch Repository<SayuPoint>.RepositoryErrors.failForAdd {
-            
-         } catch {}
+         } catch  { isSayuPointError = true }
       case .pay:
-         print("조금 있다가 구현")
+         do {
+            try pointRepository.addSingleRecord(
+               .init(point: point,
+                     accumulated: lastPoint - point,
+                     pointType: type.rawValue,
+                     descript: descript)
+            )
+         } catch { isSayuPointError = true }
       }
    }
 }
@@ -104,7 +122,7 @@ extension SayuPointManager {
       }
    }
    
-   private func mappingDailyEarningButtonList() {
+   func mappingDailyEarningButtonList() {
       var list: [SayuPointType.EarningCase]
       
       if motionManager.checkAuth() {

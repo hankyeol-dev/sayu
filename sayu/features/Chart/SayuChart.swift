@@ -13,10 +13,8 @@ struct SayuChart: NavigatableView {
    @EnvironmentObject
    var pointManager: SayuPointManager
    
-   @AppStorage(AppEnvironment.isShowAppDeleteChartNotiKey)
-   private var isShowAppDeleteChartNoti = UserDefaults.standard.bool(
-      forKey: AppEnvironment.isShowAppDeleteChartNotiKey
-   )
+   @AppStorage(AppEnvironment.UserDefaultsKeys.isShowAppDeleteChartNotiKey.rawValue)
+   private var isShowAppDeleteChartNoti = UserDefaultsManager.isShowAppDeleteChartNoti
    
    @StateObject
    private var sayuChartViewLogic: SayuChartViewLogic = .init()
