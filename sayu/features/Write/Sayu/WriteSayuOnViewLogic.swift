@@ -63,6 +63,12 @@ final class WriteSayuOnViewLogic: ObservableObject {
    var isSaveError: Bool = false
    
    @Published
+   var isSaved: Bool = false
+   
+   @Published
+   var isMotionErrorButSaved: Bool = false
+   
+   @Published
    var isEarningTodaySayu: Bool = false
    
    // MARK: - database & managers
@@ -240,12 +246,17 @@ extension WriteSayuOnViewLogic {
          let totalTime = sayuTimeTakes.reduce(0) { cv, fv in return (cv + fv) }
          let remainTime = sayuSettingTime <= totalTime ? 0 : sayuStaticTime - totalTime
          
-         if motionManager.checkAuth() 
+         if motionManager.checkAuth()
                && (sayu.thinkType == ThinkType.walk.rawValue
                    || sayu.thinkType == ThinkType.run.rawValue) {
             saveMotionPermitted(sayu, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
          } else {
-            updateSayu(sayu, isMotion: false, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
+            updateSayu(sayu, 
+                       isMotion: false,
+                       isTemp: isTemp,
+                       isMotionError: false,
+                       totalTime: totalTime,
+                       remainTime: remainTime)
          }
       }
    }
@@ -260,10 +271,20 @@ extension WriteSayuOnViewLogic {
                steps = s
                distance = d
                avgPace = a
-               updateSayu(sayu, isMotion: true, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
+               updateSayu(sayu, 
+                          isMotion: true,
+                          isTemp: isTemp,
+                          isMotionError: false, 
+                          totalTime: totalTime,
+                          remainTime: remainTime)
             } errorHandler: { [weak self] in
                guard let self else { return }
-               updateSayu(sayu, isMotion: false, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
+               updateSayu(sayu, 
+                          isMotion: false,
+                          isTemp: isTemp,
+                          isMotionError: true,
+                          totalTime: totalTime,
+                          remainTime: remainTime)
             }
          motionStart = nil
          motionEnd = nil
@@ -274,7 +295,14 @@ extension WriteSayuOnViewLogic {
       }
    }
    
-   private func updateSayu(_ sayu: Think, isMotion: Bool, isTemp: Bool, totalTime: Int, remainTime: Int) {
+   private func updateSayu(
+      _ sayu: Think,
+      isMotion: Bool,
+      isTemp: Bool,
+      isMotionError: Bool,
+      totalTime: Int,
+      remainTime: Int
+   ) {
       do {
          try sayuRepository.updateRecord(sayu._id) { [weak self] record in
             guard let self else { return }
@@ -307,14 +335,16 @@ extension WriteSayuOnViewLogic {
          
          if !isTemp {
             isEarningTodaySayu = sayuPointManager.earningTodaySayu()
+            if !isEarningTodaySayu && isMotionError {
+               isMotionErrorButSaved = true
+            }
+            
+            if !isEarningTodaySayu && !isMotionError {
+               isSaved = true
+            }
          }
-         
       } catch {
          isSaveError = true
       }
-   }
-   
-   private func checkIsToday() -> Bool {
-      return sayuDate == Date().formattedForView()
    }
 }

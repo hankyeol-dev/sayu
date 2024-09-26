@@ -97,6 +97,16 @@ struct WriteSayuOn: NavigatableView {
             viewLogic.isEarningTodaySayu = false
          }
       }
+      .onChange(of: viewLogic.isSaved) { value in
+         if value {
+            successSaveDisplayAlert()
+         }
+      }
+      .onChange(of: viewLogic.isMotionErrorButSaved) { value in
+         if value {
+            motionErrorButSuccessSaveDisplayAlert()
+         }
+      }
    }
 }
 
@@ -406,12 +416,27 @@ extension WriteSayuOn {
       .showAndStack()
    }
    
+   private func successSaveDisplayAlert() {
+      let content = "또 하나의 멋진 사유를 해냈어요!"
+      CentreSaveSuccessAlert(content: content) {
+         dismiss()
+         pop()
+      }
+      .showAndStack()
+   }
+   
+   private func motionErrorButSuccessSaveDisplayAlert() {
+      let content = "움직임이 적어 걷기/달리기 데이터는 저장 못했어요!"
+      CentreSaveSuccessAlert(content: content) {
+         dismiss()
+         pop()
+      }
+      .showAndStack()
+   }
+   
    private func saveSayu() {
       viewLogic.pauseTimer()
       viewLogic.saveSayu(false)
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-         pop()
-      }
    }
 }
    
