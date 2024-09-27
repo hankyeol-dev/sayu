@@ -12,12 +12,7 @@ extension Font {
       case gmlight = "GmarketSansTTFLight"
       case gmMedium = "GmarketSansTTFMedium"
       case gmBold = "GmarketSansTTFBold"
-      case kjcRegular = "KimjungchulMyungjo-Regular"
-      case kjcBold = "KimjungchulMyungjo-Bold"
-      case satoshiLight = "SatoshiVariable-Bold_Light"
-      case satoshiRegular = "SatoshiVariable-Bold_Regular"
-      case satoshiMedium = "SatoshiVariable-Bold_Medium"
-      case satoshiBold = "SatoshiVariable-Bold_Bold"
+      case dos = "DOSIyagiMedium"
    }
    
    static func byCustomFont(_ font: CustomFont, size: CGFloat) -> Self {
@@ -27,6 +22,6 @@ extension Font {
 
 extension Text {
    func byCustomFont(_ font: Font.CustomFont, size: CGFloat) -> Self {
-      self.font(.byCustomFont(font, size: size))
+      self.font(Font.byCustomFont(font, size: size))
    }
 }

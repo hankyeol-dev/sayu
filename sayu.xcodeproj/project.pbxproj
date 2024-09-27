@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63652CA14B8B000F040D /* SayuPointView.swift */; };
+		812F63692CA18F5C000F040D /* SayuDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63682CA18F5C000F040D /* SayuDetailView.swift */; };
+		812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */; };
+		812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */; };
+		812F63712CA27740000F040D /* WrappedChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63702CA27740000F040D /* WrappedChip.swift */; };
+		812F63752CA29C1E000F040D /* SayuPointEarningButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */; };
+		812F637E2CA3CB0D000F040D /* DOSIyagiBoldface.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */; };
+		812F63822CA3CEAA000F040D /* SayuChartViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */; };
+		812F63842CA3D223000F040D /* SayuStatisticItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63832CA3D223000F040D /* SayuStatisticItem.swift */; };
+		812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */; };
+		812F63892CA4267A000F040D /* AppTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63882CA4267A000F040D /* AppTexts.swift */; };
+		812F638B2CA4DD87000F040D /* SayuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F638A2CA4DD87000F040D /* SayuItem.swift */; };
+		812F638D2CA51835000F040D /* BottomAddTimerTimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F638C2CA51835000F040D /* BottomAddTimerTimeAlert.swift */; };
+		812F638F2CA578B6000F040D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 812F638E2CA578B6000F040D /* Launch Screen.storyboard */; };
+		812F63912CA59AC3000F040D /* CentreSaveSuccessAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63902CA59AC3000F040D /* CentreSaveSuccessAlert.swift */; };
+		812F63932CA5A145000F040D /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63922CA5A145000F040D /* UserDefaultsManager.swift */; };
+		812F63952CA5AB36000F040D /* CentreSayuPointPayAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63942CA5AB36000F040D /* CentreSayuPointPayAlert.swift */; };
+		812F63982CA62DE4000F040D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63972CA62DE4000F040D /* OnboardingView.swift */; };
+		812F639C2CA660C8000F040D /* OnboardingViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F639B2CA660C8000F040D /* OnboardingViewItem.swift */; };
+		812F639E2CA66342000F040D /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F639D2CA66342000F040D /* PageIndicator.swift */; };
+		812F63A02CA66D65000F040D /* env_dev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F639F2CA66D65000F040D /* env_dev.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -17,7 +38,6 @@
 		8191D1F92C99206300B2A3C8 /* MijickNavigationView in Frameworks */ = {isa = PBXBuildFile; productRef = 8191D1F82C99206300B2A3C8 /* MijickNavigationView */; };
 		8191D1FC2C99206D00B2A3C8 /* MijickPopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 8191D1FB2C99206D00B2A3C8 /* MijickPopupView */; };
 		8191D2002C9920D400B2A3C8 /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1FF2C9920D400B2A3C8 /* env.swift */; };
-		8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2012C9920DC00B2A3C8 /* env_dev.swift */; };
 		8191D2062C99215000B2A3C8 /* Think.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2052C99215000B2A3C8 /* Think.swift */; };
 		8191D2092C99218400B2A3C8 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2082C99218400B2A3C8 /* Movie.swift */; };
 		8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D20A2C99218C00B2A3C8 /* Book.swift */; };
@@ -25,6 +45,55 @@
 		8191D2112C99359800B2A3C8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2102C99359800B2A3C8 /* NetworkManager.swift */; };
 		8191D2142C9935FD00B2A3C8 /* +Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2132C9935FD00B2A3C8 /* +Spacer.swift */; };
 		8191D21E2C993A6900B2A3C8 /* +Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D21D2C993A6900B2A3C8 /* +Font.swift */; };
+		8191D2212C99450800B2A3C8 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2202C99450800B2A3C8 /* Subject.swift */; };
+		8191D2232C99482200B2A3C8 /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2222C99482200B2A3C8 /* Sub.swift */; };
+		8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2242C9948E600B2A3C8 /* SmartList.swift */; };
+		8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2262C994A3E00B2A3C8 /* SayuPoint.swift */; };
+		8191D22B2C99549400B2A3C8 /* ThinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D22A2C99549400B2A3C8 /* ThinkType.swift */; };
+		8191D22D2C99552500B2A3C8 /* SayuPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D22C2C99552500B2A3C8 /* SayuPointType.swift */; };
+		8191D2322C9961B000B2A3C8 /* AppTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2312C9961B000B2A3C8 /* AppTabbar.swift */; };
+		8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2362C9965D500B2A3C8 /* WriteSayu.swift */; };
+		8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2382C99673A00B2A3C8 /* HomeViewLogic.swift */; };
+		8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D23B2C9969EE00B2A3C8 /* SayuCalendar.swift */; };
+		8191D23F2C996A5800B2A3C8 /* SayuChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D23E2C996A5800B2A3C8 /* SayuChart.swift */; };
+		8191D2402C996D3500B2A3C8 /* GmarketSansTTFBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D21C2C993A1C00B2A3C8 /* GmarketSansTTFBold.ttf */; };
+		8191D2412C996D3500B2A3C8 /* GmarketSansTTFLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D2182C993A1C00B2A3C8 /* GmarketSansTTFLight.ttf */; };
+		8191D2422C996D3500B2A3C8 /* GmarketSansTTFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D2172C993A1C00B2A3C8 /* GmarketSansTTFMedium.ttf */; };
+		8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */; };
+		8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2492C99782900B2A3C8 /* BottomAlert.swift */; };
+		8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */; };
+		8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */; };
+		8191D2502C9A653A00B2A3C8 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24F2C9A653A00B2A3C8 /* +View.swift */; };
+		8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */; };
+		8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */; };
+		8191D2592C9AF37600B2A3C8 /* SayuTimerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2582C9AF37600B2A3C8 /* SayuTimerType.swift */; };
+		8191D25B2C9AF5E500B2A3C8 /* SubjectViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D25A2C9AF5E500B2A3C8 /* SubjectViewItem.swift */; };
+		8191D25D2C9AF5F600B2A3C8 /* SubViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D25C2C9AF5F600B2A3C8 /* SubViewItem.swift */; };
+		8191D25F2C9AF60C00B2A3C8 /* SayuTypeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D25E2C9AF60C00B2A3C8 /* SayuTypeItem.swift */; };
+		8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */; };
+		8191D2632C9AF8BD00B2A3C8 /* SayuTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */; };
+		8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2642C9B121300B2A3C8 /* +Date.swift */; };
+		8191D2672C9B1DC800B2A3C8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2662C9B1DC800B2A3C8 /* Repository.swift */; };
+		8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */; };
+		8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */; };
+		8191D26D2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */; };
+		8191D26F2C9C3EB000B2A3C8 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */; };
+		8191D2712C9C40D400B2A3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2702C9C40D400B2A3C8 /* AppDelegate.swift */; };
+		8191D2732C9C7A6E00B2A3C8 /* SayuSubCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2722C9C7A6E00B2A3C8 /* SayuSubCreator.swift */; };
+		8191D2752C9E648000B2A3C8 /* FlexableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */; };
+		8191D2772C9EA31100B2A3C8 /* SmartListCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2762C9EA31100B2A3C8 /* SmartListCreator.swift */; };
+		8191D27D2C9EAA6B00B2A3C8 /* MCEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 8191D27C2C9EAA6B00B2A3C8 /* MCEmojiPicker */; };
+		8191D2802C9EEF0800B2A3C8 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */; };
+		8191D2822C9FD81A00B2A3C8 /* CentreSaveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2812C9FD81A00B2A3C8 /* CentreSaveAlert.swift */; };
+		8191D2842C9FEE4E00B2A3C8 /* SayuPointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2832C9FEE4E00B2A3C8 /* SayuPointManager.swift */; };
+		8191D2862CA0018600B2A3C8 /* AppMainNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2852CA0018600B2A3C8 /* AppMainNavbar.swift */; };
+		8191D2882CA005B500B2A3C8 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2872CA005B500B2A3C8 /* CalendarView.swift */; };
+		8191D28A2CA009FA00B2A3C8 /* +String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2892CA009FA00B2A3C8 /* +String.swift */; };
+		8191D28C2CA00D0500B2A3C8 /* SayuCalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D28B2CA00D0500B2A3C8 /* SayuCalendarItem.swift */; };
+		8191D28E2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D28D2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift */; };
+		8191D2902CA04C2300B2A3C8 /* SayuCardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */; };
+		8191D2922CA04FBF00B2A3C8 /* +Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2912CA04FBF00B2A3C8 /* +Int.swift */; };
+		8191D2942CA057F200B2A3C8 /* SayuCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2932CA057F200B2A3C8 /* SayuCardListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +111,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		812F63652CA14B8B000F040D /* SayuPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointView.swift; sourceTree = "<group>"; };
+		812F63682CA18F5C000F040D /* SayuDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuDetailView.swift; sourceTree = "<group>"; };
+		812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuDetailViewLogic.swift; sourceTree = "<group>"; };
+		812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreEmptySayuAlert.swift; sourceTree = "<group>"; };
+		812F63702CA27740000F040D /* WrappedChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedChip.swift; sourceTree = "<group>"; };
+		812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointEarningButtonItem.swift; sourceTree = "<group>"; };
+		812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DOSIyagiBoldface.ttf; sourceTree = "<group>"; };
+		812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuChartViewLogic.swift; sourceTree = "<group>"; };
+		812F63832CA3D223000F040D /* SayuStatisticItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuStatisticItem.swift; sourceTree = "<group>"; };
+		812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuBarChartItem.swift; sourceTree = "<group>"; };
+		812F63882CA4267A000F040D /* AppTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTexts.swift; sourceTree = "<group>"; };
+		812F638A2CA4DD87000F040D /* SayuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuItem.swift; sourceTree = "<group>"; };
+		812F638C2CA51835000F040D /* BottomAddTimerTimeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAddTimerTimeAlert.swift; sourceTree = "<group>"; };
+		812F638E2CA578B6000F040D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		812F63902CA59AC3000F040D /* CentreSaveSuccessAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreSaveSuccessAlert.swift; sourceTree = "<group>"; };
+		812F63922CA5A145000F040D /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		812F63942CA5AB36000F040D /* CentreSayuPointPayAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreSayuPointPayAlert.swift; sourceTree = "<group>"; };
+		812F63972CA62DE4000F040D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		812F639B2CA660C8000F040D /* OnboardingViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewItem.swift; sourceTree = "<group>"; };
+		812F639D2CA66342000F040D /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
+		812F639F2CA66D65000F040D /* env_dev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env_dev.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -49,21 +139,62 @@
 		8191D1E62C991C7A00B2A3C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8191D1ED2C991CED00B2A3C8 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8191D1FF2C9920D400B2A3C8 /* env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
-		8191D2012C9920DC00B2A3C8 /* env_dev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env_dev.swift; sourceTree = "<group>"; };
 		8191D2052C99215000B2A3C8 /* Think.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Think.swift; sourceTree = "<group>"; };
 		8191D2082C99218400B2A3C8 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8191D20A2C99218C00B2A3C8 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		8191D20E2C99355D00B2A3C8 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		8191D2102C99359800B2A3C8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8191D2132C9935FD00B2A3C8 /* +Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Spacer.swift"; sourceTree = "<group>"; };
-		8191D2162C993A1C00B2A3C8 /* KimjungchulMyungjo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KimjungchulMyungjo-Bold.ttf"; sourceTree = "<group>"; };
 		8191D2172C993A1C00B2A3C8 /* GmarketSansTTFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFMedium.ttf; sourceTree = "<group>"; };
 		8191D2182C993A1C00B2A3C8 /* GmarketSansTTFLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFLight.ttf; sourceTree = "<group>"; };
-		8191D2192C993A1C00B2A3C8 /* KimjungchulMyungjo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KimjungchulMyungjo-Light.ttf"; sourceTree = "<group>"; };
-		8191D21A2C993A1C00B2A3C8 /* KimjungchulMyungjo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KimjungchulMyungjo-Regular.ttf"; sourceTree = "<group>"; };
-		8191D21B2C993A1C00B2A3C8 /* Satoshi-Variable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Satoshi-Variable.ttf"; sourceTree = "<group>"; };
 		8191D21C2C993A1C00B2A3C8 /* GmarketSansTTFBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFBold.ttf; sourceTree = "<group>"; };
 		8191D21D2C993A6900B2A3C8 /* +Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Font.swift"; sourceTree = "<group>"; };
+		8191D2202C99450800B2A3C8 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		8191D2222C99482200B2A3C8 /* Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub.swift; sourceTree = "<group>"; };
+		8191D2242C9948E600B2A3C8 /* SmartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartList.swift; sourceTree = "<group>"; };
+		8191D2262C994A3E00B2A3C8 /* SayuPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPoint.swift; sourceTree = "<group>"; };
+		8191D22A2C99549400B2A3C8 /* ThinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkType.swift; sourceTree = "<group>"; };
+		8191D22C2C99552500B2A3C8 /* SayuPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointType.swift; sourceTree = "<group>"; };
+		8191D2312C9961B000B2A3C8 /* AppTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabbar.swift; sourceTree = "<group>"; };
+		8191D2332C9964C100B2A3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8191D2362C9965D500B2A3C8 /* WriteSayu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayu.swift; sourceTree = "<group>"; };
+		8191D2382C99673A00B2A3C8 /* HomeViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewLogic.swift; sourceTree = "<group>"; };
+		8191D23B2C9969EE00B2A3C8 /* SayuCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCalendar.swift; sourceTree = "<group>"; };
+		8191D23E2C996A5800B2A3C8 /* SayuChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuChart.swift; sourceTree = "<group>"; };
+		8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavbar.swift; sourceTree = "<group>"; };
+		8191D2492C99782900B2A3C8 /* BottomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomAlert.swift; sourceTree = "<group>"; };
+		8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuViewLogic.swift; sourceTree = "<group>"; };
+		8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldableGroupBox.swift; sourceTree = "<group>"; };
+		8191D24F2C9A653A00B2A3C8 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
+		8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsRoundedRect.swift; sourceTree = "<group>"; };
+		8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		8191D2582C9AF37600B2A3C8 /* SayuTimerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTimerType.swift; sourceTree = "<group>"; };
+		8191D25A2C9AF5E500B2A3C8 /* SubjectViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewItem.swift; sourceTree = "<group>"; };
+		8191D25C2C9AF5F600B2A3C8 /* SubViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewItem.swift; sourceTree = "<group>"; };
+		8191D25E2C9AF60C00B2A3C8 /* SayuTypeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTypeItem.swift; sourceTree = "<group>"; };
+		8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTimerTypeItem.swift; sourceTree = "<group>"; };
+		8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuTime.swift; sourceTree = "<group>"; };
+		8191D2642C9B121300B2A3C8 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
+		8191D2662C9B1DC800B2A3C8 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCautionCheckAlert.swift; sourceTree = "<group>"; };
+		8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOn.swift; sourceTree = "<group>"; };
+		8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteSayuOnViewLogic.swift; sourceTree = "<group>"; };
+		8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		8191D2702C9C40D400B2A3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8191D2722C9C7A6E00B2A3C8 /* SayuSubCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuSubCreator.swift; sourceTree = "<group>"; };
+		8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexableTextView.swift; sourceTree = "<group>"; };
+		8191D2762C9EA31100B2A3C8 /* SmartListCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartListCreator.swift; sourceTree = "<group>"; };
+		8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		8191D2812C9FD81A00B2A3C8 /* CentreSaveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreSaveAlert.swift; sourceTree = "<group>"; };
+		8191D2832C9FEE4E00B2A3C8 /* SayuPointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuPointManager.swift; sourceTree = "<group>"; };
+		8191D2852CA0018600B2A3C8 /* AppMainNavbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainNavbar.swift; sourceTree = "<group>"; };
+		8191D2872CA005B500B2A3C8 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		8191D2892CA009FA00B2A3C8 /* +String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+String.swift"; sourceTree = "<group>"; };
+		8191D28B2CA00D0500B2A3C8 /* SayuCalendarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCalendarItem.swift; sourceTree = "<group>"; };
+		8191D28D2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCalendarViewLogic.swift; sourceTree = "<group>"; };
+		8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCardItem.swift; sourceTree = "<group>"; };
+		8191D2912CA04FBF00B2A3C8 /* +Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Int.swift"; sourceTree = "<group>"; };
+		8191D2932CA057F200B2A3C8 /* SayuCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayuCardListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,12 +205,46 @@
 				8191D1F92C99206300B2A3C8 /* MijickNavigationView in Frameworks */,
 				8191D1FC2C99206D00B2A3C8 /* MijickPopupView in Frameworks */,
 				8191D1F42C99204300B2A3C8 /* RealmSwift in Frameworks */,
+				8191D27D2C9EAA6B00B2A3C8 /* MCEmojiPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		812F63642CA14B7C000F040D /* SayuPoint */ = {
+			isa = PBXGroup;
+			children = (
+				812F63652CA14B8B000F040D /* SayuPointView.swift */,
+			);
+			path = SayuPoint;
+			sourceTree = "<group>";
+		};
+		812F63672CA18F4D000F040D /* SayuDetail */ = {
+			isa = PBXGroup;
+			children = (
+				812F63682CA18F5C000F040D /* SayuDetailView.swift */,
+				812F636A2CA18FA5000F040D /* SayuDetailViewLogic.swift */,
+			);
+			path = SayuDetail;
+			sourceTree = "<group>";
+		};
+		812F63872CA42666000F040D /* constants */ = {
+			isa = PBXGroup;
+			children = (
+				812F63882CA4267A000F040D /* AppTexts.swift */,
+			);
+			path = constants;
+			sourceTree = "<group>";
+		};
+		812F63962CA62DD4000F040D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				812F63972CA62DE4000F040D /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		8191D1D32C991C7A00B2A3C8 = {
 			isa = PBXGroup;
 			children = (
@@ -100,8 +265,10 @@
 		8191D1DE2C991C7A00B2A3C8 /* sayu */ = {
 			isa = PBXGroup;
 			children = (
+				8191D2332C9964C100B2A3C8 /* Info.plist */,
 				8191D1EF2C991EE700B2A3C8 /* app */,
 				8191D2122C9935B900B2A3C8 /* extensions */,
+				8191D2302C99619500B2A3C8 /* Components */,
 				8191D1F02C991F0300B2A3C8 /* features */,
 				8191D20D2C99354B00B2A3C8 /* managers */,
 				8191D2032C99211A00B2A3C8 /* models */,
@@ -120,11 +287,14 @@
 		8191D1EF2C991EE700B2A3C8 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				812F63872CA42666000F040D /* constants */,
 				8191D2152C993A0400B2A3C8 /* fonts */,
 				8191D1FE2C9920C600B2A3C8 /* environment */,
 				8191D1E52C991C7A00B2A3C8 /* Preview Content */,
 				8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */,
+				8191D2702C9C40D400B2A3C8 /* AppDelegate.swift */,
 				8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */,
+				812F638E2CA578B6000F040D /* Launch Screen.storyboard */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -132,6 +302,12 @@
 		8191D1F02C991F0300B2A3C8 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				812F63962CA62DD4000F040D /* Onboarding */,
+				812F63672CA18F4D000F040D /* SayuDetail */,
+				812F63642CA14B7C000F040D /* SayuPoint */,
+				8191D23D2C996A4200B2A3C8 /* Chart */,
+				8191D23A2C9969D500B2A3C8 /* Calendar */,
+				8191D2342C9965B400B2A3C8 /* Write */,
 				8191D1F12C991F1700B2A3C8 /* Home */,
 			);
 			path = features;
@@ -141,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				8191D1E12C991C7A00B2A3C8 /* Home.swift */,
+				8191D2382C99673A00B2A3C8 /* HomeViewLogic.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -149,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				8191D1FF2C9920D400B2A3C8 /* env.swift */,
-				8191D2012C9920DC00B2A3C8 /* env_dev.swift */,
+				812F639F2CA66D65000F040D /* env_dev.swift */,
 			);
 			path = environment;
 			sourceTree = "<group>";
@@ -158,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				8191D2072C99215A00B2A3C8 /* codable */,
+				8191D21F2C99435300B2A3C8 /* enum */,
 				8191D2042C99214300B2A3C8 /* entity */,
 				8191D20C2C99351900B2A3C8 /* viewItem */,
 			);
@@ -168,6 +346,13 @@
 			isa = PBXGroup;
 			children = (
 				8191D2052C99215000B2A3C8 /* Think.swift */,
+				8191D2202C99450800B2A3C8 /* Subject.swift */,
+				8191D2222C99482200B2A3C8 /* Sub.swift */,
+				8191D2242C9948E600B2A3C8 /* SmartList.swift */,
+				8191D2262C994A3E00B2A3C8 /* SayuPoint.swift */,
+				812F638A2CA4DD87000F040D /* SayuItem.swift */,
+				8191D2622C9AF8BD00B2A3C8 /* SayuTime.swift */,
+				8191D2662C9B1DC800B2A3C8 /* Repository.swift */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -184,6 +369,16 @@
 		8191D20C2C99351900B2A3C8 /* viewItem */ = {
 			isa = PBXGroup;
 			children = (
+				8191D25A2C9AF5E500B2A3C8 /* SubjectViewItem.swift */,
+				8191D25C2C9AF5F600B2A3C8 /* SubViewItem.swift */,
+				8191D25E2C9AF60C00B2A3C8 /* SayuTypeItem.swift */,
+				8191D2602C9AF65300B2A3C8 /* SayuTimerTypeItem.swift */,
+				8191D28B2CA00D0500B2A3C8 /* SayuCalendarItem.swift */,
+				8191D28F2CA04C2300B2A3C8 /* SayuCardItem.swift */,
+				812F63742CA29C1E000F040D /* SayuPointEarningButtonItem.swift */,
+				812F63832CA3D223000F040D /* SayuStatisticItem.swift */,
+				812F63852CA3ECEB000F040D /* SayuBarChartItem.swift */,
+				812F639B2CA660C8000F040D /* OnboardingViewItem.swift */,
 			);
 			path = viewItem;
 			sourceTree = "<group>";
@@ -193,6 +388,10 @@
 			children = (
 				8191D20E2C99355D00B2A3C8 /* DatabaseManager.swift */,
 				8191D2102C99359800B2A3C8 /* NetworkManager.swift */,
+				8191D26E2C9C3EB000B2A3C8 /* NotificationManager.swift */,
+				8191D27F2C9EEF0800B2A3C8 /* MotionManager.swift */,
+				8191D2832C9FEE4E00B2A3C8 /* SayuPointManager.swift */,
+				812F63922CA5A145000F040D /* UserDefaultsManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -200,8 +399,13 @@
 		8191D2122C9935B900B2A3C8 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8191D2512C9A655700B2A3C8 /* ViewModifiers */,
 				8191D2132C9935FD00B2A3C8 /* +Spacer.swift */,
 				8191D21D2C993A6900B2A3C8 /* +Font.swift */,
+				8191D24F2C9A653A00B2A3C8 /* +View.swift */,
+				8191D2642C9B121300B2A3C8 /* +Date.swift */,
+				8191D2892CA009FA00B2A3C8 /* +String.swift */,
+				8191D2912CA04FBF00B2A3C8 /* +Int.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -209,15 +413,93 @@
 		8191D2152C993A0400B2A3C8 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				812F637D2CA3CAE5000F040D /* DOSIyagiBoldface.ttf */,
 				8191D21C2C993A1C00B2A3C8 /* GmarketSansTTFBold.ttf */,
 				8191D2182C993A1C00B2A3C8 /* GmarketSansTTFLight.ttf */,
 				8191D2172C993A1C00B2A3C8 /* GmarketSansTTFMedium.ttf */,
-				8191D2162C993A1C00B2A3C8 /* KimjungchulMyungjo-Bold.ttf */,
-				8191D2192C993A1C00B2A3C8 /* KimjungchulMyungjo-Light.ttf */,
-				8191D21A2C993A1C00B2A3C8 /* KimjungchulMyungjo-Regular.ttf */,
-				8191D21B2C993A1C00B2A3C8 /* Satoshi-Variable.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		8191D21F2C99435300B2A3C8 /* enum */ = {
+			isa = PBXGroup;
+			children = (
+				8191D22A2C99549400B2A3C8 /* ThinkType.swift */,
+				8191D22C2C99552500B2A3C8 /* SayuPointType.swift */,
+				8191D2582C9AF37600B2A3C8 /* SayuTimerType.swift */,
+			);
+			path = enum;
+			sourceTree = "<group>";
+		};
+		8191D2302C99619500B2A3C8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8191D2312C9961B000B2A3C8 /* AppTabbar.swift */,
+				8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */,
+				8191D2852CA0018600B2A3C8 /* AppMainNavbar.swift */,
+				8191D2492C99782900B2A3C8 /* BottomAlert.swift */,
+				8191D2682C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift */,
+				812F638C2CA51835000F040D /* BottomAddTimerTimeAlert.swift */,
+				8191D2812C9FD81A00B2A3C8 /* CentreSaveAlert.swift */,
+				812F636C2CA19476000F040D /* CentreEmptySayuAlert.swift */,
+				812F63902CA59AC3000F040D /* CentreSaveSuccessAlert.swift */,
+				812F63942CA5AB36000F040D /* CentreSayuPointPayAlert.swift */,
+				812F63702CA27740000F040D /* WrappedChip.swift */,
+				8191D24D2C9996C600B2A3C8 /* FoldableGroupBox.swift */,
+				8191D2742C9E648000B2A3C8 /* FlexableTextView.swift */,
+				8191D2542C9A6CBD00B2A3C8 /* RoundedTextField.swift */,
+				812F639D2CA66342000F040D /* PageIndicator.swift */,
+				8191D2722C9C7A6E00B2A3C8 /* SayuSubCreator.swift */,
+				8191D2762C9EA31100B2A3C8 /* SmartListCreator.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8191D2342C9965B400B2A3C8 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				8191D2352C9965CC00B2A3C8 /* Sayu */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		8191D2352C9965CC00B2A3C8 /* Sayu */ = {
+			isa = PBXGroup;
+			children = (
+				8191D2362C9965D500B2A3C8 /* WriteSayu.swift */,
+				8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */,
+				8191D26A2C9BE51200B2A3C8 /* WriteSayuOn.swift */,
+				8191D26C2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift */,
+			);
+			path = Sayu;
+			sourceTree = "<group>";
+		};
+		8191D23A2C9969D500B2A3C8 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8191D2872CA005B500B2A3C8 /* CalendarView.swift */,
+				8191D2932CA057F200B2A3C8 /* SayuCardListView.swift */,
+				8191D23B2C9969EE00B2A3C8 /* SayuCalendar.swift */,
+				8191D28D2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		8191D23D2C996A4200B2A3C8 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				8191D23E2C996A5800B2A3C8 /* SayuChart.swift */,
+				812F63812CA3CEAA000F040D /* SayuChartViewLogic.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		8191D2512C9A655700B2A3C8 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				8191D2522C9A657100B2A3C8 /* AsRoundedRect.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +523,7 @@
 				8191D1F32C99204300B2A3C8 /* RealmSwift */,
 				8191D1F82C99206300B2A3C8 /* MijickNavigationView */,
 				8191D1FB2C99206D00B2A3C8 /* MijickPopupView */,
+				8191D27C2C9EAA6B00B2A3C8 /* MCEmojiPicker */,
 			);
 			productName = sayu;
 			productReference = 8191D1DC2C991C7A00B2A3C8 /* sayu.app */;
@@ -274,6 +557,7 @@
 				8191D1F22C99204300B2A3C8 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				8191D1F72C99206300B2A3C8 /* XCRemoteSwiftPackageReference "NavigationView" */,
 				8191D1FA2C99206D00B2A3C8 /* XCRemoteSwiftPackageReference "PopupView" */,
+				8191D27B2C9EAA6B00B2A3C8 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
 			);
 			productRefGroup = 8191D1DD2C991C7A00B2A3C8 /* Products */;
 			projectDirPath = "";
@@ -289,6 +573,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				812F637E2CA3CB0D000F040D /* DOSIyagiBoldface.ttf in Resources */,
+				8191D2402C996D3500B2A3C8 /* GmarketSansTTFBold.ttf in Resources */,
+				8191D2412C996D3500B2A3C8 /* GmarketSansTTFLight.ttf in Resources */,
+				812F638F2CA578B6000F040D /* Launch Screen.storyboard in Resources */,
+				8191D2422C996D3500B2A3C8 /* GmarketSansTTFMedium.ttf in Resources */,
 				8191D1E72C991C7A00B2A3C8 /* Preview Assets.xcassets in Resources */,
 				8191D1EE2C991CED00B2A3C8 /* .gitignore in Resources */,
 				8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */,
@@ -302,17 +591,80 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				812F63982CA62DE4000F040D /* OnboardingView.swift in Sources */,
+				8191D2772C9EA31100B2A3C8 /* SmartListCreator.swift in Sources */,
+				812F63842CA3D223000F040D /* SayuStatisticItem.swift in Sources */,
+				8191D22D2C99552500B2A3C8 /* SayuPointType.swift in Sources */,
+				812F63912CA59AC3000F040D /* CentreSaveSuccessAlert.swift in Sources */,
 				8191D2112C99359800B2A3C8 /* NetworkManager.swift in Sources */,
+				812F639E2CA66342000F040D /* PageIndicator.swift in Sources */,
+				8191D23F2C996A5800B2A3C8 /* SayuChart.swift in Sources */,
+				8191D2232C99482200B2A3C8 /* Sub.swift in Sources */,
+				8191D25F2C9AF60C00B2A3C8 /* SayuTypeItem.swift in Sources */,
+				8191D28A2CA009FA00B2A3C8 /* +String.swift in Sources */,
+				8191D2502C9A653A00B2A3C8 /* +View.swift in Sources */,
 				8191D20F2C99355D00B2A3C8 /* DatabaseManager.swift in Sources */,
+				8191D2822C9FD81A00B2A3C8 /* CentreSaveAlert.swift in Sources */,
+				8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */,
 				8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */,
+				812F639C2CA660C8000F040D /* OnboardingViewItem.swift in Sources */,
+				812F63932CA5A145000F040D /* UserDefaultsManager.swift in Sources */,
 				8191D2142C9935FD00B2A3C8 /* +Spacer.swift in Sources */,
+				8191D2212C99450800B2A3C8 /* Subject.swift in Sources */,
+				8191D2672C9B1DC800B2A3C8 /* Repository.swift in Sources */,
+				812F638B2CA4DD87000F040D /* SayuItem.swift in Sources */,
+				8191D25D2C9AF5F600B2A3C8 /* SubViewItem.swift in Sources */,
+				8191D25B2C9AF5E500B2A3C8 /* SubjectViewItem.swift in Sources */,
+				8191D22B2C99549400B2A3C8 /* ThinkType.swift in Sources */,
+				8191D2842C9FEE4E00B2A3C8 /* SayuPointManager.swift in Sources */,
+				8191D2862CA0018600B2A3C8 /* AppMainNavbar.swift in Sources */,
+				8191D2632C9AF8BD00B2A3C8 /* SayuTime.swift in Sources */,
 				8191D21E2C993A6900B2A3C8 /* +Font.swift in Sources */,
+				8191D26F2C9C3EB000B2A3C8 /* NotificationManager.swift in Sources */,
+				8191D2732C9C7A6E00B2A3C8 /* SayuSubCreator.swift in Sources */,
+				8191D2552C9A6CBD00B2A3C8 /* RoundedTextField.swift in Sources */,
 				8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */,
+				812F63822CA3CEAA000F040D /* SayuChartViewLogic.swift in Sources */,
 				8191D20B2C99218C00B2A3C8 /* Book.swift in Sources */,
+				8191D2902CA04C2300B2A3C8 /* SayuCardItem.swift in Sources */,
+				812F636D2CA19476000F040D /* CentreEmptySayuAlert.swift in Sources */,
+				8191D2322C9961B000B2A3C8 /* AppTabbar.swift in Sources */,
+				8191D26B2C9BE51200B2A3C8 /* WriteSayuOn.swift in Sources */,
+				812F63892CA4267A000F040D /* AppTexts.swift in Sources */,
+				8191D23C2C9969EE00B2A3C8 /* SayuCalendar.swift in Sources */,
+				812F63952CA5AB36000F040D /* CentreSayuPointPayAlert.swift in Sources */,
 				8191D2092C99218400B2A3C8 /* Movie.swift in Sources */,
+				812F63662CA14B8B000F040D /* SayuPointView.swift in Sources */,
+				8191D2882CA005B500B2A3C8 /* CalendarView.swift in Sources */,
+				812F638D2CA51835000F040D /* BottomAddTimerTimeAlert.swift in Sources */,
+				8191D2272C994A3E00B2A3C8 /* SayuPoint.swift in Sources */,
+				8191D2942CA057F200B2A3C8 /* SayuCardListView.swift in Sources */,
+				8191D2692C9BC3CE00B2A3C8 /* BottomCautionCheckAlert.swift in Sources */,
+				8191D2612C9AF65300B2A3C8 /* SayuTimerTypeItem.swift in Sources */,
 				8191D2062C99215000B2A3C8 /* Think.swift in Sources */,
+				812F63692CA18F5C000F040D /* SayuDetailView.swift in Sources */,
+				8191D2652C9B121300B2A3C8 /* +Date.swift in Sources */,
+				812F63752CA29C1E000F040D /* SayuPointEarningButtonItem.swift in Sources */,
+				8191D2712C9C40D400B2A3C8 /* AppDelegate.swift in Sources */,
+				8191D2392C99673A00B2A3C8 /* HomeViewLogic.swift in Sources */,
+				8191D2532C9A657100B2A3C8 /* AsRoundedRect.swift in Sources */,
+				8191D2252C9948E600B2A3C8 /* SmartList.swift in Sources */,
+				8191D2922CA04FBF00B2A3C8 /* +Int.swift in Sources */,
+				8191D26D2C9C013E00B2A3C8 /* WriteSayuOnViewLogic.swift in Sources */,
+				8191D2752C9E648000B2A3C8 /* FlexableTextView.swift in Sources */,
+				8191D2802C9EEF0800B2A3C8 /* MotionManager.swift in Sources */,
 				8191D2002C9920D400B2A3C8 /* env.swift in Sources */,
-				8191D2022C9920DC00B2A3C8 /* env_dev.swift in Sources */,
+				8191D28C2CA00D0500B2A3C8 /* SayuCalendarItem.swift in Sources */,
+				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
+				812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */,
+				812F63A02CA66D65000F040D /* env_dev.swift in Sources */,
+				812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */,
+				8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */,
+				8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */,
+				8191D28E2CA038EC00B2A3C8 /* SayuCalendarViewLogic.swift in Sources */,
+				812F63712CA27740000F040D /* WrappedChip.swift in Sources */,
+				8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */,
+				8191D2592C9AF37600B2A3C8 /* SayuTimerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,26 +795,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"sayu/app/Preview Content\"";
 				DEVELOPMENT_TEAM = YM49LMS87D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = sayu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "슬기로운 사유생활";
+				INFOPLIST_KEY_NSMotionUsageDescription = "걷거나 달리면서 사유할 때 수집한 걸음 수와 이동 거리 데이터를 활용하여 차트 데이터를 보여드릴 때 활용해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = teamhk.sayu;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamhk.sayuApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -479,26 +836,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"sayu/app/Preview Content\"";
 				DEVELOPMENT_TEAM = YM49LMS87D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = sayu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "슬기로운 사유생활";
+				INFOPLIST_KEY_NSMotionUsageDescription = "걷거나 달리면서 사유할 때 수집한 걸음 수와 이동 거리 데이터를 활용하여 차트 데이터를 보여드릴 때 활용해요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = teamhk.sayu;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamhk.sayuApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -558,6 +920,14 @@
 				minimumVersion = 2.7.1;
 			};
 		};
+		8191D27B2C9EAA6B00B2A3C8 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/izyumkin/MCEmojiPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -575,6 +945,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8191D1FA2C99206D00B2A3C8 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = MijickPopupView;
+		};
+		8191D27C2C9EAA6B00B2A3C8 /* MCEmojiPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8191D27B2C9EAA6B00B2A3C8 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
+			productName = MCEmojiPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

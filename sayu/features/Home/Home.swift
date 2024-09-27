@@ -7,18 +7,33 @@
 
 import SwiftUI
 
-struct Home: View {
+import MijickNavigationView
+
+struct Home: NavigatableView {
+   @StateObject private var homeViewLogic: HomeViewLogic = .init()
+   @StateObject private var sayuPointManager: SayuPointManager = .manager
+   
    var body: some View {
       VStack {
-         Image(systemName: "globe")
-            .imageScale(.large)
-            .foregroundStyle(.tint)
-         Text("Hello, world!")
+         if homeViewLogic.isShowOnboardingView {
+            OnboardingView(homeViewLogic: homeViewLogic)
+         } else {
+            ZStack {
+               if homeViewLogic.selectedTabIndex == 0 {
+                  SayuCalendar()
+                     .environmentObject(sayuPointManager)
+               }
+               
+               if homeViewLogic.selectedTabIndex == 2 {
+                  SayuChart()
+                     .environmentObject(sayuPointManager)
+               }
+            }
+            
+            Spacer()
+            
+            AppTabbar(selectedTabIndex: $homeViewLogic.selectedTabIndex)
+         }
       }
-      .padding()
    }
-}
-
-#Preview {
-   Home()
 }
