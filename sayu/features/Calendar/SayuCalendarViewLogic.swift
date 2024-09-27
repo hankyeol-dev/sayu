@@ -24,7 +24,7 @@ final class SayuCalendarViewLogic: ObservableObject {
    var currentMonth: Int = 0
    
    @Published
-   var selectedDayString: String = ""
+   var selectedDayString: String = Date().formattedAppConfigure()
    
    @Published
    var dayConstant: [String] = ["일", "월", "화", "수", "목", "금", "토"]
@@ -37,6 +37,10 @@ final class SayuCalendarViewLogic: ObservableObject {
    
    private let pointManager: SayuPointManager = .manager
    private let sayuRepository: Repository<Think> = .init()
+   
+   init() {
+      setList()
+   }
 }
 
 extension SayuCalendarViewLogic {
@@ -112,11 +116,13 @@ extension SayuCalendarViewLogic {
    
    func setSayuCardList() {
       let queriedSayu = sayuRepository.getRecordsByQuery { [weak self] sayu in
-         return sayu.date == self?.selectedDayString && sayu.isSaved
+         return sayu.date == self?.selectedDayString
       }
       daySayuCardList = queriedSayu.map { sayu in
-         mappingSayuToCardItem(sayu)
-      }
+         self.mappingSayuToCardItem(sayu)
+      }.sorted(by: { item, _ in
+         item.isSaved
+      })
    }
    
    func setSayuCardSectionList() {
@@ -124,7 +130,7 @@ extension SayuCalendarViewLogic {
       
       let queried = sayuRepository.getRecordsByQuery { sayu in
          if let date = sayu.date.formattedForView() {
-            return date.formattedForCalendarMonth() == targetMonth && sayu.isSaved
+            return date.formattedForCalendarMonth() == targetMonth
          } else {
             return false
          }

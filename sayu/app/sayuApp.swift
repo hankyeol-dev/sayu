@@ -31,7 +31,6 @@ struct sayuApp: App {
             .task {
                notificationManager.askPermission()
                sayuPointManager.addJoinPoint()
-               motionManager.getAuth()
             }
       }
    }
@@ -50,4 +49,5 @@ extension sayuApp {
       .centre { $0.tapOutsideToDismiss(true) }
       .bottom { $0.tapOutsideToDismiss(true)  }
    }
+
 }

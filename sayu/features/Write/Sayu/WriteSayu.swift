@@ -41,26 +41,30 @@ struct WriteSayu: NavigatableView {
          
          // MARK: 사유하기 설정 영역
          ScrollView(.vertical, showsIndicators: false) {
-            Spacer.height(12.0)
-            
-            createSubjectView()
-            Spacer.height(12.0)
-            
-            createSubView()
-            Spacer.height(12.0)
-            
-            createSayuTypeView()
-            Spacer.height(12.0)
-            
-            createSayuTimer()
-            Spacer.height(12.0)
-            
-            createSayuSmartList()
-            Spacer.height(12.0)
+            VStack {
+               Spacer.height(12.0)
+               
+               createSubjectView()
+               Spacer.height(12.0)
+               
+               createSubView()
+               Spacer.height(12.0)
+               
+               createSayuTypeView()
+               Spacer.height(12.0)
+               
+               createSayuTimer()
+               Spacer.height(12.0)
+               
+               createSayuSmartList()
+               Spacer.height(12.0)
+            }
+            .padding(.horizontal, 16.0)
          }
+         .padding(.vertical, -8.0)
          .background(.white)
+         .foregroundStyle(.baseBlack)
          .frame(maxWidth: .infinity)
-         .padding(.horizontal, 16.0)
          
          Spacer()
          
@@ -127,42 +131,59 @@ extension WriteSayu {
                }
             } label: {
                asRoundedRect(title: item.subject,
-                             radius: 12.0,
-                             background: valid ? .baseGreen : .grayMd,
+                             radius: 10.0,
+                             background: valid ? .baseGreen : .graySm,
                              foreground: valid ? .white : .grayXl,
                              height: 40.0,
-                             fontSize: valid ? 15.0 : 14.0,
-                             font: valid ? .gmBold : .gmMedium)
+                             fontSize: valid ? 14.0 : 12.5,
+                             font: valid ? .gmMedium : .gmlight)
             }
             .disabled(!viewLogic.subjectFieldText.isEmpty)
          }
       }
    }
    private func createSubjectView() -> some View {
-      return FoldableGroupBox(title: "사유 주제") {
+      return FoldableGroupBox(title: AppTexts.WriteSayu.SUBJECT_TITLE.rawValue) {
          return VStack(alignment: .leading) {
-            Text("이런 주제는 어때요?")
-               .byCustomFont(.kjcRegular, size: 13.0)
+            if !viewLogic.lastSayuSubject.isEmpty {
+               VStack(alignment: .leading) {
+                  Text(AppTexts.WriteSayu.SUBJECT_LAST_TITLE.rawValue)
+                     .byCustomFont(.gmMedium, size: 13.0)
+                     .foregroundStyle(.grayLg)
+                  Spacer.height(8.0)
+                  Text(viewLogic.lastSayuSubject)
+                     .byCustomFont(.gmlight, size: 12.0)
+                     .foregroundStyle(.grayLg)
+               }
+               .frame(maxWidth: .infinity, alignment: .topLeading)
+               .padding(.all, 4.0)
+               
+               Spacer.height(20.0)
+            }
             
+            Text(AppTexts.WriteSayu.SYSTEMSUBJECT_RECOMMEND.rawValue)
+               .byCustomFont(.gmMedium, size: 13.0)
+               .foregroundStyle(.grayLg)
+               .padding(.leading, 4.0)
             Spacer.height(12.0)
             
             createSystemSubjectSelection(viewLogic.systemSubjectItems)
-            
             Spacer.height(20.0)
             
-            Text("사유 주제를 직접 만들어보세요.")
-               .byCustomFont(.kjcRegular, size: 13.0)
-            
+            Text(AppTexts.WriteSayu.SUBJECT_CREATE_NOTI.rawValue)
+               .byCustomFont(.gmMedium, size: 13.0)
+               .foregroundStyle(.grayLg)
+               .padding(.leading, 4.0)
             Spacer.height(8.0)
             
             RoundedTextField(fieldText: $viewLogic.subjectFieldText,
-                             placeholder: "주제를 입력해보세요.",
-                             font: .kjcRegular,
-                             fontSize: 13.0,
+                             placeholder: AppTexts.WriteSayu.SUBJECT_CREATE_PLACEHOLDER.rawValue,
+                             font: .gmMedium,
+                             fontSize: 15.0,
                              tint: .grayXl,
                              background: .grayXs,
                              foregroud: .grayXl,
-                             height: 36.0)
+                             height: 40.0)
             .disabled(viewLogic.selectedSystemSubject != nil)
             .focused($subjectFieldFocus)
             .onChange(of: viewLogic.subjectFieldText) { text in
@@ -177,6 +198,8 @@ extension WriteSayu {
             .onSubmit {
                viewLogic.isSubjectFieldOnSubmitTapped = true
             }
+            
+            
          }
          .frame(maxWidth: .infinity)
       } toggleHandler: { isNotOpen in
@@ -194,23 +217,27 @@ extension WriteSayu {
             return true
          }
       }
+      .onTapGesture {
+         subjectFieldFocus = false
+      }
    }
 }
 
 extension WriteSayu {
    private func createSubView() -> some View {
       let subItems = viewLogic.subItems
-      return FoldableGroupBox(title: "함께 사유할 내용 (\(subItems.count)개)") {
+      return FoldableGroupBox(
+         title: AppTexts.WriteSayu.SUB_TITLE.rawValue + " (\(subItems.count)개)"
+      ) {
          VStack {
             asRoundedRect(
-               title: "사유하는 중에는 추가가 어려워요",
+               title: AppTexts.WriteSayu.SUB_NOTI.rawValue,
                radius: 16.0,
-               background: .basebeige,
-               foreground: .grayXl,
+               background: .graySm,
+               foreground: .baseBlack,
                height: 32.0,
                fontSize: 12.0,
-               font: .kjcRegular)
-            
+               font: .gmlight)
             Spacer.height(16.0)
             
             if !subItems.isEmpty {
@@ -220,17 +247,18 @@ extension WriteSayu {
             }
             
             if subItems.count < 6 {
+               Spacer.height(12.0)
                Button {
                   withAnimation(.easeInOut) {
                      viewLogic.addSubItem()
                   }
                } label: {
                   asRoundedRect(
-                     title: "추가하기",
+                     title: AppTexts.WriteSayu.SUB_ADD_BUTTON.rawValue,
                      radius: 8.0,
-                     background: .grayMd,
+                     background: .graySm,
                      foreground: .grayXl,
-                     height: 32.0,
+                     height: 48.0,
                      fontSize: 15.0,
                      font: .gmMedium)
                }
@@ -247,19 +275,22 @@ extension WriteSayu {
             return true
          }
       }
+      .onTapGesture {
+         subFieldFocus = nil
+      }
    }
    private func createSubItem(_ item: Binding<SubViewItem>, index: Int) -> some View {
       return HStack(alignment: .center, spacing: 8.0) {
          RoundedTextField(
             fieldText: item.sub,
-            placeholder: "함께 사유할 내용을 입력해주세요.",
-            font: .kjcRegular,
+            placeholder: AppTexts.WriteSayu.SUB_ADD_PLACEHOLDER.rawValue,
+            font: .gmMedium,
             fontSize: 13.0,
             tint: .grayXl,
             background: .grayXs,
             foregroud: .grayXl,
             borderWidth: 0.5,
-            height: 36)
+            height: 40.0)
          .focused($subFieldFocus, equals: WriteSayuViewLogic.SubFieldFocus.init(rawValue: index))
          .onSubmit {
             subFieldFocus = nil
@@ -280,7 +311,7 @@ extension WriteSayu {
 extension WriteSayu {
    private func createSayuTypeView() -> some View {
       let selectedType = viewLogic.selectedSayuType
-      return FoldableGroupBox(title: "사유 방식") {
+      return FoldableGroupBox(title: AppTexts.WriteSayu.SAYU_TYPE_TITLE.rawValue) {
          VStack {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
                ForEach(viewLogic.sayuTypes, id: \.id) { type in
@@ -291,7 +322,7 @@ extension WriteSayu {
                      foreground: selectedType == type.type ? .white : .grayXl,
                      height: 32.0,
                      fontSize: 13.0,
-                     font: selectedType == type.type ? .gmBold : .gmMedium
+                     font: .gmMedium
                   )
                   .onTapGesture {
                      withAnimation(.bouncy) {
@@ -311,7 +342,9 @@ extension WriteSayu {
 extension WriteSayu {
    private func createSayuTimer() -> some View {
       let selectedType = viewLogic.selectedTimerType
-      return FoldableGroupBox(title: "사유 시간 설정") {
+      return FoldableGroupBox(
+         title: AppTexts.WriteSayu.SAYU_TIME_SETTING_TITLE.rawValue
+      ) {
          VStack {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 2)) {
                ForEach(viewLogic.sayuTimerTypes, id: \.id) { type in
@@ -339,29 +372,30 @@ extension WriteSayu {
                Spacer.height(16.0)
                
                asRoundedRect(
-                  title: "타이머 방식은 최대 3시간까지 설정할 수 있어요.",
+                  title: AppTexts.WriteSayu.SAYU_TIME_SETTING_NOTI.rawValue,
                   radius: 16.0,
-                  background: .basebeige,
-                  foreground: .grayXl,
+                  background: .graySm,
+                  foreground: .baseBlack,
                   height: 32.0,
                   fontSize: 12.0,
                   font: .kjcRegular)
                
                HStack {
                   Picker("시", selection: $viewLogic.sayuTime.hours) {
-                     ForEach(0..<3) { Text("\($0) 시") }
+                     ForEach(0..<3) { Text("\($0) 시").foregroundStyle(.baseBlack) }
                   }
                   
                   Picker("분", selection: $viewLogic.sayuTime.minutes) {
-                     ForEach(0..<60) { Text("\($0) 분") }
+                     ForEach(0..<60) { Text("\($0) 분").foregroundStyle(.baseBlack) }
                   }
                   
                   Picker("초", selection: $viewLogic.sayuTime.seconds) {
-                     ForEach(0..<60) { Text("\($0) 초") }
+                     ForEach(0..<60) { Text("\($0) 초").foregroundStyle(.baseBlack) }
                   }
                }
                .labelStyle(.titleOnly)
                .pickerStyle(.inline)
+               .foregroundStyle(.baseBlack)
                .frame(maxHeight: 80)
             }
          }
@@ -374,18 +408,49 @@ extension WriteSayu {
 
 extension WriteSayu {
    private func createSayuSmartList() -> some View {
-      return FoldableGroupBox(title: "사유 목록을 추가해보세요") {
+      FoldableGroupBox(
+         title: AppTexts.WriteSayu.SMARTLIST_TITLE.rawValue
+      ) {
          VStack {
             asRoundedRect(
-               title: "최대 3개의 사유 목록을 지정할 수 있어요.",
+               title: AppTexts.WriteSayu.SMARTLIST_NOTI.rawValue,
                radius: 16.0,
-               background: .basebeige,
-               foreground: .grayXl,
+               background: .graySm,
+               foreground: .baseBlack,
                height: 32.0,
                fontSize: 12.0,
                font: .kjcRegular)
+            Spacer.height(20.0)
+            
             SmartListCreator(smartListIcon: $viewLogic.smartListIcon,
                              smartLists: $viewLogic.smartList)
+            Spacer.height(20.0)
+            
+            if !viewLogic.lastSayuSmartList.isEmpty {
+               VStack(alignment: .leading) {
+                  Text(AppTexts.WriteSayu.SMARTLIST_LAST_TITLE.rawValue)
+                     .byCustomFont(.gmMedium, size: 13.0)
+                     .foregroundStyle(.grayLg)
+                  Spacer.height(8.0)
+                  ScrollView(.horizontal) {
+                     HStack(alignment: .center) {
+                        ForEach(viewLogic.lastSayuSmartList, id: \.self) { list in
+                           Text(list)
+                              .byCustomFont(.gmlight, size: 12.0)
+                              .padding(.horizontal, 8.0)
+                              .padding(.vertical, 6.0)
+                              .background(Capsule()
+                                 .stroke(lineWidth: 1.0)
+                                 .foregroundStyle(.grayLg))
+                              .background(.grayXs)
+                        }
+                     }
+                  }
+                  .frame(maxWidth: .infinity, alignment: .topLeading)
+               }
+               .frame(maxWidth: .infinity, alignment: .topLeading)
+               .padding(.all, 4.0)
+            }
          }
       } toggleHandler: { isNotOpen in
          return !isNotOpen
@@ -429,7 +494,7 @@ extension WriteSayu {
    private func popAlertCheckTimer() {
       BottomAlert(
          title: "사유 시간을 설정해주셨나요?",
-         content: "타이머 방식으로 사유하시는 경우,\n5분 이상 사유해보는 것은 어떨까요? :)"
+         content: "타이머 방식으로 사유하시는 경우, 5분 이상 사유해보는 것은 어떨까요? :)"
       )
       .showAndStack()
       .dismissAfter(2.5)
@@ -443,7 +508,7 @@ extension WriteSayu {
       ]
       BottomCautionCheckAlert(
          title: "꼭 확인해주세요.",
-         content: "걷거나 달리면서 사유하시는군요 👍\n안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
+         content: "안전하고 건강한 사유를 위해 아래의 내용을 반드시 확인해주세요.",
          cautions: cautions,
          confirmButtonTitle: "사유 시작") {
             dismiss()

@@ -14,6 +14,7 @@ import RealmSwift
 struct WriteSayuOn: NavigatableView {
    
    private var createdSayuId: ObjectId
+   private var isTempSavedModify: Bool
    
    @StateObject
    private var viewLogic: WriteSayuOnViewLogic = .init()
@@ -26,21 +27,25 @@ struct WriteSayuOn: NavigatableView {
    @Environment(\.dismiss)
    private var dismissView
    
-   init(createdSayuId: ObjectId) {
+   init(createdSayuId: ObjectId, isTempSavedModify: Bool) {
       self.createdSayuId = createdSayuId
+      self.isTempSavedModify = isTempSavedModify
    }
    
    var body: some View {
       VStack {
          if let sayu = viewLogic.sayu{
             AppNavbar(title: "\(viewLogic.sayuDate)의 사유", 
-                      isLeftButton: false,
-                      isRightButton: true,
-                      rightButtonAction: tempSaveDisplayAlert,
-                      rightButtonIcon: .saveTemp)
+                      isLeftButton: isTempSavedModify,
+                      leftButtonAction: tempSaveModifyDisplayAlert,
+                      leftButtonIcon: isTempSavedModify ? .xmark : nil,
+                      isRightButton: !isTempSavedModify,
+                      rightButtonAction: isTempSavedModify ? nil : tempSaveDisplayAlert,
+                      rightButtonIcon: isTempSavedModify ? nil : .saveTemp)
             
             ScrollView {
                VStack {
+                  Spacer.height(12.0)
                   if sayu.timerType == SayuTimerType.timer.rawValue {
                      createTimerView()
                   }
@@ -65,6 +70,7 @@ struct WriteSayuOn: NavigatableView {
                }
                .padding(.horizontal, 16.0)
             }
+            .padding(.vertical, -8.0)
             
             Button {
                saveSayu()
@@ -93,6 +99,17 @@ struct WriteSayuOn: NavigatableView {
                .showAndStack()
                .dismissAfter(1.0)
             viewLogic.isEarningTodaySayu = false
+            pop()
+         }
+      }
+      .onChange(of: viewLogic.isSaved) { value in
+         if value {
+            successSaveDisplayAlert()
+         }
+      }
+      .onChange(of: viewLogic.isMotionErrorButSaved) { value in
+         if value {
+            motionErrorButSuccessSaveDisplayAlert()
          }
       }
    }
@@ -133,6 +150,10 @@ extension WriteSayuOn {
          
          createTimerButtonSet()
          
+         if viewLogic.isStopped {
+            createTimeTakeItem()
+         }
+         
          Spacer()
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -163,37 +184,47 @@ extension WriteSayuOn {
    private func createTimerButtonSet() -> some View {
       HStack {
          Spacer()
-         Button {
-            if viewLogic.isPaused {
-               viewLogic.startTimer()
-            } else {
-               viewLogic.pauseTimer()
+         
+         if viewLogic.isStopped {
+            Button {
+               displaySetMoreTimerTimeAlert()
+            } label: {
+               Image(systemName: "plus")
+                  .font(.title3.bold())
+                  .foregroundStyle(.white)
+                  .frame(width: 48.0, height: 48.0)
+                  .background(Circle().fill(.baseGreenLg))
             }
-         } label: {
-            Image(systemName: viewLogic.isPaused ? "play.fill" : "pause" )
-               .font(.title3.bold())
-               .foregroundStyle(.white)
-               .frame(width: 48, height: 48)
-               .background(
-                  Circle()
-                     .fill(.baseGreen)
-               )
+         } else {
+            Button {
+               if viewLogic.isPaused {
+                  viewLogic.startTimer()
+               } else {
+                  viewLogic.pauseTimer()
+               }
+            } label: {
+               Image(systemName: viewLogic.isPaused ? "play.fill" : "pause" )
+                  .font(.title3.bold())
+                  .foregroundStyle(.white)
+                  .frame(width: 48, height: 48)
+                  .background(
+                     Circle()
+                        .fill(.baseGreen)
+                  )
+            }
+            Spacer.width(36.0)
+            
+            Button {
+               displayStopConfirmAlert()
+            } label: {
+               Image(systemName: "square.fill")
+                  .font(.title3.bold())
+                  .foregroundStyle(.white)
+                  .frame(width: 48.0, height: 48.0)
+                  .background(Circle().fill(.grayXl))
+            }
          }
          
-         Spacer.width(36.0)
-         
-         Button {
-            viewLogic.stopTimer()
-            UNUserNotificationCenter
-               .current()
-               .removeAllPendingNotificationRequests()
-         } label: {
-            Image(systemName: "square.fill")
-               .font(.title3.bold())
-               .foregroundStyle(.white)
-               .frame(width: 48.0, height: 48.0)
-               .background(Circle().fill(.grayXl))
-         }
          Spacer()
       }
       .frame(maxWidth: .infinity)
@@ -269,7 +300,32 @@ extension WriteSayuOn {
       }
    }
    
+   private func createTimeTakeItem() -> some View {
+      ScrollView(.horizontal) {
+         HStack(alignment: .center, spacing: 8.0) {
+            ForEach(viewLogic.sayuTimeTakes.indices, id: \.self) { index in
+               let timeTake = viewLogic.sayuTimeTakes[index]
+               if timeTake != 0 {
+                  HStack {
+                     Image(.stopwatch)
+                        .resizable()
+                        .frame(width: 15.0, height: 15.0)
+                     Spacer()
+                     Text(timeTake.convertTimeToString())
+                        .byCustomFont(.gmlight, size: 12.0)
+                  }
+                  .padding(.all, 6.0)
+                  .background(Capsule().fill(.graySm))
+               }
+            }
+         }
+      }
+      .frame(maxWidth: .infinity, alignment: .topLeading)
+      .padding(.horizontal, 16.0)
+   }
+   
    private func displayStopConfirmAlert() {
+      viewLogic.pauseTimer()
       let buttons: [BottomPopupButtonItem] = [
          .init(title: "안 멈출게요", background: .grayMd, foreground: .grayXl, action: {
             viewLogic.startTimer()
@@ -277,12 +333,23 @@ extension WriteSayuOn {
          }),
          .init(title: "네 멈출게요", background: .grayXl, foreground: .grayMd, action: {
             viewLogic.stopTimer()
+            UNUserNotificationCenter
+               .current()
+               .removeAllPendingNotificationRequests()
             dismiss()
          })
       ]
       BottomAlert(title: "사유 시간을 멈춰요", 
-                  content: "지금까지 흘러간 사유 시간을 초기화 할 수 있습니다.\n측정한 시간은 임시 저장됩니다.",
+                  content: "지금까지 흘러간 시간을 초기화합니다.\n측정된 시간은 임시 저장됩니다.",
                   buttons: buttons)
+      .showAndStack()
+   }
+   
+   private func displaySetMoreTimerTimeAlert() {
+      BottomAddTimerTimeAlert { time in
+         dismiss()
+         viewLogic.addTimeSetting(time)
+      }
       .showAndStack()
    }
 }
@@ -349,17 +416,51 @@ extension WriteSayuOn {
          })
       ]
       BottomAlert(title: "오늘의 사유를 잠시 멈출까요?",
-                  content: "사유 내용을 오늘까지만 잠시 저장합니다.\n오늘 안에는 언제든지 다시 불러와서 기록할 수 있어요.",
+                  content: "사유 내용을 안전하게 저장해둘게요.",
                   buttons: buttons)
+      .showAndStack()
+   }
+   
+   private func tempSaveModifyDisplayAlert() {
+      viewLogic.pauseTimer()
+      
+      let buttons: [BottomPopupButtonItem] = [
+         .init(title: "아니요", background: .baseGreen, foreground: .white, action: {
+            viewLogic.startTimer()
+            dismiss()
+         }),
+         .init(title: "네, 괜찮아요", background: .grayMd, foreground: .baseBlack, action: {
+            dismiss()
+            pop()
+         })
+      ]
+      BottomAlert(title: "정말 작성을 그만두시나요?",
+                  content: "같은 사유를 다시 시작하시려면, 다시 포션을 교환해주셔야 해요.",
+                  buttons: buttons)
+      .showAndStack()
+   }
+   
+   private func successSaveDisplayAlert() {
+      let content = "또 하나의 멋진 사유를 해냈어요!"
+      CentreSaveSuccessAlert(content: content) {
+         dismiss()
+         pop()
+      }
+      .showAndStack()
+   }
+   
+   private func motionErrorButSuccessSaveDisplayAlert() {
+      let content = "움직임이 적어 걷기/달리기 데이터는 저장 못했어요!"
+      CentreSaveSuccessAlert(content: content) {
+         dismiss()
+         pop()
+      }
       .showAndStack()
    }
    
    private func saveSayu() {
       viewLogic.pauseTimer()
       viewLogic.saveSayu(false)
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-         pop()
-      }
    }
 }
    

@@ -8,7 +8,7 @@
 import Foundation
 
 final class HomeViewLogic: ObservableObject {
-   @Published var selectedTabIndex: Int = 2
+   @Published var selectedTabIndex: Int = 0
 }
 
 extension HomeViewLogic {

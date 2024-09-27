@@ -74,7 +74,7 @@ extension SayuDetailView {
       } label: {
          Image(.arrowBack)
             .resizable()
-            .frame(width: 16.0, height: 16.0)
+            .frame(width: 16.0, height: 8.0)
       }
    }
    
@@ -180,7 +180,7 @@ extension SayuDetailView {
                createDatailInfoContent("사유 걸음 수",
                                        content: "\(steps.formatted()) 보")
                createDatailInfoContent("사유한 거리",
-                                       content: "\(Double(round(distance * 100) / 100)) km")
+                                       content: "\(distance) km")
             }
             
             if !sayu.smartList.isEmpty {

@@ -52,33 +52,27 @@ final class WriteSayuOnViewLogic: ObservableObject {
    var sayuContent: String = ""
    
    // MARK: - motion
-   @Published
-   var motionStart: Date?
-   
-   @Published
-   var motionEnd: Date?
-   
-   @Published
-   var steps: Int = 0
-   
-   @Published
-   var distance: Double = 0.0
-   
-   @Published
-   var avgPace: Double = 0.0
-   
-   @Published
-   var motionPermission: Bool = true
+   private var motionStart: Date?
+   private var motionEnd: Date?
+   private var steps: Int = 0
+   private var distance: Double = 0.0
+   private var avgPace: Double = 0.0
    
    // MARK: - save & errors
    @Published
    var isSaveError: Bool = false
    
    @Published
+   var isSaved: Bool = false
+   
+   @Published
+   var isMotionErrorButSaved: Bool = false
+   
+   @Published
    var isEarningTodaySayu: Bool = false
    
    // MARK: - database & managers
-   private let thinkRepository = Repository<Think>()
+   private let sayuRepository = Repository<Think>()
    private let subRepository = Repository<Sub>()
    private let notificationManager: NotificationManager = .init()
    private let motionManager: MotionManager = .init()
@@ -87,7 +81,7 @@ final class WriteSayuOnViewLogic: ObservableObject {
 
 extension WriteSayuOnViewLogic {
    func setSayu(for id: ObjectId) {
-      sayu = thinkRepository.getRecordById(id)
+      sayu = sayuRepository.getRecordById(id)
       setSayuDate()
       setSayuTime()
       setSayuSubject()
@@ -114,13 +108,9 @@ extension WriteSayuOnViewLogic {
          
          sayuTimeTakes.append(sayu.timeTake)
          
-         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             guard let self else { return }
             startTimer()
-            if sayu.thinkType == ThinkType.run.rawValue
-                  || sayu.thinkType == ThinkType.walk.rawValue {
-               motionStart = .init()
-            }
          }
       }
    }
@@ -189,7 +179,6 @@ extension WriteSayuOnViewLogic {
    }
    
    func stopTimer() {
-      
       isPaused = true
       isStopped = true
       
@@ -219,6 +208,15 @@ extension WriteSayuOnViewLogic {
          }
       }
    }
+   
+   func addTimeSetting(_ timeSetting: SayuTime) {
+      sayuSettingTime = timeSetting.convertTimeToSeconds
+      sayuStaticTime = sayuSettingTime
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+         guard let self else { return }
+         startTimer()
+      }
+   }
 }
 
 // MARK: - motion setting
@@ -229,36 +227,10 @@ extension WriteSayuOnViewLogic {
          motionStart = .init()
       }
    }
-   
    private func setMotionEnd(_ sayu: Think) {
       if sayu.thinkType == ThinkType.run.rawValue
             || sayu.thinkType == ThinkType.walk.rawValue {
          motionEnd = .init()
-      }
-   }
-   
-   private func collectMotion(_ sayu: Think) {
-      if sayu.thinkType == ThinkType.run.rawValue
-            || sayu.thinkType == ThinkType.walk.rawValue,
-         let motionStart,
-         let motionEnd
-      {
-         do {
-            try motionManager.stopUpdate()
-            try motionManager.getMotionData(
-               start: motionStart,
-               end: motionEnd
-            ) { [weak self] steps, distance, avgPace in
-               guard let self else { return }
-               self.steps += Int(truncating: steps)
-               self.distance += Double(truncating: distance)
-               self.avgPace += Double(truncating: avgPace)
-               self.motionStart = nil
-               self.motionEnd = nil
-            }
-         } catch MotionManager.MotionManagerError.authorizationDenied {
-            motionPermission = false
-         } catch {}
       }
    }
 }
@@ -266,57 +238,113 @@ extension WriteSayuOnViewLogic {
 // MARK: - save
 extension WriteSayuOnViewLogic {
    func saveSayu(_ isTemp: Bool) {
-      if let sayu, checkIsToday() {
-         isStopped = true
-         saveTimeTake()
+      isStopped = true
+      saveTimeTake()
+      
+      if let sayu {
          setMotionEnd(sayu)
-         collectMotion(sayu)
+         let totalTime = sayuTimeTakes.reduce(0) { cv, fv in return (cv + fv) }
+         let remainTime = sayuSettingTime <= totalTime ? 0 : sayuStaticTime - totalTime
          
-         let totalTimeTake = sayuTimeTakes.reduce(0) { cv, fv in return (cv + fv) }
-         let remainTime = sayuSettingTime <= totalTimeTake ? 0 : sayuStaticTime - totalTimeTake
-         
-         do {
-            try thinkRepository.updateRecord(sayu._id) { [weak self] sayu in
-               guard let self else { return }
-               print(distance, steps, avgPace)
-               
-               sayu.content = sayuContent
-               sayu.timeTake = totalTimeTake
-               sayu.timeSetting = remainTime
-               sayu.avgPace = avgPace
-               sayu.distance = distance
-               sayu.steps = steps
-               sayu.isSaved = !isTemp
-                              
-               if !sayuSubs.isEmpty {
-                  sayuSubs.enumerated().forEach { idx, sub in
-                     sayu.subs[idx].content = sub.content
-                  }
-               }
-            }
-            
-            if !sayuSubs.isEmpty {
-               try sayu.subs.forEach { sub in
-                  try subRepository.updateRecord(sub._id) { record in
-                     record.content = sub.content
-                  }
-               }
-            }
-            
-            if !isTemp {
-               isEarningTodaySayu = sayuPointManager.earningTodaySayu()
-            }
-            
-            isSaveError = false
-         } catch {
-            isSaveError = true
+         if motionManager.checkAuth()
+               && (sayu.thinkType == ThinkType.walk.rawValue
+                   || sayu.thinkType == ThinkType.run.rawValue) {
+            saveMotionPermitted(sayu, isTemp: isTemp, totalTime: totalTime, remainTime: remainTime)
+         } else {
+            updateSayu(sayu, 
+                       isMotion: false,
+                       isTemp: isTemp,
+                       isMotionError: false,
+                       totalTime: totalTime,
+                       remainTime: remainTime)
          }
-      } else {
+      }
+   }
+   
+   private func saveMotionPermitted(_ sayu: Think, isTemp: Bool, totalTime: Int, remainTime: Int) {
+      guard let start = motionStart, let end = motionEnd else { return }
+      do {
+         try motionManager.getMotionData(
+            start: start,
+            end: end) { [weak self] s, d, a in
+               guard let self else { return }
+               steps = s
+               distance = d
+               avgPace = a
+               updateSayu(sayu, 
+                          isMotion: true,
+                          isTemp: isTemp,
+                          isMotionError: false, 
+                          totalTime: totalTime,
+                          remainTime: remainTime)
+            } errorHandler: { [weak self] in
+               guard let self else { return }
+               updateSayu(sayu, 
+                          isMotion: false,
+                          isTemp: isTemp,
+                          isMotionError: true,
+                          totalTime: totalTime,
+                          remainTime: remainTime)
+            }
+         motionStart = nil
+         motionEnd = nil
+      } catch MotionManager.MotionManagerError.authorizationDenied {
+         isSaveError = true
+      } catch {
          isSaveError = true
       }
    }
    
-   private func checkIsToday() -> Bool {
-      return sayuDate == Date().formattedForView()
+   private func updateSayu(
+      _ sayu: Think,
+      isMotion: Bool,
+      isTemp: Bool,
+      isMotionError: Bool,
+      totalTime: Int,
+      remainTime: Int
+   ) {
+      do {
+         try sayuRepository.updateRecord(sayu._id) { [weak self] record in
+            guard let self else { return }
+            
+            record.content = sayuContent
+            record.timeTake = totalTime
+            record.timeSetting = remainTime
+            record.isSaved = !isTemp
+            
+            if isMotion {
+               record.avgPace = avgPace
+               record.distance = distance
+               record.steps = steps
+            }
+            
+            if !sayuSubs.isEmpty {
+               sayuSubs.enumerated().forEach { idx, sub in
+                  sayu.subs[idx].content = sub.content
+               }
+            }
+         }
+         
+         if !sayuSubs.isEmpty {
+            try sayu.subs.forEach { sub in
+               try subRepository.updateRecord(sub._id) { record in
+                  record.content = sub.content
+               }
+            }
+         }
+         
+         if !isTemp {
+            isEarningTodaySayu = sayuPointManager.earningTodaySayu()
+            if !isEarningTodaySayu && isMotionError {
+               isMotionErrorButSaved = true
+            }
+            
+            if !isEarningTodaySayu && !isMotionError {
+               isSaved = true
+            }
+         }
+      } catch {
+         isSaveError = true
+      }
    }
 }
