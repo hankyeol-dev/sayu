@@ -35,10 +35,7 @@ final class DatabaseManager: ObservableObject {
                   db.add(Subject(title: subject.byKoreanSubject, isSystemSubject: true))
                }
             }
-         } catch {
-            // TODO: - 여기 에러를 어떻게 핸들링 할 지 고민해보자.
-            dump(error)
-         }
+         } catch { }
       }
    }
 }

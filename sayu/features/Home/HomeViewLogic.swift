@@ -20,6 +20,8 @@ final class HomeViewLogic: ObservableObject {
    @Published
    var onboardingItems: [OnboardingViewItem] = []
    
+   private let motionManager: MotionManager = .init()
+   
    init() {
       setOnboardingContents()
    }
@@ -34,6 +36,7 @@ extension HomeViewLogic {
       if !checkIsLastIndex()  {
          onboardingPageIndex += 1
       } else {
+         motionManager.getAuth()
          UserDefaultsManager.isShowOnboardingView = false
          isShowOnboardingView = false
       }
@@ -52,7 +55,7 @@ extension HomeViewLogic {
                title: "사유 내역을 확인해 보세요.",
                contents: "내가 기록한 모든 사유 내역에 대한\n데이터를 확인할 수 있어요."),
          .init(image: .onboardingAuth,
-               title: "사유 동안의 움직임을 기록해 보세요",
+               title: "사유 움직임을 기록해 보세요",
                contents: "동작 및 피트니스 권한을 활성화하면\n걷고, 달리면서 사유한 데이터가 더욱 풍성해져요.")
       ]
    }

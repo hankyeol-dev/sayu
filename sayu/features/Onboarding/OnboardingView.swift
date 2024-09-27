@@ -35,7 +35,10 @@ struct OnboardingView: NavigatableView {
                homeViewLogic.updateOnboardingIndex()               
             }
          } label: {
-            asRoundedRect(title: homeViewLogic.checkIsLastIndex() ? "슬기로운사유생활 시작하기" : "확인했어요.")
+            asRoundedRect(
+               title: homeViewLogic.checkIsLastIndex() ? "슬기로운 사유생활 시작하기" : "확인했어요",
+               background: homeViewLogic.checkIsLastIndex() ? .baseGreen : .baseBlack
+            )
          }
       }
       .padding(.horizontal, 24.0)
