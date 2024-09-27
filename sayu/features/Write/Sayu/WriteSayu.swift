@@ -61,15 +61,12 @@ struct WriteSayu: NavigatableView {
             }
             .padding(.horizontal, 16.0)
          }
+         .background(.basebeige)
          .padding(.vertical, -8.0)
-         .background(.white)
-         .foregroundStyle(.baseBlack)
          .frame(maxWidth: .infinity)
          
          Spacer()
          
-         
-         // MARK: 사유하기 버튼 영역
          Button {
             if viewLogic.selectedSayuType == .run || viewLogic.selectedSayuType == .walk {
                popAlertCheckCaution()
@@ -89,7 +86,7 @@ struct WriteSayu: NavigatableView {
                font: .gmMedium)
          }
          .padding()
-         .background(.graySm)
+         .background(.basebeige)
       }
       .implementPopupView { config in
          config.bottom { bottom in

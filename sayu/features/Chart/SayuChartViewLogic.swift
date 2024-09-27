@@ -43,7 +43,9 @@ extension SayuChartViewLogic {
             mappingMaxSelectedSubject(),
             mappingTotalSayuTimeTake(),
             mappingTotalSteps(),
-            mappingTotalDistance()
+            mappingTotalDistance(),
+            mappingTotalWalkingCount(),
+            mappingTotalRunningCount()
          ]
       } else {
          sayuStatisticItems = [
@@ -60,7 +62,7 @@ extension SayuChartViewLogic {
          sayu.isSaved
       }.count
       
-      return .init(title: "지금까지 저장된 사유", content: String(count))
+      return .init(title: "지금까지 저장된 사유", content: String(count.formatted()))
    }
    
    private func mappingTotalSubCount() -> SayuStatisticItem {
@@ -71,7 +73,7 @@ extension SayuChartViewLogic {
          cv + sayu.subs.count
       }
       
-      return .init(title: "함께 저장된 세부 사유", content: String(count))
+      return .init(title: "함께 저장된 세부 사유", content: String(count.formatted()))
    }
    
    private func mappingTotalSayuTimeTake() -> SayuStatisticItem {
@@ -109,7 +111,7 @@ extension SayuChartViewLogic {
             return cv
          }
       }
-      return .init(title: "총 사유 걸음 수", content: String(count) + " 보")
+      return .init(title: "총 사유 걸음 수", content: String(count.formatted()) + " 보")
    }
    
    private func mappingTotalDistance() -> SayuStatisticItem {
@@ -122,6 +124,20 @@ extension SayuChartViewLogic {
          }
       }
       return .init(title: "총 사유 거리", content: String(Double(round(count * 100) / 100)) + " km")
+   }
+   
+   private func mappingTotalWalkingCount() -> SayuStatisticItem {
+      let queried = sayuRepository.getRecordsByQuery { sayu in
+         sayu.isSaved && sayu.thinkType == ThinkType.walk.rawValue
+      }
+      return .init(title: "총 걸으면서 사유한 횟수", content: String(queried.count.formatted()) + " 회")
+   }
+   
+   private func mappingTotalRunningCount() -> SayuStatisticItem {
+      let queried = sayuRepository.getRecordsByQuery { sayu in
+         sayu.isSaved && sayu.thinkType == ThinkType.run.rawValue
+      }
+      return .init(title: "총 달리면서 사유한 횟수", content: String(queried.count.formatted()) + " 회")
    }
 }
 

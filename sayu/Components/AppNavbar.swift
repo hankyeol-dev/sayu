@@ -83,7 +83,7 @@ struct AppNavbar: View {
       .padding(.horizontal, 16.0)
       .padding(.vertical, 12.0)
       .frame(maxHeight: 48.0)
-      .background(.grayXs)
-      .shadow(color: .grayMd, radius: 1.5, y: 0.5)
+      .background(.basebeige)
+      .shadow(color: .grayMd, radius: 0.5, y: 0.5)
    }
 }

@@ -30,12 +30,12 @@ struct UserDefaultsWrapper<T> {
 }
 
 struct UserDefaultsManager {
-   @UserDefaultsWrapper(key: .tempSaveModifyItem, defaultValue: 0)
-   static var tempSaveModifyItem: Int
-   
    @UserDefaultsWrapper(key: .isShowAppDeleteNotikey, defaultValue: false)
    static var isShowSayuPointDeleteNoti: Bool
    
    @UserDefaultsWrapper(key: .isShowAppDeleteChartNotiKey, defaultValue: false)
    static var isShowAppDeleteChartNoti: Bool
+   
+   @UserDefaultsWrapper(key: .isShowOnboardingViewKey, defaultValue: true)
+   static var isShowOnboardingView: Bool
 }
