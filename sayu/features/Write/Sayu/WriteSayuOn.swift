@@ -43,7 +43,7 @@ struct WriteSayuOn: NavigatableView {
                       rightButtonAction: isTempSavedModify ? nil : tempSaveDisplayAlert,
                       rightButtonIcon: isTempSavedModify ? nil : .saveTemp)
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                VStack {
                   Spacer.height(12.0)
                   if sayu.timerType == SayuTimerType.timer.rawValue {
@@ -70,7 +70,9 @@ struct WriteSayuOn: NavigatableView {
                }
                .padding(.horizontal, 16.0)
             }
+            .background(.basebeige)
             .padding(.vertical, -8.0)
+            .frame(maxWidth: .infinity)
             
             Button {
                saveSayu()
@@ -84,7 +86,7 @@ struct WriteSayuOn: NavigatableView {
                   font: .gmMedium)
             }
             .padding()
-            .background(.graySm)
+            .background(.basebeige)
             
          } else { EmptyView() }
       }

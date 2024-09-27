@@ -46,8 +46,7 @@ extension sayuApp {
    
    func configurePopup(_ config: GlobalConfig) -> GlobalConfig {
       config.top { $0.dragGestureEnabled(true) }
-      .centre { $0.tapOutsideToDismiss(true) }
-      .bottom { $0.tapOutsideToDismiss(true)  }
+         .centre { $0.tapOutsideToDismiss(true) }
+         .bottom { $0.tapOutsideToDismiss(true)  }
    }
-
 }

@@ -15,25 +15,25 @@ struct Home: NavigatableView {
    
    var body: some View {
       VStack {
-         ZStack {
-            if homeViewLogic.selectedTabIndex == 0 {
-               SayuCalendar()
-                  .environmentObject(sayuPointManager)
+         if homeViewLogic.isShowOnboardingView {
+            OnboardingView(homeViewLogic: homeViewLogic)
+         } else {
+            ZStack {
+               if homeViewLogic.selectedTabIndex == 0 {
+                  SayuCalendar()
+                     .environmentObject(sayuPointManager)
+               }
+               
+               if homeViewLogic.selectedTabIndex == 2 {
+                  SayuChart()
+                     .environmentObject(sayuPointManager)
+               }
             }
             
-            if homeViewLogic.selectedTabIndex == 2 {
-               SayuChart()
-                  .environmentObject(sayuPointManager)
-            }
+            Spacer()
+            
+            AppTabbar(selectedTabIndex: $homeViewLogic.selectedTabIndex)
          }
-         
-         Spacer()
-         
-         AppTabbar(selectedTabIndex: $homeViewLogic.selectedTabIndex)
       }
    }
-}
-
-#Preview {
-   Home()
 }
