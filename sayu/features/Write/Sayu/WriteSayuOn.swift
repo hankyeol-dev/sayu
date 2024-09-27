@@ -21,6 +21,8 @@ struct WriteSayuOn: NavigatableView {
    
    @State
    private var sayuContentHeight: CGFloat = 60.0
+   @FocusState
+   private var sayuContentFocus: Bool
    
    @Environment(\.scenePhase)
    private var scenePhase
@@ -362,7 +364,7 @@ extension WriteSayuOn {
          HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
             Spacer()
             Text(subject)
-               .byCustomFont(.kjcRegular, size: 18.0)
+               .byCustomFont(.gmBold, size: 18.0)
             Spacer()
          }
          .padding(.bottom, 8.0)
@@ -381,22 +383,26 @@ extension WriteSayuOn {
                radius: 16.0,
                background: .basebeige,
                foreground: .grayXl,
-               height: 32.0,
+               height: 40.0,
                fontSize: 12.0,
-               font: .kjcRegular)
+               font: .gmMedium)
             FlexableTextView(text: sayuContent,
                              height: $sayuContentHeight,
                              placeholder: "구체적인 사유 내용을 자유롭게 작성해보세요.",
                              maxHeight: 200.0,
                              maxTextCount: 1000,
-                             textFont: .kjcRegular,
+                             textFont: .gmMedium,
                              textSize: 13.0,
                              placeholderColor: .grayXl)
+            .focused($sayuContentFocus)
          }
       } toggleHandler: { _ in
          return true
       }
       .frame(minHeight: sayuContentHeight + 160.0, maxHeight: .infinity)
+      .onTapGesture {
+         sayuContentFocus = false
+      }
    }
 }
 

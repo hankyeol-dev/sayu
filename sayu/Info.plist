@@ -4,7 +4,6 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>KimjungchulMyungjo-Regular.ttf</string>
 		<string>GmarketSansTTFBold.ttf</string>
 		<string>GmarketSansTTFLight.ttf</string>
 		<string>GmarketSansTTFMedium.ttf</string>

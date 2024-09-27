@@ -27,6 +27,7 @@
 		812F63982CA62DE4000F040D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F63972CA62DE4000F040D /* OnboardingView.swift */; };
 		812F639C2CA660C8000F040D /* OnboardingViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F639B2CA660C8000F040D /* OnboardingViewItem.swift */; };
 		812F639E2CA66342000F040D /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F639D2CA66342000F040D /* PageIndicator.swift */; };
+		812F63A02CA66D65000F040D /* env_dev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F639F2CA66D65000F040D /* env_dev.swift */; };
 		8191D1E02C991C7A00B2A3C8 /* sayuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */; };
 		8191D1E22C991C7A00B2A3C8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D1E12C991C7A00B2A3C8 /* Home.swift */; };
 		8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191D1E32C991C7A00B2A3C8 /* Assets.xcassets */; };
@@ -59,7 +60,6 @@
 		8191D2402C996D3500B2A3C8 /* GmarketSansTTFBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D21C2C993A1C00B2A3C8 /* GmarketSansTTFBold.ttf */; };
 		8191D2412C996D3500B2A3C8 /* GmarketSansTTFLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D2182C993A1C00B2A3C8 /* GmarketSansTTFLight.ttf */; };
 		8191D2422C996D3500B2A3C8 /* GmarketSansTTFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D2172C993A1C00B2A3C8 /* GmarketSansTTFMedium.ttf */; };
-		8191D2452C996D3500B2A3C8 /* KimjungchulMyungjo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8191D21A2C993A1C00B2A3C8 /* KimjungchulMyungjo-Regular.ttf */; };
 		8191D2482C996FDA00B2A3C8 /* AppNavbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2472C996FDA00B2A3C8 /* AppNavbar.swift */; };
 		8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D2492C99782900B2A3C8 /* BottomAlert.swift */; };
 		8191D24C2C99937200B2A3C8 /* WriteSayuViewLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191D24B2C99937200B2A3C8 /* WriteSayuViewLogic.swift */; };
@@ -132,6 +132,7 @@
 		812F63972CA62DE4000F040D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		812F639B2CA660C8000F040D /* OnboardingViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewItem.swift; sourceTree = "<group>"; };
 		812F639D2CA66342000F040D /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
+		812F639F2CA66D65000F040D /* env_dev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env_dev.swift; sourceTree = "<group>"; };
 		8191D1DC2C991C7A00B2A3C8 /* sayu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sayu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191D1DF2C991C7A00B2A3C8 /* sayuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sayuApp.swift; sourceTree = "<group>"; };
 		8191D1E12C991C7A00B2A3C8 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		8191D2132C9935FD00B2A3C8 /* +Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Spacer.swift"; sourceTree = "<group>"; };
 		8191D2172C993A1C00B2A3C8 /* GmarketSansTTFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFMedium.ttf; sourceTree = "<group>"; };
 		8191D2182C993A1C00B2A3C8 /* GmarketSansTTFLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFLight.ttf; sourceTree = "<group>"; };
-		8191D21A2C993A1C00B2A3C8 /* KimjungchulMyungjo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KimjungchulMyungjo-Regular.ttf"; sourceTree = "<group>"; };
 		8191D21C2C993A1C00B2A3C8 /* GmarketSansTTFBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFBold.ttf; sourceTree = "<group>"; };
 		8191D21D2C993A6900B2A3C8 /* +Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Font.swift"; sourceTree = "<group>"; };
 		8191D2202C99450800B2A3C8 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
@@ -328,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				8191D1FF2C9920D400B2A3C8 /* env.swift */,
+				812F639F2CA66D65000F040D /* env_dev.swift */,
 			);
 			path = environment;
 			sourceTree = "<group>";
@@ -418,7 +419,6 @@
 				8191D21C2C993A1C00B2A3C8 /* GmarketSansTTFBold.ttf */,
 				8191D2182C993A1C00B2A3C8 /* GmarketSansTTFLight.ttf */,
 				8191D2172C993A1C00B2A3C8 /* GmarketSansTTFMedium.ttf */,
-				8191D21A2C993A1C00B2A3C8 /* KimjungchulMyungjo-Regular.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -581,7 +581,6 @@
 				8191D2412C996D3500B2A3C8 /* GmarketSansTTFLight.ttf in Resources */,
 				812F638F2CA578B6000F040D /* Launch Screen.storyboard in Resources */,
 				8191D2422C996D3500B2A3C8 /* GmarketSansTTFMedium.ttf in Resources */,
-				8191D2452C996D3500B2A3C8 /* KimjungchulMyungjo-Regular.ttf in Resources */,
 				8191D1E72C991C7A00B2A3C8 /* Preview Assets.xcassets in Resources */,
 				8191D1EE2C991CED00B2A3C8 /* .gitignore in Resources */,
 				8191D1E42C991C7A00B2A3C8 /* Assets.xcassets in Resources */,
@@ -662,6 +661,7 @@
 				8191D28C2CA00D0500B2A3C8 /* SayuCalendarItem.swift in Sources */,
 				8191D24E2C9996C600B2A3C8 /* FoldableGroupBox.swift in Sources */,
 				812F63862CA3ECEB000F040D /* SayuBarChartItem.swift in Sources */,
+				812F63A02CA66D65000F040D /* env_dev.swift in Sources */,
 				812F636B2CA18FA5000F040D /* SayuDetailViewLogic.swift in Sources */,
 				8191D2372C9965D500B2A3C8 /* WriteSayu.swift in Sources */,
 				8191D24A2C99782900B2A3C8 /* BottomAlert.swift in Sources */,

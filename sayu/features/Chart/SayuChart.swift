@@ -37,6 +37,7 @@ struct SayuChart: NavigatableView {
                if let todaySteps = sayuChartViewLogic.todaySteps {
                   createTodayStepView(todaySteps)                  
                }
+               Spacer.height(16.0)
             }
             .padding(.horizontal, 16.0)
          }

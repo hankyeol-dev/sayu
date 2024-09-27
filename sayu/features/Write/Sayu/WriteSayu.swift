@@ -375,7 +375,7 @@ extension WriteSayu {
                   foreground: .baseBlack,
                   height: 32.0,
                   fontSize: 12.0,
-                  font: .kjcRegular)
+                  font: .gmMedium)
                
                HStack {
                   Picker("시", selection: $viewLogic.sayuTime.hours) {
@@ -416,7 +416,7 @@ extension WriteSayu {
                foreground: .baseBlack,
                height: 32.0,
                fontSize: 12.0,
-               font: .kjcRegular)
+               font: .gmMedium)
             Spacer.height(20.0)
             
             SmartListCreator(smartListIcon: $viewLogic.smartListIcon,
@@ -434,12 +434,12 @@ extension WriteSayu {
                         ForEach(viewLogic.lastSayuSmartList, id: \.self) { list in
                            Text(list)
                               .byCustomFont(.gmlight, size: 12.0)
+                              .foregroundStyle(.baseBlack)
                               .padding(.horizontal, 8.0)
                               .padding(.vertical, 6.0)
                               .background(Capsule()
-                                 .stroke(lineWidth: 1.0)
-                                 .foregroundStyle(.grayLg))
-                              .background(.grayXs)
+                                 .fill(.white)
+                              )
                         }
                      }
                   }

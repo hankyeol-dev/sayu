@@ -129,6 +129,10 @@ extension SayuDetailView {
          .showAndStack()
          .dismissAfter(1.5)
    }
+   
+   func configure(view: NavigationConfig) -> NavigationConfig {
+      view.navigationBackGesture(.drag)
+   }
 }
 
 extension SayuDetailView {
@@ -155,7 +159,7 @@ extension SayuDetailView {
          HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
             Spacer()
             Text(subject)
-               .byCustomFont(.kjcRegular, size: 18.0)
+               .byCustomFont(.gmMedium, size: 18.0)
             Spacer()
          }
          .padding(.bottom, 8.0)
@@ -220,7 +224,7 @@ extension SayuDetailView {
          VStack {
             if sayuDetailViewLogic.isEditMode {
                TextEditor(text: $sayuDetailViewLogic.sayuContents)
-                  .font(.byCustomFont(.kjcRegular, size: 15.0))
+                  .font(.byCustomFont(.gmMedium, size: 15.0))
                   .lineSpacing(6.0)
                   .transparentScrolling()
                   .tint(.grayXl)
@@ -231,9 +235,9 @@ extension SayuDetailView {
                   .frame(minHeight: 200.0, maxHeight: 200.0)
             } else {
                Text(sayuDetailViewLogic.sayuContents)
-                  .byCustomFont(.kjcRegular, size: 15.0)
+                  .byCustomFont(.gmMedium, size: 15.0)
                   .lineSpacing(6.0)
-                  .padding(.horizontal, 8.0)
+                  .padding(.horizontal, 4.0)
             }
          }
       } toggleHandler: { open in
@@ -256,17 +260,16 @@ extension SayuDetailView {
    }
    
    private func createDetailSubs() -> some View {
-      
       return FoldableGroupBox(bg: .white, title: "사유 세부 내용") {
-         VStack(alignment: .leading, spacing: 20.0) {
+         VStack(alignment: .leading, spacing: 24.0) {
             ForEach(sayuDetailViewLogic.sayuSubs.indices, id: \.self) { index in
                VStack(alignment: .leading, spacing: 8.0) {
                   Text(sayuDetailViewLogic.sayuSubs[index].sub)
-                     .byCustomFont(.gmlight, size: 13.0)
-                     .foregroundStyle(.grayLg)
+                     .byCustomFont(.gmMedium, size: 13.0)
+                     .foregroundStyle(.grayMd)
                   if sayuDetailViewLogic.isEditMode {
                      TextEditor(text: $sayuDetailViewLogic.sayuSubs[index].content)
-                        .font(.byCustomFont(.kjcRegular, size: 15.0))
+                        .font(.byCustomFont(.gmMedium, size: 15.0))
                         .transparentScrolling()
                         .background(.clear)
                         .tint(.grayXl)
@@ -275,14 +278,14 @@ extension SayuDetailView {
                         .focused($subEditorFocus, equals: .init(rawValue: index))
                   } else {
                      Text(sayuDetailViewLogic.sayuSubs[index].content)
-                        .byCustomFont(.kjcRegular, size: 16.0)
+                        .byCustomFont(.gmMedium, size: 16.0)
                         .foregroundStyle(.grayXl)
                   }
                }
                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
          }
-         .padding(.horizontal, 8.0)
+         .padding(.horizontal, 4.0)
       } toggleHandler: { isNotOpen in
          !isNotOpen
       }

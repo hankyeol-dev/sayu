@@ -58,6 +58,7 @@ struct SayuSubCreator: View {
                }
             }
          }
+         
       } toggleHandler: { isNotOpen in
          if isNotOpen {
             if fieldFocus == nil && textViewFocus == nil {
@@ -69,8 +70,11 @@ struct SayuSubCreator: View {
             return true
          }
       }
+      .onTapGesture {
+         textViewFocus = nil
+         fieldFocus = nil
+      }
    }
-   
 }
 
 extension SayuSubCreator {
@@ -80,7 +84,7 @@ extension SayuSubCreator {
             RoundedTextField(
                fieldText: item.sub,
                placeholder: "함께 사유할 내용을 입력해주세요.",
-               font: .kjcRegular,
+               font: .gmMedium,
                fontSize: 13.0,
                tint: .grayXl,
                background: .grayXs,
@@ -89,6 +93,7 @@ extension SayuSubCreator {
                height: 36)
             .focused($fieldFocus, equals: SubFieldFocus.init(rawValue: index))
             .onSubmit {
+               textViewFocus = nil
                fieldFocus = nil
             }
             .disabled(contentMode)
@@ -100,13 +105,14 @@ extension SayuSubCreator {
                height: $textViewHeight,
                placeholder: "떠오르는 생각을 자유롭게 작성해보세요.",
                maxHeight: 100.0,
-               textFont: .kjcRegular,
+               textFont: .gmMedium,
                textSize: 13.0,
                placeholderColor: .grayMd
             )
             .focused($textViewFocus, equals: SubContentFocus.init(rawValue: index))
             .onSubmit {
                textViewFocus = nil
+               fieldFocus = nil
             }
          }
       }

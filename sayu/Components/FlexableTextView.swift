@@ -17,7 +17,7 @@ struct FlexableTextView: UIViewRepresentable {
    var maxTextCount: Int = 100
    
    /// Font, Color
-   var textFont: Font.CustomFont = .kjcRegular
+   var textFont: Font.CustomFont = .gmMedium
    var textColor: UIColor = .baseBlack
    var textSize: CGFloat = 15.0
    var tintColor: UIColor = .grayXl

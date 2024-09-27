@@ -12,7 +12,6 @@ extension Font {
       case gmlight = "GmarketSansTTFLight"
       case gmMedium = "GmarketSansTTFMedium"
       case gmBold = "GmarketSansTTFBold"
-      case kjcRegular = "KimjungchulMyungjo-Regular"
       case dos = "DOSIyagiMedium"
    }
    

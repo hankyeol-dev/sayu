@@ -117,10 +117,11 @@ struct SmartListCreator: View {
    private func createChipView(_ item: String) -> some View {
       Text(item)
          .byCustomFont(.gmMedium, size: 13.0)
+         .foregroundStyle(.baseBlack)
          .padding(.horizontal, 12.0)
          .padding(.vertical, 8.0)
          .background(
-            Capsule().foregroundStyle(.white)
+            Capsule().fill(.white)
          )
    }
 }
