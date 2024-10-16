@@ -1,93 +1,149 @@
 # 슬기로운 사유생활
 
-## 프로젝트 소개
+**목차**
 
-걷거나 달리면서 그날 하루의 생각거리를 저장하는 일상 속 사유 앱
-
-- 참여자: 강한결 (1인 앱스토어 출시 프로젝트)
-- 앱 다운로드: [링크](https://apps.apple.com/kr/app/%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9C%A0%EC%83%9D%ED%99%9C/id6720723938) (iOS 전용)
-- 기간: 2024.09.16 ~ 2024.09.30 (10.01 앱 출시)
-- 최소 지원 버전: iOS 15.0+
+- [프로젝트 소개](#-🚶-프로젝트-소개)
+- [프로젝트 아키텍처 및 스택](#-🚶-프로젝트-아키텍처-및-구현-스택)
+- [프로젝트에서 고민한 것](#-🚶-프로젝트에서-고민한-것)
 
 <br />
 
-## 구현 스택
+##  🚶 프로젝트 소개
+걷거나 달리면서 그날의 고민거리를 정리하여 하나의 생각으로 만드는 생각 기록 앱
 
-> - SwiftUI, CoreMotion
-> - RealmSwift
-> - MVVM
+- 개발 인원: 강한결 (1인 프로젝트)
+- 기간: 2024.09.16 ~ 2024.09.30 (2024.10.01 앱스토어 출시)
+- 최소 지원 버전: iOS 15.0
+- 앱 링크: [다운로드 링크](https://apps.apple.com/kr/app/%EC%8A%AC%EA%B8%B0%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9C%A0%EC%83%9D%ED%99%9C/id6720723938) (iOS 전용)
+<br />
 
-구현 방식
-
-- SwiftUI 기반으로 선언적인 뷰 코드를 작성하고, 각각의 프로퍼티래퍼를 통해 데이터 흐름을 관리했습니다.
-- ObservableObject 프로토콜을 준수하는 ViewModel 객체에서 데이터 로직과 뷰 이벤트 로직을 처리하도록 코드를 작성하였습니다.
-- CoreMotion 프레임워크 API를 활용해 걷기/달리기 모드의 모션 데이터를 활용하였습니다.
-- Realm 라이브러리를 활용하여 유저 기기에 영구적으로 저장되는 데이터를 관리하였습니다.
+**주요 기능**
+- 매일매일 걷거나 달리거나 조용히 앉아서 생각을 정리하고 기록할 수 있습니다.
+  - 생각 기록 과정에서 걷기, 달리기 모드 설정 가능 (모션 데이터 수집)
+  - 생각 기록 시간 저장 (타이머, 스톱워치 방식 선택)
+- 기록한 생각 데이터는 로컬 DB에 저장되어 앱을 사용하는 동안 모아볼 수 있습니다.
+  - 캘린더, 타임라인 뷰에 따라 저장된 데이터 조회
+  - 저장된 데이터를 정리하여 차트 및 수치로 조회
+- 앱 내부에서만 활용 가능한 포인트를 저장된 생각의 양, 걸음 수에 따라서 수집할 수 있습니다.
+  - 수집된 포인트는 당일에 저장되지 못한 생각을 다시 시작하는데 활용
 
 <br />
 
-## 앱 구현에서 고민한 것들
+## 🚶 프로젝트 아키텍처 및 구현 스택
 
-### RealmSwift 기반의 로컬 데이터베이스를 효율적으로 관리하기 위한 Repository 패턴 적용
+**SwiftUI**
+- SwiftUI 기반으로 선언적인 View 객체를 구성하였습니다.
+- SwiftUI의 프로퍼티래퍼를 통해 ViewModel과의 상호작용 및 View 계층간의 데이터 흐름을 관리했습니다.
 
-- 프로젝트에서 활용되는 데이터는 총 6개의 Realm Object 테이블에서 관리되었습니다.
-  - 1️⃣ 각각의 테이블을 필요할 때마다 인스턴스화 하여 접근하는 것은 불필요한 코드의 반복이 있을 것이라 판단했습니다.
-    - 그런 이유로, 구조화된 틀을 만들고 그 안에서 동일한 방식으로 동작하는 메서드와 동일한 에러 케이스를 던질 수 있도록 **`Repository<Entity: Object>`** 구조체를 활용했습니다.
-  - 2️⃣ Object 타입의 Realm 테이블 객체를 호출하는 시점에서 추론할 수 있도록 코드를 작성했습니다.
-  - 3️⃣ 구조체 내부에서는 로컬 데이터베이스의 레코드들을 조회, 업데이트, 필터링, 삭제할 수 있는 메서드를 각각 정의하여 ViewModel이 동일한 방식으로 활용할 수 있게 했습니다.
-    - 특히, 관계성이 있는 테이블간의 데이터 처리가 필요한 경우를 핸들링하기 위해 클로저를 인자로 받는 메서드를 정의해 쓰기 및 업데이트 작업시에 각 ViewModel이 필요로 하는 로직을 실행할 수 있도록 했습니다.
-      ```swift
-         func addSingleRecord(_ record: Entity, addHandler: @escaping (Entity) -> Void) throws {
-            do {
-               try db.write {
-                  db.add(record)
-                  addHandler(record)
-               }
-            } catch {
-               throw RepositoryErrors.failForAdd
-            }
+**CoreMotion 프레임워크**
+- `CMPedometer` API를 활용하여 실시간 걷기, 달리기에 대한 모션 데이터를 수집 및 가공했습니다.
+
+**RealmSwift**
+- 유저의 생각 기록, 모션 데이터, 포인트 내역을 앱 사용기간 동안 영구적으로 저장하고 활용하기 위한 로컬 데이터베이스 구성 목적으로 활용했습니다.
+- 데이터 유형에 맞는 테이블을 구성하고, 테이블 타입을 생성 시점에 추론할 수 있는 Repository 패턴을 적용했습니다.
+
+**MVVM 아키텍처**
+- View에서는 데이터 흐름에 따라 UI를 구성하고 유저 이벤트를 ViewModel에 전달하도록 구현했습니다.
+- ViewModel에서는 View에 전달될 데이터의 상태를 저장하고 업데이트 하는 비즈니스 로직을 반영했습니다.
+
+<br />
+
+## 🚶 프로젝트에서 고민한 것
+
+### 1. RealmSwift 기반의 로컬 데이터베이스를 효율적으로 관리하기 위한 Repository 패턴 적용
+> [관련 코드](https://github.com/hankyeol-dev/sayu/blob/main/sayu/models/entity/Repository.swift)
+
+1️⃣ 고민한 부분
+- 유저가 기록한 생각과 포인트 내역을 앱이 사용되는 동안 영구적으로 저장하고 조회할 수 있어야 했습니다.
+- View에서 필요로 하는 데이터를 ViewModel에서 조회/저장/가공하여 전달할 수 있어야 했습니다. (View에서 직접 데이터베이스에 접근하지 않는 구성)
+  - 데이터가 활용될 때마다 데이터베이스 인스턴스를 생성하거나, 접근 코드가 반복적으로 작성되지 않는 효율적인 방식이 필요하다고 판단했습니다.
+
+2️⃣ 고민을 풀어낸 방식
+- 생각 기록 및 포인트 내역 저장을 위해 6개의 테이블(Object)을 구성하고, 테이블간 관계를 구성했습니다.
+- 테이블 인스턴스를 동일한 방식으로 접근하기 위해, `Repository<Entity: RealmObject>` 구조체를 구현했습니다.
+  - Repository 객체 생성 시점에 접근하고자 하는 테이블의 타입을 추론할 수 있게, RealmObject 프로토콜로 제약을 건 제네릭을 설정했습니다. 
+    ```swift
+      struct Repository<Entity: RealmObject> {
+         private var db = try! Realm()
+         
+         enum RepositoryErrors: Error {
+            case failForAdd
+            case failForUpdate
+            case recordNotFound
          }
+         ...
+      }
+    ```
+  - Repository 구조체 내부에서는 추론된 테이블 타입에 맞게 레코드를 생성/조회(필터링)/수정/삭제하는 메서드를 구성하여 테이블 타입에 상관없이 동일하게 동작하도록 구현했습니다.
+    - 관계가 구축된 테이블간의 데이터 처리를 위해, 탈출 클로저를 인자로 받는 메서드를 함께 구현했습니다.
+      ```swift
+       func addSingleRecord(_ record: Entity, addRecordHandler: @escaping (Entity) -> Void) {
+           do {
+              try db.write {
+                 db.add(record)
+                 addRecordHanlder(record)
+              }
+           } catch {
+              throw RepositoryErrors.failForAdd
+           }
+        }
       ```
-- Realm 라이브러리 자체에서 SwiftUI에 대응하기 위해 `ObjectKeyIdentifiable 프로토콜` 이나 `@ObservedResults`와 같은 프로퍼티 래퍼를 갖추고 있습니다.
-  - 다만, sayu 프로젝트에서는 관계가 얽혀있는 다른 테이블의 데이터를 함께 참조하거나, 함께 저장하는 경우가 많았습니다.
-  - 또한, ViewModel에서 Realm 데이터베이스를 다루기에는 Repository 패턴으로 코드에 접근하는 것이 잘 맞다고 판단했습니다.
+  - 데이터베이스 접근시에 발생할 수 있는 에러케이스 역시 Repository 구조체 내부에서 일관되게 설정했습니다.
+- ViewModel에서는 Repository의 멤버나 내부 로직 구현부에 상관없이, 필요한 테이블 타입에 맞춰 Repository 객체를 생성하고 내부 기능을 활용해 데이터를 활용하는 로직을 구성할 수 있었습니다.
+
+3️⃣ 아쉬운 점과 개선 방향성
+- Realm 라이브러리는 SwiftUI에 대응하는 `ObjectKeyIdentifiable 프로토콜`, `@ObservedResults` 프로퍼티 래퍼를 갖추고 있습니다.
+  - SwiftUI 기반으로 프로젝트를 진행했고, 데이터에 대한 별다른 이벤트가 없는 View에서는 ObservedResults로 데이터베이스를 직접 활용할 수도 있었다고 생각합니다. 다만, 모든 상위 View에서 ViewModel을 참조하고 있고, ViewModel에서 데이터 흐름을 관장하는 프로젝트 구조상 Repository 객체를 활용하는 것이 효율적이라고 판단했습니다.
 
 <br />
 
-### CoreMotion 프레임워크를 통한 실시간 모션 데이터 확보
+### 2. CoreMotion 프레임워크를 통한 실시간 모션 데이터 활용
 
-- 프로젝트 컨셉에 따라 걷거나, 달리는 활동에 대한 모션 측정 필요했습니다.
-  - 1️⃣ Healkit, CoreMotion 이라는 두 가지 프레임워크 선택지가 있었습니다.
-    - 앱의 주요 컨셉이 '운동을 기록'하는 것이 아닌 '운동을 하면서 내 생각을 정리' 하는 것이었기 때문에 CoreMotion을 통한 걸음 수, 이동 거리, 평균 페이스 정도의 데이터를 수집하는 것으로 방향을 잡았습니다.
-  - 2️⃣ CoreMotion 프레임워크가 제공하는 API를 활용하는 서비스 객체를 만들고, 모션 데이터가 앱 전반에 걸쳐 활용되어야 했기에 ObservableObject 프로토콜을 채택해 @EnvironObject로 계층에 상관없이 접근될 수 있게 처리했습니다.
-  - 3️⃣ CoreMotion에서 제공하는 pedometer 객체(만보기 객체)를 활용해 유저의 실시간 모션 데이터, 특정 기간의 모션 데이터를 수집하는 로직을 구현했습니다.
-    - 사유를 시작하는 시점에 모션 업데이트를 시작하고, 사유 기록 내용이 저장되는 시점에 업데이트를 종료해 데이터를 로컬 데이터베이스에 정재해서 저장했습니다.
-      ```swift
-       func startUpdate(
-          _ start: Date,
-          startHandler: @escaping (NSNumber, NSNumber, NSNumber) -> Void) throws {
+1️⃣ 고민한 부분
+- 기획단계부터, 유저가 걷거나 달리는 중에 앱을 활용해 생각하고 기록하는 경험을 제공하고 싶었습니다.
+  - 걷거나 달리는 모드로 생각을 기록하는 경우, 걸음 수/거리/페이스와 같은 모션 데이터를 함께 활용할 수 있는 방향으로 기획을 확장시켰습니다. 기획 사항에 맞춰, 앱을 사용하는 동안의 모션 데이터를 수집할 수 있어야 했습니다.
 
-             if !checkAuth() {
-                throw MotionManagerError.authorizationDenied
-             } else {
-                pedometer.startUpdates(from: start) { pedometerData, error in
-                   guard error == nil else { return }
+2️⃣ 고민을 풀어낸 방식
+- 아이폰을 통해 유저의 모션을 감지하기 위해 HealthKit, CoreMotion 의 두 가지 프레임워크를 각각 활용하는 선택지가 있었습니다.
+  - HealthKit 프레임워크의 HKWorkout, HKWorkoutSession과 같은 API는 유저의 운동에 초점을 맞춰 모션 데이터를 수집하고 건강 데이터로 기록할 수 있었습니다.
+  - CoreMotion 프레임워크는 유저의 움직임에 따라 아이폰의 자이로스코프 센서가 감지한 모션 정보를 API 형태로 제공하고 있었습니다.
+  - 앱 컨셉이 '운동을 기록하면서 생각을 정리한다'가 아닌 **'걷거나 달리면서도 내 생각을 정리할 수 있다'** 에 있었기 때문에 CoreMotion에서 제공하는 만보기 API (CMPedometer)를 선택했습니다.
+   
+- 생각을 기록하는 View, 기록된 데이터를 차트/수치화하여 보여주는 View, 걸음 수에 따라 포인트를 지급하는 View에서 각각 모션 데이터를 활용했습니다.
+  - CoreMotion API를 범용적으로 활용하고 앱 전반에 걸쳐 활용될 수 있도록 @ObservableObject 프로토콜을 채택한 MotionManager를 구성했습니다. View에서는 @EnvironObject를 활용하여 View 계층에 상관없이 모션 데이터가 필요한 View에 MotionManager를 주입해 사용했습니다.
+  - MotionManager 내부에서는 CMPedometer 인스턴스의 API로 유저의 실시간 모션 데이터를 수집하는 로직을 구현했습니다. `startUpdate(from: Date)` API는 pedometer 인스턴스를 참조하고 `stopUpdates` API가 호출되기 전까지 pedometerData를 클로저 내부에서 제공해주었습니다. 클로저 구문에서는 필요한 데이터를 선택하여 활용할 수 있었습니다. (steps, distance, avgPage 속성 활용) 유저가 생각 기록을 마치고 `사유 저장` 버튼을 터치했을 때, 최종적으로 stopUpdate 메서드를 호출하여 필요한 모션 데이터를 저장할 수 있었습니다.
+    ```swift
+    func startMotionUpdate(_ start: Date, startHandler: @escaping(NSNumber, NSNumber, NSNumber) -> Void) throws {
+      if !checkAuth() {
+        throw MotionManagerError.authorizationDenied
+      }
 
-                   if let pedometerData {
-                      let steps = pedometerData.numberOfSteps
-                      if let distance = pedometerData.distance,
-                         let avgPace = pedometerData.averageActivePace {
-                         startHandler(steps, distance, avgPace)
-                      }
-                   }
-                }
-             }
+      pedometer.startUpdates(from: start) { pedometerData, error in
+        guard error == nil else { return }
+        if let pedometerData {
+          let steps = pedometerData.numberOfSteps
+          if let distance = pedometerData.distance,
+              let avgPace = pedometerData.averageActivePace {
+                startHandler(steps, distance, avgPace)
           }
-      ```
-  - 4️⃣ CoreMotion의 API가 completionHandler와 같이 엔딩 클로져를 통해서만 데이터를 제공하는 점이 아쉬웠습니다.
-    - `pedometer.stopUpdates()` 가 호출되기 전까지의 실행 환경을 유지하기 위해서는 클로저로 메모리를 차지하는 것이 필요했을 것이라고 판단했습니다.
-    - 실시간 모션 데이터를 다른 객체 로직에서 접근해야 했기 때문에, 자연스럽게 클로저 안에서 클로저 구문이 돌아가도록 설정해야 했고, 이런 부분이 코드 가독성을 저하시켰던 것 같습니다.
-    - AsyncStream과 같이 데이터를 쪼개서 활용하는 방법을 스스로 채택해보는 것도 좋지 않았을까 하는 생각을 하게 되었습니다.
+        }
+      }
+    }
+
+    func stopUpdate() throws {
+      if !checkAuth() {
+         throw MotionManagerError.authorizationDenied
+      } else {
+         pedometer.stopUpdates()
+      }
+    }
+    ```
+    
+3️⃣ 아쉬운 점과 개선 방향성
+  - CoreMotion의 API가 completionHandler와 같이 클로져 컨텍스트를 통해서만 데이터에 접근할 수 있다는 점이 아쉬웠습니다.
+    - `pedometer.stopUpdates()` API가 호출되기 전까지 동일한 pedometer 인스턴스를 참조하며 계속 모션 데이터를 탐지해야하기 때문에 클로저로 메모리를 차지하는 것이 필요했을 것이라 판단했습니다.
+    - 모션 데이터를 다른 로직에서 사용하기 위해서는 자연스럽게 클로저 안에서 콜백 형태로 또 다른 클로저가 실행되어야 했습니다. 이런 점이 모션 데이터를 활용하는 코드의 가독성을 떨어뜨렸습니다.
+    - AsyncStream과 같이 계속 수집되는 데이터를 쪼개서 활용하는 방법을 선택할 수 있을 것 같습니다.
 
 <br />
 
