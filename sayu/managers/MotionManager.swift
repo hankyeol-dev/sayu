@@ -19,6 +19,10 @@ final class MotionManager: ObservableObject {
       case motionIsNotCaptured
    }
    
+   static let manager: MotionManager = .init()
+   
+   private init() {}
+   
    func getTodaySteps(_ handler: @escaping (Int) -> Void)  {
       if checkAuth(), let todayStart, let todayEnd {
          pedometer.queryPedometerData(from: todayStart, to: todayEnd) { data, error in

@@ -19,7 +19,7 @@ struct sayuApp: App {
    private let notificationManager: NotificationManager = .init()
    private let sayuPointManager: SayuPointManager = .manager
    private let databaseManager: DatabaseManager = .manager
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
    
    var body: some Scene {
       WindowGroup {

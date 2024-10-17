@@ -169,6 +169,7 @@ extension WriteSayuOn {
          if !viewLogic.isPaused {
             if phaseStatus == .background {
                viewLogic.isActiveLastTimeStamp = .init()
+               viewLogic.saveSayu(true)
             }
             
             if phaseStatus == .active {
@@ -294,6 +295,7 @@ extension WriteSayuOn {
          if !viewLogic.isPaused {
             if phaseStatus == .background {
                viewLogic.isActiveLastTimeStamp = .init()
+               viewLogic.saveSayu(true)
             }
             
             if phaseStatus == .active {

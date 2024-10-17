@@ -75,7 +75,7 @@ final class WriteSayuOnViewLogic: ObservableObject {
    private let sayuRepository = Repository<Think>()
    private let subRepository = Repository<Sub>()
    private let notificationManager: NotificationManager = .init()
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
    private let sayuPointManager: SayuPointManager = .manager
 }
 
@@ -100,13 +100,14 @@ extension WriteSayuOnViewLogic {
          if sayu.timerType == SayuTimerType.timer.rawValue {
             sayuSettingTime = sayu.timeSetting
             sayuStaticTime = sayu.timeSetting + sayu.timeTake
+            sayuTimeTakes.append(sayu.timeTake)
          }
          
          if sayu.timerType == SayuTimerType.stopWatch.rawValue {
-            sayuSettingTime = 0
+            sayuSettingTime = sayu.timeTake
+            print(sayuSettingTime)
+            sayuTimeTakes = [sayuSettingTime]
          }
-         
-         sayuTimeTakes.append(sayu.timeTake)
          
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             guard let self else { return }
@@ -204,7 +205,7 @@ extension WriteSayuOnViewLogic {
          }
          
          if sayu.timerType == SayuTimerType.stopWatch.rawValue {
-            sayuTimeTakes.append(sayuSettingTime)
+            sayuTimeTakes = [sayuSettingTime]
          }
       }
    }

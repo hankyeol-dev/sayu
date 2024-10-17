@@ -170,7 +170,7 @@ struct SayuCardView: NavigatableView {
    
    private func displayTempSavedModify() {
       
-      let content = "마무리하지 못 한 사유를 다시 시작하는 포션을 교환하시겠어요? 🧪"
+      let content = "마무리하지 못 한 사유를 다시 시작하는 포션을 교환하시겠어요?"
       let errorContent = "보유한 사유 포인트가 모자라요 🥹"
       let point = 3
       

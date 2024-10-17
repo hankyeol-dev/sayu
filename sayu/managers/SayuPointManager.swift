@@ -13,7 +13,7 @@ final class SayuPointManager: ObservableObject {
    static let manager: SayuPointManager = .init()
    private let sayuRepository: Repository<Think> = .init()
    private let pointRepository: Repository<SayuPoint> = .init()
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
    
    @Published
    var currentSayuPoint: Int = 0

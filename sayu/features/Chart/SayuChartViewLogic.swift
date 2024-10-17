@@ -25,7 +25,7 @@ final class SayuChartViewLogic: ObservableObject {
    // MARK: - db & manager
    private let sayuRepository: Repository<Think> = .init()
    private let subjectRepository: Repository<Subject> = .init()
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
    
    init() {
       setSayuStatisticItems()

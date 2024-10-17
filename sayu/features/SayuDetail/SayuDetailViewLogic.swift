@@ -32,7 +32,7 @@ final class SayuDetailViewLogic: ObservableObject {
    // MARK: - db & managers
    private let sayuRepository: Repository<Think> = .init()
    private let subRepository: Repository<Sub> = .init()
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
 }
 
 extension SayuDetailViewLogic {

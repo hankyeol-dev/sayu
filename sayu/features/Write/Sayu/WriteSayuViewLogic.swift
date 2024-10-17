@@ -89,7 +89,7 @@ final class WriteSayuViewLogic: ObservableObject {
    private let subRepository = Repository<Sub>()
    private let sayuRepository = Repository<Think>()
    private let smartListRepository = Repository<SmartList>()
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
    
    var createdSayuId: ObjectId?
    

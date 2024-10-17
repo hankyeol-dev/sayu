@@ -20,7 +20,7 @@ final class HomeViewLogic: ObservableObject {
    @Published
    var onboardingItems: [OnboardingViewItem] = []
    
-   private let motionManager: MotionManager = .init()
+   private let motionManager: MotionManager = .manager
    
    init() {
       setOnboardingContents()

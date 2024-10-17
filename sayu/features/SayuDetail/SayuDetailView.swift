@@ -131,7 +131,8 @@ extension SayuDetailView {
    }
    
    func configure(view: NavigationConfig) -> NavigationConfig {
-      view.navigationBackGesture(.drag)
+      view.navigationBackGesture(.drag
+      )
    }
 }
 
