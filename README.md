@@ -29,20 +29,24 @@
 
 ## 🚶 프로젝트 아키텍처 및 구현 스택
 
-**SwiftUI 기반의 MVVM 아키텍처**
+> **SwiftUI 기반의 MVVM 아키텍처**
+>
+> - SwiftUI로 선언적인 View를 구성하였습니다.
+>   - SwiftUI의 `@PropertyWrapper`, `View Modifier`를 통해 ViewModel과 상호작용하며 데이터 상태, 액션 바인딩을 처리했습니다.
+> - ObservableObject를 채택한 ViewModel에서 데이터 상태와 비즈니스 로직을 관리했습니다.
 
-- SwiftUI 기반으로 선언적인 View를 구성하였습니다.
-  - SwiftUI의 프로퍼티래퍼를 통해 ViewModel과의 상호작용 및 View 계층간의 데이터 흐름을 관리했습니다.
-- ObservableObject를 채택한 ViewModel에서 데이터 상태와 비즈니스 로직을 관리했습니다.
+<br />
 
-**CoreMotion 프레임워크**
+> **CoreMotion 프레임워크**
+>
+> - `CMPedometer` (만보기) API를 활용하여 유저의 실시간 걷기, 달리기에 대한 모션 데이터를 수집 및 가공했습니다.
 
-- `CMPedometer` (만보기) API를 활용하여 유저의 실시간 걷기, 달리기에 대한 모션 데이터를 수집 및 가공했습니다.
+<br />
 
-**RealmSwift**
-
-- 유저의 생각 기록, 모션 데이터, 포인트 내역을 앱 사용기간 동안 영구적으로 저장하고 활용하기 위한 로컬 데이터베이스 구성 목적으로 활용했습니다.
-- 데이터 유형에 맞는 테이블을 구성하고, 테이블 타입을 생성 시점에 추론할 수 있는 Repository 패턴을 적용했습니다.
+> **RealmSwift**
+>
+> - 유저의 생각 기록, 모션 데이터, 포인트 내역을 앱 사용기간 동안 영구적으로 저장하고 활용하기 위한 로컬 데이터베이스로 활용했습니다.
+> - 데이터 유형에 맞는 테이블을 구성하고, 데이터를 효율적으로 관리하는 Repository 패턴을 적용했습니다.
 
 <br />
 
@@ -103,6 +107,8 @@
 <br />
 
 ### 2. CoreMotion 프레임워크를 통한 실시간 모션 데이터 활용
+
+> [관련 코드](https://github.com/hankyeol-dev/sayu/blob/main/sayu/managers/MotionManager.swift)
 
 1️⃣ 고민한 부분
 
