@@ -11,7 +11,7 @@
 
 ## 🚶 프로젝트 소개
 
-걷거나 달리면서 그날의 고민거리를 정리하여 하나의 생각으로 만드는 생각 기록 앱
+걷거나 달리면서 그날의 고민거리를 정리하고, 하나의 생각으로 만드는 생각 기록 앱
 
 - 개발 인원 : 강한결 (1인 프로젝트)
 - 기간
@@ -31,9 +31,9 @@
 
 > **SwiftUI 기반의 MVVM 아키텍처**
 >
-> - SwiftUI로 선언적인 View를 구성하였습니다.
->   - SwiftUI의 `@PropertyWrapper`, `View Modifier`를 통해 ViewModel과 상호작용하며 데이터 상태, 액션 바인딩을 처리했습니다.
-> - ObservableObject를 채택한 ViewModel에서 데이터 상태와 비즈니스 로직을 관리했습니다.
+> - 데이터 흐름을 원하는 뷰로 표현하기 위해 선언적인 SwiftUI를 선택했습니다.
+>   - View 업데이트를 위해 상태를 관리하고 데이터를 바인딩하는 `@propertyWrapper`와 `View Modifier` 로 코드 가독성을 높였습니다.
+> - ObservableObject를 채택한 ViewModel에서 데이터 상태와 비즈니스 로직을 관리하여 View가 반응할 수 있게 코드를 작성했습니다.
 
 <br />
 
