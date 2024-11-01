@@ -29,22 +29,23 @@
 
 ## 🚶 프로젝트 아키텍처 및 구현 스택
 
-> **SwiftUI 기반의 MVVM 아키텍처**
->
+> **SwiftUI, MVVM 패턴, CoreMotion, RealmSwift**
+
+<br />
+
+**SwiftUI 기반의 MVVM 아키텍처**
 > - 데이터 흐름을 원하는 뷰로 표현하기 위해 선언적인 SwiftUI를 선택했습니다.
 >   - View 업데이트를 위해 상태를 관리하고 데이터를 바인딩하는 `@propertyWrapper`와 `View Modifier` 로 코드 가독성을 높였습니다.
 > - ObservableObject를 채택한 ViewModel에서 데이터 상태와 비즈니스 로직을 관리하여 View가 반응할 수 있게 코드를 작성했습니다.
 
 <br />
 
-> **CoreMotion 프레임워크**
->
+**CoreMotion 프레임워크**
 > - `CMPedometer` (만보기) API를 활용하여 유저의 실시간 걷기, 달리기에 대한 모션 데이터를 수집 및 가공했습니다.
 
 <br />
 
-> **RealmSwift**
->
+**RealmSwift**
 > - 유저의 생각 기록, 모션 데이터, 포인트 내역을 앱 사용기간 동안 영구적으로 저장하고 활용하기 위한 로컬 데이터베이스로 활용했습니다.
 > - 데이터 유형에 맞는 테이블을 구성하고, 데이터를 효율적으로 관리하는 Repository 패턴을 적용했습니다.
 
